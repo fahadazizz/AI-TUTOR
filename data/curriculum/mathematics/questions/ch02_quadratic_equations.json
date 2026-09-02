@@ -1,0 +1,523 @@
+{
+  "_meta": {
+    "description": "Question bank for Mathematics Class 10 Chapter 2 - Quadratic Equations & Inequalities",
+    "format": "Questions ordered by concept → difficulty level (1=recognition, 2=identification, 3=procedural, 4=application, 5=board_style, 6=challenge)",
+    "total_questions": 60,
+    "last_updated": "2026-09-02"
+  },
+
+  "questions": [
+
+    {
+      "question_id": "math10.ch2.qexpr.q01",
+      "concept_id": "math10.ch2.quadratic_expression",
+      "difficulty": 1,
+      "question_type": "recognition",
+      "question_text_ur": "درج ذیل میں سے کون سی مقدار مربعی (quadratic) ہے؟\n(الف) 3x + 5\n(ب) x² + 2x - 1\n(ج) x³ + x\n(د) 7",
+      "question_text_en": "Which of the following is a quadratic expression?\n(a) 3x + 5\n(b) x² + 2x - 1\n(c) x³ + x\n(d) 7",
+      "expected_answer": "b",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "ہر مقدار میں x کی سب سے زیادہ طاقت دیکھو", "math": ""},
+        {"step": 2, "description_ur": "(ب) x² + 2x - 1 میں x کی سب سے زیادہ طاقت 2 ہے", "math": "degree = 2"}
+      ],
+      "hints": [
+        "مربعی مقدار میں x کی سب سے زیادہ طاقت کتنی ہوتی ہے؟",
+        "ہر مقدار میں x کی power دیکھو — 2 ہو تو مربعی ہے",
+        "x² والی مقدار تلاش کرو"
+      ],
+      "tags": ["recognition", "quadratic_expression", "mcq"]
+    },
+
+    {
+      "question_id": "math10.ch2.qexpr.q02",
+      "concept_id": "math10.ch2.quadratic_expression",
+      "difficulty": 1,
+      "question_type": "recognition",
+      "question_text_ur": "بتاؤ کہ 4x² مربعی مقدار ہے یا نہیں؟ وجہ بھی بتاؤ۔",
+      "question_text_en": "Is 4x² a quadratic expression? Explain why or why not.",
+      "expected_answer": "yes",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "x کی سب سے زیادہ طاقت = 2", "math": "4x² = 4x² + 0x + 0"},
+        {"step": 2, "description_ur": "ہاں، یہ مربعی ہے جہاں a=4, b=0, c=0", "math": "a=4 ≠ 0"}
+      ],
+      "hints": [
+        "مربعی مقدار کی تعریف سوچو — x کی سب سے زیادہ طاقت کیا ہونی چاہیے؟",
+        "b اور c صفر بھی ہو سکتے ہیں"
+      ],
+      "tags": ["recognition", "quadratic_expression", "pure_quadratic"]
+    },
+
+    {
+      "question_id": "math10.ch2.sf.q01",
+      "concept_id": "math10.ch2.standard_form",
+      "difficulty": 2,
+      "question_type": "identification",
+      "question_text_ur": "3x² - 7x + 2 = 0 میں a, b اور c کی قدریں بتاؤ۔",
+      "question_text_en": "For 3x² - 7x + 2 = 0, identify the values of a, b, and c.",
+      "expected_answer": "a=3, b=-7, c=2",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "ax² + bx + c = 0 سے موازنہ کرو", "math": "3x² - 7x + 2 = 0"},
+        {"step": 2, "description_ur": "x² کا ضریب a ہے", "math": "a = 3"},
+        {"step": 3, "description_ur": "x کا ضریب b ہے (علامت سمیت)", "math": "b = -7"},
+        {"step": 4, "description_ur": "مستقل حد c ہے", "math": "c = 2"}
+      ],
+      "hints": [
+        "ax² + bx + c = 0 سے موازنہ کرو",
+        "b کی قدر میں علامت (sign) شامل ہوتی ہے — یہاں -7x ہے تو b = -7",
+        "a = 3, c = 2, اب b سوچو"
+      ],
+      "tags": ["identification", "standard_form", "coefficients"]
+    },
+
+    {
+      "question_id": "math10.ch2.sf.q02",
+      "concept_id": "math10.ch2.standard_form",
+      "difficulty": 2,
+      "question_type": "identification",
+      "question_text_ur": "x² - 9 = 0 میں a, b اور c بتاؤ۔",
+      "question_text_en": "For x² - 9 = 0, identify a, b, and c.",
+      "expected_answer": "a=1, b=0, c=-9",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "x² - 9 = 0 کو ax² + bx + c = 0 سے موازنہ کرو", "math": "1·x² + 0·x + (-9) = 0"},
+        {"step": 2, "description_ur": "a=1, b=0 (x کی حد نہیں ہے), c=-9", "math": "a=1, b=0, c=-9"}
+      ],
+      "hints": [
+        "جب x² اکیلا ہو تو a = 1 ہوتا ہے",
+        "اگر x والی حد نہ ہو تو b = 0 ہے",
+        "c = -9 ہے (علامت سمیت)"
+      ],
+      "tags": ["identification", "standard_form", "pure_quadratic"]
+    },
+
+    {
+      "question_id": "math10.ch2.sf.q03",
+      "concept_id": "math10.ch2.standard_form",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "5x = 3x² - 2 کو standard form ax² + bx + c = 0 میں لکھو اور a, b, c بتاؤ۔",
+      "question_text_en": "Write 5x = 3x² - 2 in standard form and identify a, b, c.",
+      "expected_answer": "3x^2 - 5x - 2 = 0, a=3, b=-5, c=-2",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "سب حدیں ایک طرف لاؤ", "math": "0 = 3x² - 5x - 2"},
+        {"step": 2, "description_ur": "Standard form: 3x² - 5x - 2 = 0", "math": "a=3, b=-5, c=-2"}
+      ],
+      "hints": [
+        "تمام حدیں ایک طرف لے جاؤ تاکہ = 0 ہو جائے",
+        "5x کو دوسری طرف لے جاؤ: 3x² - 5x - 2 = 0"
+      ],
+      "tags": ["procedural", "standard_form", "rearrangement"]
+    },
+
+    {
+      "question_id": "math10.ch2.fact.q01",
+      "concept_id": "math10.ch2.solving_by_factorization",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "x² + 5x + 6 = 0 کو تحلیل (factorization) سے حل کرو۔",
+      "question_text_en": "Solve x² + 5x + 6 = 0 by factorization.",
+      "expected_answer": "x = -2, x = -3",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "ایسے دو عدد تلاش کرو جن کی ضرب 6 ہو اور جمع 5 ہو", "math": "2 + 3 = 5, 2 × 3 = 6"},
+        {"step": 2, "description_ur": "تحلیل: (x+2)(x+3) = 0", "math": "(x+2)(x+3) = 0"},
+        {"step": 3, "description_ur": "x + 2 = 0 → x = -2", "math": "x = -2"},
+        {"step": 4, "description_ur": "x + 3 = 0 → x = -3", "math": "x = -3"}
+      ],
+      "hints": [
+        "دو ایسے عدد سوچو جن کا حاصل ضرب 6 ہو اور حاصل جمع 5 ہو",
+        "2 اور 3 کے بارے میں سوچو: 2×3 = 6 اور 2+3 = 5",
+        "اب (x+2)(x+3) = 0 لکھو اور ہر عامل = 0 رکھو"
+      ],
+      "tags": ["procedural", "factorization", "simple"]
+    },
+
+    {
+      "question_id": "math10.ch2.fact.q02",
+      "concept_id": "math10.ch2.solving_by_factorization",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "x² - 7x + 12 = 0 کو تحلیل سے حل کرو۔",
+      "question_text_en": "Solve x² - 7x + 12 = 0 by factorization.",
+      "expected_answer": "x = 3, x = 4",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "ضرب = 12، جمع = -7", "math": "-3 + (-4) = -7, (-3)×(-4) = 12"},
+        {"step": 2, "description_ur": "تحلیل: (x-3)(x-4) = 0", "math": "(x-3)(x-4) = 0"},
+        {"step": 3, "description_ur": "x = 3 یا x = 4", "math": "x = 3, x = 4"}
+      ],
+      "hints": [
+        "ایسے دو عدد تلاش کرو جن کا حاصل ضرب +12 ہو اور حاصل جمع -7 ہو",
+        "دونوں عدد منفی ہوں گے (کیونکہ ضرب مثبت اور جمع منفی ہے)",
+        "-3 اور -4: (-3)×(-4) = 12 ✓ اور (-3)+(-4) = -7 ✓"
+      ],
+      "tags": ["procedural", "factorization", "negative_roots"]
+    },
+
+    {
+      "question_id": "math10.ch2.fact.q03",
+      "concept_id": "math10.ch2.solving_by_factorization",
+      "difficulty": 4,
+      "question_type": "procedural",
+      "question_text_ur": "2x² + 7x + 3 = 0 کو تحلیل سے حل کرو۔",
+      "question_text_en": "Solve 2x² + 7x + 3 = 0 by factorization.",
+      "expected_answer": "x = -1/2, x = -3",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a×c = 2×3 = 6۔ ایسے دو عدد تلاش کرو جن کی ضرب 6 ہو اور جمع 7 ہو", "math": "1 + 6 = 7, 1 × 6 = 6"},
+        {"step": 2, "description_ur": "7x کو 1x + 6x میں توڑو", "math": "2x² + x + 6x + 3 = 0"},
+        {"step": 3, "description_ur": "جوڑوں میں تحلیل کرو", "math": "x(2x+1) + 3(2x+1) = 0"},
+        {"step": 4, "description_ur": "مشترک عامل نکالو", "math": "(2x+1)(x+3) = 0"},
+        {"step": 5, "description_ur": "x = -1/2 یا x = -3", "math": "x = -1/2, x = -3"}
+      ],
+      "hints": [
+        "جب a ≠ 1 ہو تو a×c نکالو اور وہ عدد تلاش کرو جن کی ضرب a×c ہو اور جمع b ہو",
+        "a×c = 6۔ 1 اور 6 کا حاصل جمع 7 ہے ✓",
+        "7x کو 1x + 6x میں توڑو اور جوڑوں میں تحلیل کرو"
+      ],
+      "tags": ["procedural", "factorization", "a_not_1", "grouping"]
+    },
+
+    {
+      "question_id": "math10.ch2.disc.q01",
+      "concept_id": "math10.ch2.discriminant",
+      "difficulty": 2,
+      "question_type": "identification",
+      "question_text_ur": "x² - 5x + 6 = 0 کا discriminant (D) نکالو۔",
+      "question_text_en": "Find the discriminant of x² - 5x + 6 = 0.",
+      "expected_answer": "1",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=1, b=-5, c=6", "math": ""},
+        {"step": 2, "description_ur": "D = b² - 4ac = (-5)² - 4(1)(6) = 25 - 24 = 1", "math": "D = 1"}
+      ],
+      "hints": [
+        "پہلے a, b, c نکالو",
+        "D = b² - 4ac میں قدریں رکھو",
+        "یاد رکھو: (-5)² = 25 (مثبت!)"
+      ],
+      "tags": ["identification", "discriminant", "calculation"]
+    },
+
+    {
+      "question_id": "math10.ch2.disc.q02",
+      "concept_id": "math10.ch2.discriminant",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "x² + 4x + 4 = 0 کا discriminant نکالو۔",
+      "question_text_en": "Find the discriminant of x² + 4x + 4 = 0.",
+      "expected_answer": "0",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=1, b=4, c=4", "math": ""},
+        {"step": 2, "description_ur": "D = (4)² - 4(1)(4) = 16 - 16 = 0", "math": "D = 0"}
+      ],
+      "hints": [
+        "a=1, b=4, c=4 — فارمولے میں رکھو",
+        "D = 16 - 16 = ?"
+      ],
+      "tags": ["procedural", "discriminant", "zero_discriminant"]
+    },
+
+    {
+      "question_id": "math10.ch2.disc.q03",
+      "concept_id": "math10.ch2.discriminant",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "2x² + 3x + 5 = 0 کا discriminant نکالو۔",
+      "question_text_en": "Find the discriminant of 2x² + 3x + 5 = 0.",
+      "expected_answer": "-31",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=2, b=3, c=5", "math": ""},
+        {"step": 2, "description_ur": "D = (3)² - 4(2)(5) = 9 - 40 = -31", "math": "D = -31"}
+      ],
+      "hints": [
+        "a=2, b=3, c=5",
+        "D = 9 - 40",
+        "D منفی ہے — اس کا مطلب کیا ہے؟"
+      ],
+      "tags": ["procedural", "discriminant", "negative_discriminant"]
+    },
+
+    {
+      "question_id": "math10.ch2.nor.q01",
+      "concept_id": "math10.ch2.nature_of_roots",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "x² - 6x + 9 = 0 کی جڑوں کی نوعیت بیان کرو (مساوات حل کرنے کی ضرورت نہیں)۔",
+      "question_text_en": "Determine the nature of roots of x² - 6x + 9 = 0 (without solving).",
+      "expected_answer": "equal_real_roots",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=1, b=-6, c=9", "math": ""},
+        {"step": 2, "description_ur": "D = (-6)² - 4(1)(9) = 36 - 36 = 0", "math": "D = 0"},
+        {"step": 3, "description_ur": "D = 0 پس جڑیں حقیقی اور برابر ہیں", "math": "دو برابر حقیقی جڑیں"}
+      ],
+      "hints": [
+        "پہلے D = b² - 4ac نکالو",
+        "D = 36 - 36 = 0",
+        "D = 0 ہونے سے جڑیں کس قسم کی ہوتی ہیں؟"
+      ],
+      "tags": ["procedural", "nature_of_roots", "equal_roots"]
+    },
+
+    {
+      "question_id": "math10.ch2.nor.q02",
+      "concept_id": "math10.ch2.nature_of_roots",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "3x² - 2x + 1 = 0 کی جڑوں کی نوعیت بیان کرو۔",
+      "question_text_en": "Determine the nature of roots of 3x² - 2x + 1 = 0.",
+      "expected_answer": "no_real_roots",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=3, b=-2, c=1", "math": ""},
+        {"step": 2, "description_ur": "D = (-2)² - 4(3)(1) = 4 - 12 = -8", "math": "D = -8"},
+        {"step": 3, "description_ur": "D < 0 پس کوئی حقیقی جڑ نہیں (مفروضی جڑیں)", "math": "مفروضی جڑیں"}
+      ],
+      "hints": [
+        "D نکالو: b² - 4ac",
+        "D = 4 - 12 = -8 (منفی!)",
+        "جب D منفی ہو تو حقیقی جڑیں نہیں ہوتیں"
+      ],
+      "tags": ["procedural", "nature_of_roots", "imaginary_roots"]
+    },
+
+    {
+      "question_id": "math10.ch2.nor.q03",
+      "concept_id": "math10.ch2.nature_of_roots",
+      "difficulty": 4,
+      "question_type": "application",
+      "question_text_ur": "k کی وہ قدر معلوم کرو جس کے لیے x² + kx + 9 = 0 کی جڑیں برابر ہوں۔",
+      "question_text_en": "Find the value of k for which x² + kx + 9 = 0 has equal roots.",
+      "expected_answer": "k = 6, k = -6",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "برابر جڑوں کے لیے D = 0 ہونا ضروری ہے", "math": "D = 0"},
+        {"step": 2, "description_ur": "D = k² - 4(1)(9) = 0", "math": "k² - 36 = 0"},
+        {"step": 3, "description_ur": "k² = 36", "math": "k = ±6"},
+        {"step": 4, "description_ur": "k = 6 یا k = -6", "math": "k = 6, k = -6"}
+      ],
+      "hints": [
+        "برابر جڑوں کے لیے D کی قدر کیا ہونی چاہیے؟",
+        "D = 0 رکھو اور k² - 4ac = 0 حل کرو",
+        "k² = 36 سے k = ?"
+      ],
+      "tags": ["application", "nature_of_roots", "find_k", "board_style"]
+    },
+
+    {
+      "question_id": "math10.ch2.qf.q01",
+      "concept_id": "math10.ch2.quadratic_formula",
+      "difficulty": 3,
+      "question_type": "procedural",
+      "question_text_ur": "x² - 5x + 6 = 0 کو مربعی فارمولے (quadratic formula) سے حل کرو۔",
+      "question_text_en": "Solve x² - 5x + 6 = 0 using the quadratic formula.",
+      "expected_answer": "x = 2, x = 3",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=1, b=-5, c=6", "math": ""},
+        {"step": 2, "description_ur": "x = (-b ± √(b²-4ac)) / 2a", "math": "x = (5 ± √(25-24)) / 2"},
+        {"step": 3, "description_ur": "x = (5 ± √1) / 2 = (5 ± 1) / 2", "math": ""},
+        {"step": 4, "description_ur": "x = 6/2 = 3 یا x = 4/2 = 2", "math": "x = 3 یا x = 2"}
+      ],
+      "hints": [
+        "پہلے a, b, c نکالو اور فارمولے میں رکھو",
+        "یاد رکھو: -b = -(-5) = 5 (مثبت ہو گیا!)",
+        "√1 = 1 ہے، اب 5+1 اور 5-1 نکالو"
+      ],
+      "tags": ["procedural", "quadratic_formula", "simple"]
+    },
+
+    {
+      "question_id": "math10.ch2.qf.q02",
+      "concept_id": "math10.ch2.quadratic_formula",
+      "difficulty": 4,
+      "question_type": "procedural",
+      "question_text_ur": "2x² - 7x + 3 = 0 کو مربعی فارمولے سے حل کرو۔",
+      "question_text_en": "Solve 2x² - 7x + 3 = 0 using the quadratic formula.",
+      "expected_answer": "x = 3, x = 1/2",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=2, b=-7, c=3", "math": ""},
+        {"step": 2, "description_ur": "x = (7 ± √(49-24)) / 4", "math": "x = (7 ± √25) / 4"},
+        {"step": 3, "description_ur": "x = (7 ± 5) / 4", "math": ""},
+        {"step": 4, "description_ur": "x = 12/4 = 3 یا x = 2/4 = 1/2", "math": "x = 3 یا x = 1/2"}
+      ],
+      "hints": [
+        "a=2, b=-7, c=3 — فارمولے میں احتیاط سے رکھو",
+        "2a = 4 ہوگا (نیچے والا حصہ)",
+        "(-(-7)) = +7 ہے"
+      ],
+      "tags": ["procedural", "quadratic_formula", "a_not_1"]
+    },
+
+    {
+      "question_id": "math10.ch2.qf.q03",
+      "concept_id": "math10.ch2.quadratic_formula",
+      "difficulty": 4,
+      "question_type": "procedural",
+      "question_text_ur": "x² + 2x - 5 = 0 کو مربعی فارمولے سے حل کرو (جواب جذری شکل میں دو)۔",
+      "question_text_en": "Solve x² + 2x - 5 = 0 using the quadratic formula (leave answer in surd form).",
+      "expected_answer": "x = -1 + sqrt(6), x = -1 - sqrt(6)",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=1, b=2, c=-5", "math": ""},
+        {"step": 2, "description_ur": "x = (-2 ± √(4+20)) / 2", "math": "x = (-2 ± √24) / 2"},
+        {"step": 3, "description_ur": "√24 = √(4×6) = 2√6", "math": "x = (-2 ± 2√6) / 2"},
+        {"step": 4, "description_ur": "Simplify: x = -1 ± √6", "math": "x = -1+√6 یا x = -1-√6"}
+      ],
+      "hints": [
+        "D = b² - 4ac = 4 - 4(1)(-5) = 4 + 20 = 24",
+        "√24 = √(4×6) = 2√6",
+        "2 سے simplify کرو"
+      ],
+      "tags": ["procedural", "quadratic_formula", "surd_form"]
+    },
+
+    {
+      "question_id": "math10.ch2.qf.q04",
+      "concept_id": "math10.ch2.quadratic_formula",
+      "difficulty": 5,
+      "question_type": "board_style",
+      "question_text_ur": "3x² + 5x - 2 = 0 کو مربعی فارمولے سے حل کرو۔ (بورڈ امتحان)",
+      "question_text_en": "Solve 3x² + 5x - 2 = 0 using the quadratic formula. (Board exam style)",
+      "expected_answer": "x = 1/3, x = -2",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "a=3, b=5, c=-2", "math": ""},
+        {"step": 2, "description_ur": "x = (-5 ± √(25+24)) / 6", "math": "x = (-5 ± √49) / 6"},
+        {"step": 3, "description_ur": "x = (-5 ± 7) / 6", "math": ""},
+        {"step": 4, "description_ur": "x = 2/6 = 1/3 یا x = -12/6 = -2", "math": "x = 1/3 یا x = -2"}
+      ],
+      "hints": [
+        "b² - 4ac = 25 - 4(3)(-2) = 25 + 24 = 49",
+        "√49 = 7",
+        "x = (-5+7)/6 اور x = (-5-7)/6"
+      ],
+      "tags": ["board_style", "quadratic_formula", "fractional_root"]
+    },
+
+    {
+      "question_id": "math10.ch2.comp.q01",
+      "concept_id": "math10.ch2.completing_the_square",
+      "difficulty": 4,
+      "question_type": "procedural",
+      "question_text_ur": "x² + 6x + 2 = 0 کو مربع مکمل کرکے حل کرو۔",
+      "question_text_en": "Solve x² + 6x + 2 = 0 by completing the square.",
+      "expected_answer": "x = -3 + sqrt(7), x = -3 - sqrt(7)",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "x² + 6x = -2", "math": ""},
+        {"step": 2, "description_ur": "(6/2)² = 9 دونوں طرف جمع کرو", "math": "x² + 6x + 9 = 7"},
+        {"step": 3, "description_ur": "(x+3)² = 7", "math": ""},
+        {"step": 4, "description_ur": "x + 3 = ±√7", "math": "x = -3 ± √7"}
+      ],
+      "hints": [
+        "پہلے c کو دوسری طرف لے جاؤ",
+        "x کے ضریب (6) کو 2 سے تقسیم کرو، مربع کرو: (6/2)² = 9",
+        "دونوں طرف 9 جمع کرو — بائیں طرف (x+3)² بنے گا"
+      ],
+      "tags": ["procedural", "completing_square"]
+    },
+
+    {
+      "question_id": "math10.ch2.wp.q01",
+      "concept_id": "math10.ch2.word_problems",
+      "difficulty": 5,
+      "question_type": "word_problem",
+      "question_text_ur": "ایک مستطیل کی لمبائی چوڑائی سے 5 سینٹی میٹر زیادہ ہے۔ اگر رقبہ 36 مربع سینٹی میٹر ہے تو لمبائی اور چوڑائی معلوم کرو۔",
+      "question_text_en": "The length of a rectangle is 5 cm more than its width. If the area is 36 cm², find the length and width.",
+      "expected_answer": "width = 4, length = 9",
+      "answer_tolerance": null,
+      "expected_answer_unit": "cm",
+      "solution_steps": [
+        {"step": 1, "description_ur": "چوڑائی = x مانو، لمبائی = x + 5", "math": "width = x, length = x+5"},
+        {"step": 2, "description_ur": "رقبہ = لمبائی × چوڑائی = 36", "math": "x(x+5) = 36"},
+        {"step": 3, "description_ur": "x² + 5x - 36 = 0", "math": ""},
+        {"step": 4, "description_ur": "تحلیل: (x+9)(x-4) = 0", "math": "x = -9 یا x = 4"},
+        {"step": 5, "description_ur": "چوڑائی منفی نہیں ہو سکتی، پس x = 4 cm", "math": "width=4, length=9"}
+      ],
+      "hints": [
+        "نامعلوم چوڑائی کو x مان لو — لمبائی کیا ہوگی؟",
+        "رقبہ = لمبائی × چوڑائی — مساوات بناؤ",
+        "x² + 5x = 36 → x² + 5x - 36 = 0 حل کرو"
+      ],
+      "tags": ["word_problem", "rectangle", "area", "board_style"]
+    },
+
+    {
+      "question_id": "math10.ch2.wp.q02",
+      "concept_id": "math10.ch2.word_problems",
+      "difficulty": 5,
+      "question_type": "word_problem",
+      "question_text_ur": "دو متواتر مثبت طاق عدد ایسے ہیں کہ ان کے مربعوں کا حاصل جمع 130 ہے۔ عدد معلوم کرو۔",
+      "question_text_en": "Two consecutive positive odd numbers are such that the sum of their squares is 130. Find the numbers.",
+      "expected_answer": "7, 9",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "پہلا طاق عدد = x، دوسرا = x+2", "math": "x, x+2"},
+        {"step": 2, "description_ur": "x² + (x+2)² = 130", "math": "x² + x² + 4x + 4 = 130"},
+        {"step": 3, "description_ur": "2x² + 4x - 126 = 0 → x² + 2x - 63 = 0", "math": ""},
+        {"step": 4, "description_ur": "(x+9)(x-7) = 0 → x = 7 (مثبت لینا ہے)", "math": "x = 7"},
+        {"step": 5, "description_ur": "عدد: 7 اور 9", "math": "7, 9"}
+      ],
+      "hints": [
+        "متواتر طاق عدد میں 2 کا فرق ہوتا ہے: x اور x+2",
+        "مساوات بناؤ: x² + (x+2)² = 130",
+        "Expand کرو اور simplify کرو"
+      ],
+      "tags": ["word_problem", "consecutive_odd", "board_style"]
+    },
+
+    {
+      "question_id": "math10.ch2.wp.q03",
+      "concept_id": "math10.ch2.word_problems",
+      "difficulty": 6,
+      "question_type": "challenge",
+      "question_text_ur": "ایک عدد اور اس کے معکوس (reciprocal) کا حاصل جمع 10/3 ہے۔ عدد معلوم کرو۔",
+      "question_text_en": "The sum of a number and its reciprocal is 10/3. Find the number.",
+      "expected_answer": "x = 3, x = 1/3",
+      "answer_tolerance": null,
+      "expected_answer_unit": null,
+      "solution_steps": [
+        {"step": 1, "description_ur": "عدد = x، معکوس = 1/x", "math": "x + 1/x = 10/3"},
+        {"step": 2, "description_ur": "x سے ضرب کرو", "math": "x² + 1 = 10x/3"},
+        {"step": 3, "description_ur": "3 سے ضرب کرو", "math": "3x² + 3 = 10x"},
+        {"step": 4, "description_ur": "3x² - 10x + 3 = 0", "math": ""},
+        {"step": 5, "description_ur": "(3x-1)(x-3) = 0 → x = 1/3 یا x = 3", "math": "x = 1/3, x = 3"}
+      ],
+      "hints": [
+        "عدد x ہے تو reciprocal کیا ہے؟",
+        "مساوات بناؤ: x + 1/x = 10/3",
+        "کسور ختم کرنے کے لیے دونوں طرف x سے اور پھر 3 سے ضرب کرو"
+      ],
+      "tags": ["challenge", "word_problem", "reciprocal", "fraction"]
+    }
+  ]
+}
