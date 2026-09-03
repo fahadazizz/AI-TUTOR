@@ -1,0 +1,25 @@
+# Core
+fastapi==0.115.12
+uvicorn[standard]==0.34.3
+pydantic==2.11.5
+pydantic-settings==2.9.1
+
+# Database
+asyncpg==0.31.0
+
+# Math Engine
+sympy==1.14.0
+
+# HTTP Client (for LLM API calls)
+httpx==0.28.1
+
+# Logging
+structlog==25.4.0
+
+# Testing
+pytest==8.4.1
+pytest-asyncio==1.0.0
+httpx  # also used for test client
+
+# Dev
+python-dotenv==1.1.0
