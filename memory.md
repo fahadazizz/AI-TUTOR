@@ -22,3 +22,11 @@ Integrated LLMs with the deterministic core via `app/tutor/`:
 - **Teaching Engine**: Generates Urdu responses based on the chosen action.
 - **Guardrails**: Prevents answer leakage, blocks overly long texts, and detects language drift (e.g., Hindi script).
 - **Rule 7 Validation**: Successfully ran a live end-to-end interactive CLI session (`scripts/interactive_tutor.py`) confirming the LLM loop functions properly in practice.
+
+## Phase 4: API Layer & Session Management (Completed 2026-09-04)
+Exposed the AI Tutor loop as a stateful FastAPI application connected to Supabase PostgreSQL:
+- **Session Manager & Repo**: Connects to DB via `asyncpg` to persist tutoring sessions (`SessionCreate`, `AttemptCreate`) across requests.
+- **Auth Router (`/api/auth`)**: Endpoints for student registration, login, and creating new tutoring sessions.
+- **Progress Router (`/api/progress`)**: Endpoints to fetch a student's mastery state.
+- **Chat Router (`/api/chat`)**: The core interaction loop. Receives messages, orchestrates intent detection + tutor decision + LLM generation + guardrails + DB updates, and returns a JSON response.
+- **Rule 7 Validation**: Created `scripts/test_api_live.sh` which boots a background Uvicorn server, hits real endpoints with `curl`, and proved that the entire system successfully registers students, creates DB sessions, and answers math queries over HTTP.
