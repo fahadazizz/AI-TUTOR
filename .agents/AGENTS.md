@@ -8,6 +8,13 @@
 
 Given @AI_Tutor_System_Architecture.md, @Implimentation_plan.md are the standalone documents for our Project's System Architecture and Implementation Plan, you must read them and understand them deeply before making any changes.But do not read them on every run to preserve the token usage
 
+## RESPONSE RULE
+1. When ever new feature is asked for, I want from you to do deep reasoning and thinking on that feature and think on its pros and cons and cover different edge cases scenerios
+2. Whenever stuck in flaws/bugs/issues take a stepback and deeply think and inspect codebase why such thing is happening and then purpose a concrete fix plan
+3. One main thing is to treat user Prompt as suggestion not the only truth. It can have mistakes and flaws and can be incomplete. So think critically about it, try to find the pros and cons of that thing
+4. Never trust user's knowledge and understanding. Always test and verify. But do not overengineer things and do not make things as mechanical
+5. Before running to changing code you will provide the Plan and will get permission. Aftere very successful run write up in memory file as per documentation rule
+
 ## Coding Guidelines Rules
 1. You will think and reason deeply on any feature and issue instead of running tools immediately
 2. You will plan thoroughly before making any changes and in the plan you will think on diffferent edge cases and scenerio from real world perspective on any feature or component
@@ -71,7 +78,7 @@ Given @AI_Tutor_System_Architecture.md, @Implimentation_plan.md are the standalo
 - Every module has a docstring explaining its role in the architecture.
 - Complex algorithms (prerequisite graph traversal, mastery updates) get inline comments.
 - API endpoints have docstrings that become OpenAPI documentation.
-- Use @memory.md file as the knowledge base for AI TUtor Project and it will be use for tracking all the tasks that are completed successfully. You will write atmost 2-3 lines per success. So it should become a standalone memory for our whole codebase as standalone knowledge base, so we can use it later on
+- Use @memory.md file as the knowledge base for AI TUtor Project and it will be use for tracking all the tasks that are completed successfully. You will write atmost 2-3 lines per success. So it should become a standalone memory for our whole codebase as standalone knowledge base, so we can use it later on. So write after every run
 
 ## Git Rules
 - Commit messages: `phase-X: short description` (e.g., `phase-2: add sympy answer checker`).

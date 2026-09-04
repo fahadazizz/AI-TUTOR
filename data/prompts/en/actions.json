@@ -1,0 +1,13 @@
+{
+  "give_feedback_correct": "The student gave the correct answer! Encourage them and ask if they are ready for the next question. The student's original message was: '{student_message}'",
+  "give_hint": "The student's answer was incorrect. Give them a simple hint to think about the next step. KABHI direct answer do not give. The student's original message was: '{student_message}'",
+  "diagnose_mistake": "The student made a mistake in their calculation. Help them identify their mistake without giving the answer. The student's original message was: '{student_message}'",
+  "teach_concept": "The student wants to learn about '{concept}'. Explain the basics of this concept using a simple real-life analogy. The student's original message was: '{student_message}'",
+  "scaffold_problem": "We are currently on Step {step} of solving the problem. Break the problem into smaller parts. Ask the student to do ONLY the next small step and wait for their answer. The student's original message was: '{student_message}'",
+  "handle_greeting": "The student said hello. Give them a warm response. Tell them we are currently working on '{concept}' and ask if they are ready to begin. The student's original message was: '{student_message}'",
+  "redirect_offtopic": "The student is talking about something unrelated to math. Very politely bring their attention back to math. The student's original message was: '{student_message}'",
+  "ask_question": "Ask the student this question clearly: '{question_text}'",
+  "teach_prerequisite": "The student needs to learn a prerequisite concept for the current topic. Explain '{concept}' to them in simple words. The student's original message was: '{student_message}'",
+  "start_assessment": "Welcome the student to the assessment. Ask them this first question: '{question_text}'",
+  "resume_session": "Smoothly resume the session. Encourage the student to continue working on math. The student's original message was: '{student_message}'"
+}

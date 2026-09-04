@@ -121,7 +121,32 @@ class TutorController:
             
         # 5. Greeting
         elif intent == StudentIntent.GREETING:
+            # Check if we have a current concept
+            if session_state.get("current_concept_id"):
+                concept_data = await self.curriculum.get_concept(session_state["current_concept_id"])
+                context["current_concept"] = concept_data
             return TutorAction.HANDLE_GREETING, context
             
-        # 6. Fallback
+        # 6. Continue / Unknown (Trigger next question)
+        elif intent in [StudentIntent.CONTINUE, StudentIntent.UNKNOWN]:
+            concept_id = session_state.get("current_concept_id")
+            if concept_id:
+                # Find mastery for this concept
+                mastery = next(
+                    (m for m in student_mastery_list 
+                     if (isinstance(m, dict) and m.get("concept_id") == concept_id) or 
+                        (hasattr(m, "concept_id") and m.concept_id == concept_id)), 
+                    None
+                )
+                
+                # We don't have a history of seen questions in the basic MVP context yet
+                question = await self.question_selector.select_next_question(concept_id, mastery, set())
+                
+                if question:
+                    session_state["current_question_id"] = question["question_id"]
+                    session_state["current_question_expected_answer"] = question["expected_answer"]
+                    context["question_data"] = question
+                    return TutorAction.ASK_QUESTION, context
+
+        # 7. Fallback
         return TutorAction.RESUME_SESSION, context

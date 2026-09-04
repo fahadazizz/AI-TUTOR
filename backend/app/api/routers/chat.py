@@ -24,6 +24,7 @@ from app.core.question_selector import QuestionSelector
 from app.repositories.curriculum_repo import CurriculumRepository
 from app.repositories.session_repo import SessionRepository
 from app.repositories.mastery_repo import MasteryRepository
+from app.repositories.student_repo import StudentRepository
 from app.services.session_manager import SessionManager
 
 from app.logging import get_logger
@@ -62,6 +63,7 @@ def get_tutor_dependencies():
     session_repo = SessionRepository()
     session_manager = SessionManager(session_repo)
     mastery_repo = MasteryRepository()
+    student_repo = StudentRepository()
 
     return {
         "language": language,
@@ -70,6 +72,7 @@ def get_tutor_dependencies():
         "guardrails": guardrails,
         "session_manager": session_manager,
         "mastery_repo": mastery_repo,
+        "student_repo": student_repo,
     }
 
 
@@ -91,6 +94,10 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
 
     logger.info("chat_request_received", session=request.session_id, message_len=len(request.message))
 
+    student_repo: StudentRepository = deps["student_repo"]
+    student = await student_repo.get_student(session.student_id)
+    pref_lang = student.get("preferred_language", "ur") if student else "ur"
+
     # Convert session model to dict context for the controller
     # In a full app, we'd also load mastery here.
     session_dict = {
@@ -98,7 +105,9 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
         "current_question_id": session.current_question_id,
         "current_question_expected_answer": session.session_state.get("current_question_expected_answer"),
         "hint_level": session.hint_level,
-        "scaffold_step": session.scaffold_step
+        "scaffold_step": session.scaffold_step,
+        "preferred_language": pref_lang,
+        "student_raw_message": request.message
     }
 
     # 2. Detect Intent
@@ -155,12 +164,18 @@ async def chat_stream_endpoint(request: ChatRequest, deps: dict = Depends(get_tu
 
     logger.info("chat_stream_request_received", session=request.session_id, message_len=len(request.message))
 
+    student_repo: StudentRepository = deps["student_repo"]
+    student = await student_repo.get_student(session.student_id)
+    pref_lang = student.get("preferred_language", "ur") if student else "ur"
+
     session_dict = {
         "current_concept_id": session.current_concept_id,
         "current_question_id": session.current_question_id,
         "current_question_expected_answer": session.session_state.get("current_question_expected_answer"),
         "hint_level": session.hint_level,
-        "scaffold_step": session.scaffold_step
+        "scaffold_step": session.scaffold_step,
+        "preferred_language": pref_lang,
+        "student_raw_message": request.message
     }
 
     # 2. Detect Intent

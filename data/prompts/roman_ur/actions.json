@@ -1,0 +1,13 @@
+{
+  "give_feedback_correct": "Student ne bilkul sahi jawab diya hai! Unki hosla afzai karein aur puchein ke kya woh agle sawal ke liye tayyar hain. Student ka asal message yeh tha: '{student_message}'",
+  "give_hint": "Student ka jawab ghalat tha. Unhein agla step sochne ke liye ek asaan hint dein. Direct answer KABHI mat batana. Student ka asal message yeh tha: '{student_message}'",
+  "diagnose_mistake": "Student ne calculation mein ghalti ki hai. Unhein apni ghalti pehchanne mein madad karein, bina answer bataye. Student ka asal message yeh tha: '{student_message}'",
+  "teach_concept": "Student '{concept}' ke baaray mein seekhna chahta hai. Is concept ki basics ko kisi aam zindagi ki misaal (real-life analogy) se samjhayein. Student ka asal message yeh tha: '{student_message}'",
+  "scaffold_problem": "Hum abhi problem solve karne ke Step {step} par hain. Problem ko chote hisson mein torein. Student se sirf aur sirf agla ek chota step karne ko kahein aur unke jawab ka intezar karein. Student ka asal message yeh tha: '{student_message}'",
+  "handle_greeting": "Student ne hello kaha. Unhein ek garm-joshi wala jawab dein (e.g., Walikum Assalam). Unhein batayein ke hum abhi '{concept}' par kaam kar rahay hain aur puchein ke kya woh shuru karne ke liye tayyar hain. Student ka asal message yeh tha: '{student_message}'",
+  "redirect_offtopic": "Student kisi aisi baat par lag gaya hai jo math se related nahi. Bohat pyar aur narmi se unka dehan wapas math ki taraf le aayen. Student ka asal message yeh tha: '{student_message}'",
+  "ask_question": "Student se yeh sawal wazeh tor par puchein: '{question_text}'",
+  "teach_prerequisite": "Student ko mojuda topic ke liye ek bunyadi (prerequisite) concept seekhne ki zaroorat hai. Unhein '{concept}' ke baaray mein aasan alfaz mein samjhayein. Student ka asal message yeh tha: '{student_message}'",
+  "start_assessment": "Student ko assessment ke liye khush aamdeed kahein. Un se yeh pehla sawal puchein: '{question_text}'",
+  "resume_session": "Session ko wapas smoothly shuru karein. Student ki hosla afzai karein ke woh math par kaam jari rakhein. Student ka asal message yeh tha: '{student_message}'"
+}

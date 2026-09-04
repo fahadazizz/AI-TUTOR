@@ -45,3 +45,13 @@ Fully completed the backend and frontend system hardening to reach production-re
 - **SSE Streaming**: Implemented Server-Sent Events in `llm_client.py`, `/api/chat/stream`, and Next.js frontend, enabling real-time typing responses.
 - **Strict Logic**: Enforced strict prerequisite traversal (teaching missing basics first), enforced step-by-step scaffolding (preventing full problem-solving), and routed partial/sign errors to targeted misconception checks.
 - **Guardrails**: Added word-boundary regex detection to strictly block the generative layer from leaking the exact expected answer, while preserving performance on single-character answers. All 63 backend tests pass successfully.
+
+## Phase 8: Multi-Language & Prompt Overhaul (Completed 2026-09-04)
+- **Prompt Engineering**: Removed compacted English prompts from the generative engine. Implemented a robust `PromptManager` loading language-specific constraints (English, Native Urdu Nastaliq, Roman Urdu) directly from `data/prompts/` text/JSON files, completely eliminating language drift.
+- **Dynamic Controller Routing**: Hooked `TutorController` directly into `QuestionSelector` for `CONTINUE` intents, breaking the LLM out of "constant motivation" loops and forcing true scaffolding behavior.
+- **UI Language Switcher**: Made language context strictly persist through the session dictionary and auto-trigger a context-aware backend initialization on first chat load.
+
+## Phase 9: Language Routing Fixes (Completed 2026-09-04)
+- Fixed a major bug in `TeachingEngine` where missing concept names caused a fallback to the English string `"basic concept"`, which confused the LLM and forced it to reply in English regardless of the selected language.
+- Refactored `_build_prompt_for_action` to correctly extract `name_ur` (for Nastaliq) or `name_en` (for Roman Urdu/English) based on the active session's language preference.
+- Updated `chat.py` and `teaching_engine.py` to forward the raw student message into the final LLM prompt context to allow nuance handling, while maintaining the safety of the Controller architecture.

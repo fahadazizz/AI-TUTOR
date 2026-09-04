@@ -49,6 +49,16 @@ export const api = {
     return res.json();
   },
 
+  updateLanguage: async (studentId: string, language: string): Promise<any> => {
+    const res = await fetch(`${API_BASE}/auth/student/${studentId}/language`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ language }),
+    });
+    if (!res.ok) throw new Error("Failed to update language");
+    return res.json();
+  },
+
   // 3. Send a message to the tutor
   chat: async (sessionId: string, message: string): Promise<ChatResponse> => {
     const res = await fetch(`${API_BASE}/chat`, {

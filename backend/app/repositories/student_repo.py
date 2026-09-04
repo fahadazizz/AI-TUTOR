@@ -51,3 +51,16 @@ class StudentRepository(BaseRepository):
         """Count total students."""
         row = await self._fetch_one("SELECT COUNT(*) as cnt FROM students")
         return row["cnt"] if row else 0
+
+    async def update_preferred_language(self, student_id: uuid.UUID, language: str) -> dict | None:
+        """Update a student's preferred language."""
+        row = await self._fetch_one(
+            """
+            UPDATE students 
+            SET preferred_language = $1 
+            WHERE id = $2 
+            RETURNING *
+            """,
+            language, student_id
+        )
+        return dict(row) if row else None

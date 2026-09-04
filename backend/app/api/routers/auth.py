@@ -24,6 +24,9 @@ class StartSessionRequest(BaseModel):
     student_id: str
     subject_key: str = "mathematics"
 
+class UpdateLanguageRequest(BaseModel):
+    language: str
+
 
 def get_auth_deps():
     student_repo = StudentRepository()
@@ -70,3 +73,20 @@ async def start_session(req: StartSessionRequest, deps: dict = Depends(get_auth_
     manager: SessionManager = deps["session_manager"]
     session = await manager.start_session(req.student_id, req.subject_key)
     return {"session_id": session.id, "started_at": session.started_at}
+
+
+@router.patch("/student/{student_id}/language")
+async def update_language(student_id: str, req: UpdateLanguageRequest, deps: dict = Depends(get_auth_deps)):
+    """Update a student's preferred language."""
+    repo: StudentRepository = deps["student_repo"]
+    import uuid
+    try:
+        sid = uuid.UUID(student_id)
+        if req.language not in ["ur", "roman_ur", "en"]:
+            raise ValueError("Invalid language code")
+        updated = await repo.update_preferred_language(sid, req.language)
+        if not updated:
+            raise HTTPException(status_code=404, detail="Student not found.")
+        return {"status": "success", "language": req.language}
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid student ID or language code.")

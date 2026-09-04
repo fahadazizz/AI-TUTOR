@@ -20,6 +20,8 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [language, setLanguage] = useState("ur");
+  const [studentId, setStudentId] = useState<string | null>(null);
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,21 +30,65 @@ export default function ChatPage() {
       router.push("/");
     } else {
       setSessionId(id);
-      // Add initial greeting if empty
-      setMessages([
-        {
-          id: "sys-1",
-          role: "tutor",
-          content: "Walikum Assalam! Main aap ka AI Tutor hoon. Aaj hum kaunsa math topic parhain ge?"
-        }
-      ]);
+      
+      const sId = localStorage.getItem("ai_tutor_student_id");
+      if (sId) setStudentId(sId);
     }
   }, [router]);
+
+  // Trigger initial background message if chat is empty
+  useEffect(() => {
+    if (sessionId && messages.length === 0) {
+      const initChat = async () => {
+        setIsTyping(true);
+        const tutorMsgId = crypto.randomUUID();
+        setMessages([{ id: tutorMsgId, role: "tutor", content: "" }]);
+        
+        try {
+          // Send a hidden "hello" to trigger the backend's greeting/continuation logic
+          await api.chatStream(
+            sessionId, 
+            "Hello, let's start!",
+            (token) => {
+              setMessages(prev => 
+                prev.map(msg => 
+                  msg.id === tutorMsgId 
+                    ? { ...msg, content: msg.content + token }
+                    : msg
+                )
+              );
+            },
+            (meta) => {
+              console.log("Action taken on init:", meta.action_taken);
+            }
+          );
+        } catch (error) {
+          console.error(error);
+          setMessages([{ id: tutorMsgId, role: "tutor", content: "Error connecting to server." }]);
+        } finally {
+          setIsTyping(false);
+        }
+      };
+      
+      initChat();
+    }
+  }, [sessionId, messages.length]);
 
   useEffect(() => {
     // Auto-scroll to bottom
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
+
+  const handleLanguageChange = async (newLang: string) => {
+    setLanguage(newLang);
+    if (studentId) {
+      try {
+        await api.updateLanguage(studentId, newLang);
+      } catch (err) {
+        console.error("Failed to update language", err);
+      }
+    }
+  };
 
   const handleSend = async () => {
     if (!inputValue.trim() || !sessionId || isTyping) return;
@@ -120,7 +166,24 @@ export default function ChatPage() {
             </div>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <select 
+            value={language} 
+            onChange={(e) => handleLanguageChange(e.target.value)}
+            style={{ 
+              background: "var(--bg-tertiary)", 
+              color: "var(--text-primary)", 
+              border: "1px solid rgba(255,255,255,0.1)", 
+              borderRadius: "var(--radius-sm)",
+              padding: "0.4rem 0.75rem",
+              fontSize: "0.85rem",
+              outline: "none"
+            }}
+          >
+            <option value="ur">🇵🇰 Urdu (Nastaliq)</option>
+            <option value="roman_ur">💬 Roman Urdu</option>
+            <option value="en">🇬🇧 English</option>
+          </select>
           <Button variant="secondary" onClick={() => router.push("/progress")} style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
             <Calculator size={14} /> Progress
           </Button>

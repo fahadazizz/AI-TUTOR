@@ -8,6 +8,7 @@ and uses the LLMClient to generate a pedagogical Urdu response.
 from typing import AsyncGenerator
 from app.models.enums import TutorAction
 from app.tutor.llm_client import LLMClient
+from app.tutor.prompt_manager import PromptManager
 from app.logging import get_logger
 
 logger = get_logger(__name__)
@@ -18,55 +19,54 @@ class TeachingEngine:
     
     def __init__(self, llm_client: LLMClient):
         self.llm = llm_client
-        self.base_system = """You are an expert, friendly AI Math Tutor for a 10th-grade student in Punjab, Pakistan.
-You MUST strictly speak in native Urdu script (Nastaliq/Arabic script). Do NOT use Roman Urdu or Hindi script under any circumstances.
-You are extremely encouraging. You NEVER give the direct answer to a problem; you guide them.
-Use simple language. Format mathematical expressions clearly using text or basic LaTeX without complex markdown if not needed.
-"""
+        self.prompt_manager = PromptManager()
+        
 
-    def _build_prompt_for_action(self, action: TutorAction, context: dict) -> str:
+    def _build_prompt_for_action(self, action: TutorAction, context: dict, pref_lang: str) -> str:
         """Construct the prompt based on the chosen action."""
-        if action == TutorAction.GIVE_FEEDBACK_CORRECT:
-            return "The student just got the answer completely right! Praise them warmly in Urdu and ask if they are ready for the next question."
+        # 1. Resolve the concept name
+        concept_name = context.get("intent_data", {}).get("concept_hint", "")
+        
+        # If we have a current concept in context (e.g. from GREETING)
+        if "current_concept" in context:
+            if pref_lang == "ur":
+                concept_name = context["current_concept"].get("name_ur", concept_name)
+            else:
+                concept_name = context["current_concept"].get("name_en", concept_name)
+                
+        # Override if we are teaching a prerequisite
+        if action == TutorAction.TEACH_PREREQUISITE and "missing_prerequisite" in context:
+            if pref_lang == "ur":
+                concept_name = context["missing_prerequisite"].get("name_ur", concept_name)
+            else:
+                concept_name = context["missing_prerequisite"].get("name_en", concept_name)
+                
+        if not concept_name:
+            concept_name = "math" if pref_lang == "en" else "ریاضی"
+
+        # 2. Extract necessary variables for template interpolation
+        kwargs = {
+            "concept": concept_name,
+            "step": context.get("session", {}).get("scaffold_step", 1),
+            "question_text": "",
+            "student_message": context.get("session", {}).get("student_raw_message", "")
+        }
+        
+        # 3. Add question text if asking a question
             
-        elif action == TutorAction.GIVE_HINT:
-            return "The student got the answer wrong. Give them a gentle hint in Urdu to help them think about the next step. Do NOT give them the answer."
+        # Add question text if asking a question
+        if action in [TutorAction.ASK_QUESTION, TutorAction.START_ASSESSMENT] and "question_data" in context:
+            kwargs["question_text"] = context["question_data"].get("question_text", "")
             
-        elif action == TutorAction.DIAGNOSE_MISTAKE:
-            error = context.get("answer_result").error_type
-            if error == "sign_error":
-                return "The student made a + or - sign error. Explain in Urdu how to check their signs."
-            return "The student made a specific mistake. Help them realize it in Urdu without giving the answer."
-            
-        elif action == TutorAction.TEACH_CONCEPT:
-            concept = context.get("intent_data", {}).get("concept_hint", "this math concept")
-            return f"The student wants to learn about '{concept}'. Explain the basics of this concept in very simple Urdu using a real-life analogy."
-            
-        elif action == TutorAction.SCAFFOLD_PROBLEM:
-            step = context.get("session", {}).get("scaffold_step", 1)
-            return (
-                f"The student asked you to solve a problem for them. YOU MUST NOT SOLVE IT DIRECTLY. "
-                f"Instead, use 'Scaffolding'. We are currently on Step {step} of solving this problem. "
-                f"Break the problem down into small steps. "
-                f"Ask them to perform ONLY the very next micro-step in Urdu. Wait for their answer. "
-                f"For example, if it's a quadratic equation, first ask them to identify a, b, and c."
-            )
-            
-        elif action == TutorAction.HANDLE_GREETING:
-            return "The student said hello. Reply with a warm, encouraging greeting in Urdu (e.g., Walikum Assalam) and ask what math topic they'd like to work on today."
-            
-        elif action == TutorAction.REDIRECT_OFFTOPIC:
-            return "The student is talking about something off-topic (not math). Politely guide them back to mathematics in Urdu."
-            
-        # Fallback
-        return "Say something encouraging in Urdu to keep the session moving forward."
+        return self.prompt_manager.get_action_prompt(pref_lang, action.value, **kwargs)
 
     async def generate_response(self, action: TutorAction, context: dict) -> str:
         """Generate the final response string."""
-        prompt = self._build_prompt_for_action(action, context)
+        pref = context.get("session", {}).get("preferred_language", "ur")
+        prompt = self._build_prompt_for_action(action, context, pref)
         
         messages = [
-            {"role": "system", "content": self.base_system},
+            {"role": "system", "content": self.prompt_manager.get_system_prompt(pref)},
             {"role": "user", "content": prompt}
         ]
         
@@ -76,10 +76,11 @@ Use simple language. Format mathematical expressions clearly using text or basic
 
     async def generate_response_stream(self, action: TutorAction, context: dict) -> AsyncGenerator[str, None]:
         """Generate the response string as a stream of tokens."""
-        prompt = self._build_prompt_for_action(action, context)
+        pref = context.get("session", {}).get("preferred_language", "ur")
+        prompt = self._build_prompt_for_action(action, context, pref)
         
         messages = [
-            {"role": "system", "content": self.base_system},
+            {"role": "system", "content": self.prompt_manager.get_system_prompt(pref)},
             {"role": "user", "content": prompt}
         ]
         
