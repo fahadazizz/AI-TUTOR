@@ -102,9 +102,14 @@ export default function ChatPage() {
             </div>
           </div>
         </div>
-        <Button variant="secondary" onClick={() => router.push("/")} style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
-          <RefreshCcw size={14} /> Reset
-        </Button>
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <Button variant="secondary" onClick={() => router.push("/progress")} style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
+            <Calculator size={14} /> Progress
+          </Button>
+          <Button variant="secondary" onClick={() => router.push("/")} style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
+            <RefreshCcw size={14} /> Reset
+          </Button>
+        </div>
       </header>
 
       {/* Chat Area */}

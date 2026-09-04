@@ -5,8 +5,13 @@ import "katex/dist/katex.min.css"; // Ensure KaTeX styles are globally available
 export const metadata: Metadata = {
   title: "AI Tutor — Mathematics",
   description: "A beautifully designed, deeply engaging mathematics tutor.",
+};
+
+export const viewport = {
   themeColor: "#151515",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

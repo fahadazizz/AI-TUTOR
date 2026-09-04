@@ -177,6 +177,20 @@ class CurriculumRepository(BaseRepository):
         row = await self._fetch_one("SELECT COUNT(*) as cnt FROM questions")
         return row["cnt"] if row else 0
 
+    async def get_assessment_questions(self, limit: int = 15) -> list[dict]:
+        """Fetch a set of assessment questions for the initial diagnostic test."""
+        # We query for questions where 'assessment' is in the tags jsonb array
+        rows = await self._fetch_all(
+            """
+            SELECT * FROM questions 
+            WHERE tags ? 'assessment' 
+            ORDER BY difficulty ASC
+            LIMIT $1
+            """,
+            limit
+        )
+        return [dict(r) for r in rows]
+
     # ── Misconceptions ──────────────────────────────
 
     async def upsert_misconception(

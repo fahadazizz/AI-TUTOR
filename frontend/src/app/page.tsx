@@ -19,8 +19,10 @@ export default function Home() {
       
       // Save session info to localStorage so the chat page can use it
       localStorage.setItem("ai_tutor_session_id", session.session_id);
+      localStorage.setItem("ai_tutor_student_id", student.student_id);
       
-      router.push("/chat");
+      // Force new students to diagnostic assessment first
+      router.push("/assessment");
     } catch (error) {
       console.error(error);
       alert("Could not start session. Is the backend running?");

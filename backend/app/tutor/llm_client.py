@@ -50,7 +50,7 @@ class LLMClient:
         if json_mode:
             payload["format"] = "json"
             
-        async with httpx.AsyncClient(timeout=60.0) as client:
+        async with httpx.AsyncClient(timeout=180.0) as client:
             response = await client.post(url, json=payload)
             
             if response.status_code != 200:
