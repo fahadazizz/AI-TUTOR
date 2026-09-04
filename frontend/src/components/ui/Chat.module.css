@@ -85,3 +85,51 @@
   background: rgba(0,0,0,0.2);
   border-radius: var(--radius-sm);
 }
+
+/* Markdown Styles */
+.markdown-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.markdown-body p {
+  margin: 0;
+  line-height: inherit;
+}
+
+.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body ul, .markdown-body ol {
+  margin: 0;
+  padding-inline-start: 1.5rem;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-size: 0.9em;
+}
+
+.markdown-body th, .markdown-body td {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 0.75rem;
+  text-align: inherit;
+}
+
+.markdown-body th {
+  background: rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+.markdown-body pre, .markdown-body code {
+  direction: ltr; /* Always LTR for code/math */
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 0.1em 0.3em;
+  font-family: monospace;
+}
+

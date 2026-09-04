@@ -7,7 +7,7 @@ Includes retry logic, structured output parsing, and token logging.
 
 import json
 import httpx
-from typing import Type, TypeVar, Any
+from typing import Type, TypeVar, Any, AsyncGenerator
 from pydantic import BaseModel
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -100,6 +100,72 @@ class LLMClient:
             return await self._call_ollama(messages)
         else:
             return await self._call_groq(messages)
+
+    async def _call_ollama_stream(self, messages: list[dict[str, str]]) -> AsyncGenerator[str, None]:
+        """Call local Ollama API with streaming."""
+        url = f"{self.base_url}/api/chat"
+        payload = {
+            "model": self.model,
+            "messages": messages,
+            "stream": True
+        }
+            
+        async with httpx.AsyncClient(timeout=180.0) as client:
+            async with client.stream("POST", url, json=payload) as response:
+                if response.status_code != 200:
+                    logger.error("ollama_stream_error", status_code=response.status_code)
+                    raise LLMError(f"Ollama returned {response.status_code}")
+                
+                async for line in response.aiter_lines():
+                    if not line:
+                        continue
+                    try:
+                        data = json.loads(line)
+                        if "message" in data and "content" in data["message"]:
+                            yield data["message"]["content"]
+                    except json.JSONDecodeError:
+                        continue
+
+    async def _call_groq_stream(self, messages: list[dict[str, str]]) -> AsyncGenerator[str, None]:
+        """Call Groq API with streaming."""
+        url = f"{self.base_url}/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+        payload = {
+            "model": self.model,
+            "messages": messages,
+            "stream": True
+        }
+            
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            async with client.stream("POST", url, headers=headers, json=payload) as response:
+                if response.status_code != 200:
+                    logger.error("groq_stream_error", status_code=response.status_code)
+                    raise LLMError(f"Groq returned {response.status_code}")
+                
+                async for line in response.aiter_lines():
+                    if line.startswith("data: ") and line.strip() != "data: [DONE]":
+                        try:
+                            data = json.loads(line[6:])
+                            if "choices" in data and len(data["choices"]) > 0:
+                                delta = data["choices"][0].get("delta", {})
+                                if "content" in delta and delta["content"] is not None:
+                                    yield delta["content"]
+                        except json.JSONDecodeError:
+                            continue
+
+    async def generate_chat_stream(self, messages: list[dict[str, str]]) -> AsyncGenerator[str, None]:
+        """Generate a natural language string as a stream of tokens."""
+        logger.debug("llm_stream_request", provider=self.provider, model=self.model)
+        
+        if self.provider == "ollama":
+            async for token in self._call_ollama_stream(messages):
+                yield token
+        else:
+            async for token in self._call_groq_stream(messages):
+                yield token
             
     async def generate_structured(self, messages: list[dict[str, str]], schema: Type[T]) -> T:
         """Generate structured JSON and parse into Pydantic model."""

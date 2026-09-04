@@ -1,6 +1,6 @@
 // API Client for the AI Tutor Backend
 
-const API_BASE = "http://127.0.0.1:8001/api";
+const API_BASE = "/api";
 
 export interface Student {
   student_id: string;
@@ -61,10 +61,76 @@ export const api = {
     return res.json();
   },
 
+  // 3b. Send a message to the tutor (streaming)
+  chatStream: async (
+    sessionId: string, 
+    message: string, 
+    onToken: (token: string) => void,
+    onMeta?: (meta: any) => void
+  ): Promise<void> => {
+    const res = await fetch(`${API_BASE}/chat/stream`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: sessionId, message }),
+    });
+
+    if (!res.ok || !res.body) {
+      throw new Error("Failed to start chat stream");
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+
+    try {
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        
+        buffer += decoder.decode(value, { stream: true });
+        
+        // Process lines in the buffer
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() || ""; // Keep the last incomplete chunk in the buffer
+        
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const dataStr = line.substring(6);
+            if (dataStr === "[DONE]") {
+              return;
+            }
+            try {
+              const data = JSON.parse(dataStr);
+              if (data.type === "token") {
+                onToken(data.content);
+              } else if (data.type === "meta" && onMeta) {
+                onMeta(data);
+              }
+            } catch (e) {
+              console.error("Failed to parse SSE JSON:", dataStr);
+            }
+          }
+        }
+      }
+    } finally {
+      reader.releaseLock();
+    }
+  },
+
   // 4. Fetch the initial diagnostic assessment
   getAssessment: async () => {
     const res = await fetch(`${API_BASE}/curriculum/assessment`);
     if (!res.ok) throw new Error("Failed to fetch assessment");
+    return res.json();
+  },
+
+  submitAssessment: async (studentId: string, answers: any[]) => {
+    const res = await fetch(`${API_BASE}/curriculum/assessment/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ student_id: studentId, answers }),
+    });
+    if (!res.ok) throw new Error("Failed to submit assessment");
     return res.json();
   },
 

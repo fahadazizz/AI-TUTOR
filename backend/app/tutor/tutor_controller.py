@@ -71,15 +71,43 @@ class TutorController:
                 # For this controller logic, we just return the action
                 return TutorAction.GIVE_FEEDBACK_CORRECT, context
             else:
-                if result.error_type == "sign_error" or result.error_type == "partial_roots":
+                if result.error_type in ["sign_error", "incomplete_solution"]:
                     return TutorAction.DIAGNOSE_MISTAKE, context
                 else:
                     return TutorAction.GIVE_HINT, context
 
         # 2. Ask Concept Flow
         elif intent == StudentIntent.ASK_CONCEPT:
-            # Here we would normally resolve `concept_hint` to a real concept_id
-            # For this pilot, if they ask for a concept, we teach it
+            concept_hint = intent_data.concept_hint
+            if concept_hint:
+                target_concept_id = await self.curriculum.resolve_concept(concept_hint)
+                if target_concept_id:
+                    # Get mastered concept IDs from the mastery list
+                    # Currently student_mastery_list is just a list of Mastery dicts/objects
+                    mastered_ids = {
+                        m["concept_id"] if isinstance(m, dict) else getattr(m, "concept_id", "")
+                        for m in student_mastery_list
+                        if (isinstance(m, dict) and m.get("mastery_state") == MasteryState.MASTERED.value) or
+                           (hasattr(m, "mastery_state") and m.mastery_state == MasteryState.MASTERED)
+                    }
+                    
+                    missing_prereqs = await self.curriculum.get_missing_prerequisites(target_concept_id, mastered_ids)
+                    
+                    if missing_prereqs:
+                        # Found a missing prerequisite! Pivot to teaching the deepest missing one.
+                        first_missing = missing_prereqs[0]
+                        missing_concept_data = await self.curriculum.get_concept(first_missing)
+                        
+                        context["missing_prerequisite"] = missing_concept_data
+                        context["target_concept_id"] = target_concept_id
+                        
+                        # We change the session to point to this new prerequisite
+                        session_state["current_concept_id"] = first_missing
+                        return TutorAction.TEACH_PREREQUISITE, context
+                        
+                    # All prerequisites met, proceed to teach
+                    session_state["current_concept_id"] = target_concept_id
+
             return TutorAction.TEACH_CONCEPT, context
 
         # 3. Solve Problem (Scaffolding rule)

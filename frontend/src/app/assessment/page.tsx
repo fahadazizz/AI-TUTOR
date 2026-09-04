@@ -28,14 +28,38 @@ export default function AssessmentPage() {
     fetchQuestions();
   }, []);
 
-  const handleNext = () => {
-    // In a real app, we would send the answer to the backend to grade it
-    // For V1, we just advance
+  const [answers, setAnswers] = useState<any[]>([]);
+
+  const handleNext = async () => {
+    if (!inputValue.trim()) return;
+
+    const currentQ = questions[currentIndex];
+    const newAnswers = [
+      ...answers,
+      {
+        question_id: currentQ.question_id,
+        concept_id: currentQ.concept_id,
+        student_answer: inputValue.trim()
+      }
+    ];
+    setAnswers(newAnswers);
+    setInputValue("");
+
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
-      setInputValue("");
     } else {
-      setIsComplete(true);
+      setLoading(true);
+      try {
+        const studentId = localStorage.getItem("ai_tutor_student_id");
+        if (studentId) {
+          await api.submitAssessment(studentId, newAnswers);
+        }
+      } catch (err) {
+        console.error("Failed to submit assessment:", err);
+      } finally {
+        setLoading(false);
+        setIsComplete(true);
+      }
     }
   };
 

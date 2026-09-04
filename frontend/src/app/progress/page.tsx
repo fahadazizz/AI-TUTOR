@@ -33,18 +33,18 @@ export default function ProgressPage() {
 
   const getStatusColor = (level: string) => {
     switch (level) {
-      case "MASTERED": return "var(--accent-primary)"; // Sage green
-      case "PRACTICING": return "#D9A05B"; // Muted yellow/gold
-      case "STRUGGLING": return "#C45B5B"; // Muted rose
+      case "mastered": return "var(--accent-primary)"; // Sage green
+      case "practicing": return "#D9A05B"; // Muted yellow/gold
+      case "struggling": return "#C45B5B"; // Muted rose
       default: return "var(--text-secondary)"; // Gray
     }
   };
 
   const getStatusIcon = (level: string) => {
     switch (level) {
-      case "MASTERED": return <CheckCircle size={18} color="var(--accent-primary)" />;
-      case "PRACTICING": return <Clock size={18} color="#D9A05B" />;
-      case "STRUGGLING": return <AlertTriangle size={18} color="#C45B5B" />;
+      case "mastered": return <CheckCircle size={18} color="var(--accent-primary)" />;
+      case "practicing": return <Clock size={18} color="#D9A05B" />;
+      case "struggling": return <AlertTriangle size={18} color="#C45B5B" />;
       default: return <BookOpen size={18} color="var(--text-secondary)" />;
     }
   };
@@ -79,7 +79,7 @@ export default function ProgressPage() {
                   display: "flex", 
                   justifyContent: "space-between", 
                   alignItems: "center",
-                  borderLeft: `4px solid ${getStatusColor(item.mastery_level)}`
+                  borderLeft: `4px solid ${getStatusColor(item.mastery_state || item.mastery_level || "")}`
                 }}
               >
                 <div>
@@ -87,14 +87,14 @@ export default function ProgressPage() {
                     {item.concept_id.split('.').pop()?.replace(/_/g, ' ')}
                   </h3>
                   <div style={{ fontSize: "0.85rem", color: "var(--text-secondary)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                    {getStatusIcon(item.mastery_level)}
-                    <span style={{ textTransform: "capitalize" }}>{item.mastery_level.toLowerCase()}</span>
+                    {getStatusIcon(item.mastery_state || item.mastery_level || "")}
+                    <span style={{ textTransform: "capitalize" }}>{(item.mastery_state || item.mastery_level || "").toLowerCase()}</span>
                   </div>
                 </div>
                 
                 <div style={{ textAlign: "right", fontSize: "0.85rem", color: "var(--text-secondary)" }}>
-                  <div>Attempts: {item.attempts}</div>
-                  <div>Mistakes: {item.mistakes}</div>
+                  <div>Attempts: {item.total_attempts}</div>
+                  <div>Mistakes: {item.total_attempts - item.total_correct}</div>
                 </div>
               </div>
             ))

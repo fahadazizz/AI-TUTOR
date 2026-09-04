@@ -1,7 +1,7 @@
 """Tests for the deterministic Tutor Controller."""
 
 import pytest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, AsyncMock
 
 from app.models.enums import StudentIntent, TutorAction
 from app.tutor.tutor_controller import TutorController
@@ -15,6 +15,8 @@ def controller():
     math_mock = MagicMock()
     student_mock = MagicMock()
     curriculum_mock = MagicMock()
+    curriculum_mock.resolve_concept = AsyncMock(return_value="quad_101")
+    curriculum_mock.get_missing_prerequisites = AsyncMock(return_value=[])
     selector_mock = MagicMock()
     
     return TutorController(math_mock, student_mock, curriculum_mock, selector_mock)

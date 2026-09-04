@@ -15,7 +15,7 @@ Given @AI_Tutor_System_Architecture.md, @Implimentation_plan.md are the standalo
 4. You will always follow these rules and guidelines
 5. You will build any feature or any Fix Production ready, no template, no hardwiring, no mock things
 6. The UI should be very attrative and eye catchy, modern and beautiful, responsive and user friendly. Try your best to make it best. But Making sure that no AI Slop design and AI slop color etc to be used.
-
+7. One important Rule is that do not get the Unit tests or Integration tests as Phase success. A phase is successfull in a system when it is capable of success in real world from real tests
 
 ## Architecture Rules
 1. The LLM is the language engine, NOT the brain. All routing, mastery tracking, question selection, and answer checking are deterministic Python.

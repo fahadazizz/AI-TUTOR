@@ -5,6 +5,7 @@ Takes a TutorAction and contextual data, formats a prompt,
 and uses the LLMClient to generate a pedagogical Urdu response.
 """
 
+from typing import AsyncGenerator
 from app.models.enums import TutorAction
 from app.tutor.llm_client import LLMClient
 from app.logging import get_logger
@@ -18,7 +19,7 @@ class TeachingEngine:
     def __init__(self, llm_client: LLMClient):
         self.llm = llm_client
         self.base_system = """You are an expert, friendly AI Math Tutor for a 10th-grade student in Punjab, Pakistan.
-You strictly speak in Urdu (Roman Urdu is acceptable, but native script is preferred if requested).
+You MUST strictly speak in native Urdu script (Nastaliq/Arabic script). Do NOT use Roman Urdu or Hindi script under any circumstances.
 You are extremely encouraging. You NEVER give the direct answer to a problem; you guide them.
 Use simple language. Format mathematical expressions clearly using text or basic LaTeX without complex markdown if not needed.
 """
@@ -42,7 +43,14 @@ Use simple language. Format mathematical expressions clearly using text or basic
             return f"The student wants to learn about '{concept}'. Explain the basics of this concept in very simple Urdu using a real-life analogy."
             
         elif action == TutorAction.SCAFFOLD_PROBLEM:
-            return "The student asked you to solve a problem for them. Refuse politely in Urdu, and instead ask them what the first step should be. Scaffolding is key."
+            step = context.get("session", {}).get("scaffold_step", 1)
+            return (
+                f"The student asked you to solve a problem for them. YOU MUST NOT SOLVE IT DIRECTLY. "
+                f"Instead, use 'Scaffolding'. We are currently on Step {step} of solving this problem. "
+                f"Break the problem down into small steps. "
+                f"Ask them to perform ONLY the very next micro-step in Urdu. Wait for their answer. "
+                f"For example, if it's a quadratic equation, first ask them to identify a, b, and c."
+            )
             
         elif action == TutorAction.HANDLE_GREETING:
             return "The student said hello. Reply with a warm, encouraging greeting in Urdu (e.g., Walikum Assalam) and ask what math topic they'd like to work on today."
@@ -65,3 +73,16 @@ Use simple language. Format mathematical expressions clearly using text or basic
         logger.info("teaching_engine_generating", action=action)
         response = await self.llm.generate_chat(messages)
         return response
+
+    async def generate_response_stream(self, action: TutorAction, context: dict) -> AsyncGenerator[str, None]:
+        """Generate the response string as a stream of tokens."""
+        prompt = self._build_prompt_for_action(action, context)
+        
+        messages = [
+            {"role": "system", "content": self.base_system},
+            {"role": "user", "content": prompt}
+        ]
+        
+        logger.info("teaching_engine_generating_stream", action=action)
+        async for token in self.llm.generate_chat_stream(messages):
+            yield token

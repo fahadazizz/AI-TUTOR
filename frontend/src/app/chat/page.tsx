@@ -51,21 +51,39 @@ export default function ChatPage() {
     setInputValue("");
     
     // Add student message to UI
-    const newMsg: Message = { id: Date.now().toString(), role: "student", content: studentMsg };
+    const newMsg: Message = { id: crypto.randomUUID(), role: "student", content: studentMsg };
     setMessages(prev => [...prev, newMsg]);
     setIsTyping(true);
 
     try {
-      const result = await api.chat(sessionId, studentMsg);
+      // Create empty placeholder message for tutor
+      const tutorMsgId = crypto.randomUUID();
       setMessages(prev => [
         ...prev, 
-        { id: Date.now().toString(), role: "tutor", content: result.response }
+        { id: tutorMsgId, role: "tutor", content: "" }
       ]);
+      
+      await api.chatStream(
+        sessionId, 
+        studentMsg,
+        (token) => {
+          setMessages(prev => 
+            prev.map(msg => 
+              msg.id === tutorMsgId 
+                ? { ...msg, content: msg.content + token }
+                : msg
+            )
+          );
+        },
+        (meta) => {
+          console.log("Action taken:", meta.action_taken);
+        }
+      );
     } catch (error) {
       console.error(error);
       setMessages(prev => [
         ...prev, 
-        { id: Date.now().toString(), role: "tutor", content: "Sorry, I am having trouble connecting to the server. Please try again." }
+        { id: crypto.randomUUID(), role: "tutor", content: "Sorry, I am having trouble connecting to the server. Please try again." }
       ]);
     } finally {
       setIsTyping(false);

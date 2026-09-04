@@ -23,6 +23,33 @@ class CurriculumModel:
         """Get a single concept by ID."""
         return await self.repo.get_concept(concept_id)
 
+    async def resolve_concept(self, hint_text: str, subject_id: str = "mathematics") -> str | None:
+        """Resolve a fuzzy text string (like 'discriminant') to a concept_id."""
+        if not hint_text:
+            return None
+            
+        concepts = await self.repo.get_concepts_by_subject(subject_id)
+        hint_lower = hint_text.lower()
+        
+        # Exact match on ID
+        for c in concepts:
+            if c["concept_id"] == hint_lower:
+                return c["concept_id"]
+                
+        # Match on English or Urdu name
+        for c in concepts:
+            if hint_lower in c.get("name_en", "").lower() or hint_lower in c.get("name_ur", "").lower():
+                return c["concept_id"]
+                
+        # Match on key terms
+        for c in concepts:
+            key_terms = c.get("key_terms", [])
+            for term in key_terms:
+                if hint_lower in term.lower():
+                    return c["concept_id"]
+                    
+        return None
+
     async def check_cycles(self) -> bool:
         """Check if the prerequisite graph has any circular dependencies.
         

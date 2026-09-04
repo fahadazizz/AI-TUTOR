@@ -2,8 +2,11 @@
 
 import React from "react";
 import styles from "./Chat.module.css";
-// We import react-katex to render math safely
-import { InlineMath, BlockMath } from 'react-katex';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 interface ChatBubbleProps {
   role: "student" | "tutor";
@@ -19,44 +22,18 @@ const containsUrdu = (text: string) => {
 export const ChatBubble: React.FC<ChatBubbleProps> = ({ role, content }) => {
   const isUrdu = role === "tutor" && containsUrdu(content);
   
-  // Parse content to separate text from LaTeX blocks
-  // For V1 we assume block math is wrapped in $$...$$ or \[...\] and inline in $...$
+  // Use ReactMarkdown to render the content with tables and math support
   const renderContent = (text: string) => {
-    // Very basic parsing for demo (a real parser like remark-math would be better for prod)
-    // For now, we'll just render everything as text, and use regex to find inline math `$x$`
-    
-    // Split by block math
-    const blockParts = text.split(/\\\[([\s\S]*?)\\\]|\$\$([\s\S]*?)\$\$/g);
-    
-    return blockParts.map((part, i) => {
-      if (!part) return null;
-      
-      // If it's a captured group from the regex, it's math
-      if (i % 3 !== 0) {
-        return (
-          <div key={i} className={styles["math-block"]} dir="ltr">
-            <BlockMath math={part} />
-          </div>
-        );
-      }
-      
-      // Otherwise it's text that might contain inline math
-      const inlineParts = part.split(/\$(.*?)\$/g);
-      return (
-        <span key={i}>
-          {inlineParts.map((inlinePart, j) => {
-            if (j % 2 !== 0) {
-              return (
-                <span key={j} className={styles["math-inline"]} dir="ltr">
-                   <InlineMath math={inlinePart} />
-                </span>
-              );
-            }
-            return <span key={j}>{inlinePart}</span>;
-          })}
-        </span>
-      );
-    });
+    return (
+      <div className={styles["markdown-body"]}>
+        <ReactMarkdown 
+          remarkPlugins={[remarkGfm, remarkMath]} 
+          rehypePlugins={[rehypeKatex]}
+        >
+          {text}
+        </ReactMarkdown>
+      </div>
+    );
   };
 
   return (

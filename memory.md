@@ -39,3 +39,9 @@ Built a modern, bespoke Next.js 15 PWA designed to minimize cognitive load and a
 - **KaTeX Integration**: Implemented a robust `MathRenderer` capable of parsing block (`$$`) and inline (`$`) LaTeX strings emitted by the backend.
 - **API Client**: Implemented `src/lib/api.ts` providing typed wrappers for FastAPI backend endpoints.
 - **Core Pages**: Developed a serene Landing Page (`/`) to begin sessions, and a full-featured Chat Interface (`/chat`) with quick-insert math buttons (², √, ±, ÷).
+
+## Phase 6 & 7: System Hardening (Completed 2026-09-04)
+Fully completed the backend and frontend system hardening to reach production-ready stability.
+- **SSE Streaming**: Implemented Server-Sent Events in `llm_client.py`, `/api/chat/stream`, and Next.js frontend, enabling real-time typing responses.
+- **Strict Logic**: Enforced strict prerequisite traversal (teaching missing basics first), enforced step-by-step scaffolding (preventing full problem-solving), and routed partial/sign errors to targeted misconception checks.
+- **Guardrails**: Added word-boundary regex detection to strictly block the generative layer from leaking the exact expected answer, while preserving performance on single-character answers. All 63 backend tests pass successfully.
