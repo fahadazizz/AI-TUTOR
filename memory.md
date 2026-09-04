@@ -13,3 +13,12 @@ Implemented the foundational deterministic engines in `app/core/`:
 - **Student Model**: Implements the exact 8-state mastery transition logic based on student attempt history.
 - **Question Selector**: Dynamically picks the appropriate difficulty question based on the student's mastery state and past seen questions.
 All 48 backend tests (including 23 new core logic tests) are passing flawlessly.
+
+## Phase 3: Tutor Controller & Teaching Engine (Completed 2026-09-04)
+Integrated LLMs with the deterministic core via `app/tutor/`:
+- **LLM Client**: `httpx` based client with exponential backoff and JSON mode for Ollama/Groq.
+- **Language Layer**: Parses unstructured user text into a strict `StudentIntent` schema using LLM structured output.
+- **Tutor Controller**: Pure deterministic state machine that maps intent + student state to a `TutorAction`.
+- **Teaching Engine**: Generates Urdu responses based on the chosen action.
+- **Guardrails**: Prevents answer leakage, blocks overly long texts, and detects language drift (e.g., Hindi script).
+- **Rule 7 Validation**: Successfully ran a live end-to-end interactive CLI session (`scripts/interactive_tutor.py`) confirming the LLM loop functions properly in practice.
