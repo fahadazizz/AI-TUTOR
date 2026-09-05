@@ -37,7 +37,8 @@
         "recognition",
         "quadratic_expression",
         "mcq"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qexpr.q02",
@@ -69,7 +70,8 @@
         "recognition",
         "quadratic_expression",
         "pure_quadratic"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.sf.q01",
@@ -112,7 +114,11 @@
         "identification",
         "standard_form",
         "coefficients"
-      ]
+      ],
+      "misconception_map": {
+        "$a=3, b=7, c=2$": "math.ch2.sign_error_b",
+        "$a=3x^2, b=-7x, c=2$": "math.ch2.abc_confusion"
+      }
     },
     {
       "question_id": "math10.ch2.sf.q02",
@@ -145,7 +151,11 @@
         "identification",
         "standard_form",
         "pure_quadratic"
-      ]
+      ],
+      "misconception_map": {
+        "$a=5, b=8, c=-1$": "math.ch2.not_standard_form",
+        "$a=5, b=8x, c=-1$": "math.ch2.not_standard_form"
+      }
     },
     {
       "question_id": "math10.ch2.sf.q03",
@@ -177,7 +187,11 @@
         "procedural",
         "standard_form",
         "rearrangement"
-      ]
+      ],
+      "misconception_map": {
+        "$a=1, b=-9, c=0$": "math.ch2.abc_confusion",
+        "$a=x^2, c=-9$": "math.ch2.abc_confusion"
+      }
     },
     {
       "question_id": "math10.ch2.fact.q01",
@@ -220,7 +234,8 @@
         "procedural",
         "factorization",
         "simple"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.fact.q02",
@@ -258,7 +273,8 @@
         "procedural",
         "factorization",
         "negative_roots"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.fact.q03",
@@ -307,7 +323,8 @@
         "factorization",
         "a_not_1",
         "grouping"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.disc.q01",
@@ -340,7 +357,11 @@
         "identification",
         "discriminant",
         "calculation"
-      ]
+      ],
+      "misconception_map": {
+        "$-49$": "math.ch2.discriminant_sign_b_squared",
+        "$49$": "math.ch2.discriminant_4ac_sign"
+      }
     },
     {
       "question_id": "math10.ch2.disc.q02",
@@ -372,7 +393,10 @@
         "procedural",
         "discriminant",
         "zero_discriminant"
-      ]
+      ],
+      "misconception_map": {
+        "$-8$": "math.ch2.discriminant_4ac_sign"
+      }
     },
     {
       "question_id": "math10.ch2.disc.q03",
@@ -405,7 +429,8 @@
         "procedural",
         "discriminant",
         "negative_discriminant"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.nor.q01",
@@ -443,7 +468,8 @@
         "procedural",
         "nature_of_roots",
         "equal_roots"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.nor.q02",
@@ -481,7 +507,8 @@
         "procedural",
         "nature_of_roots",
         "imaginary_roots"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.nor.q03",
@@ -525,7 +552,8 @@
         "nature_of_roots",
         "find_k",
         "board_style"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qf.q01",
@@ -568,7 +596,8 @@
         "procedural",
         "quadratic_formula",
         "simple"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qf.q02",
@@ -611,7 +640,8 @@
         "procedural",
         "quadratic_formula",
         "a_not_1"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qf.q03",
@@ -654,7 +684,8 @@
         "procedural",
         "quadratic_formula",
         "surd_form"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qf.q04",
@@ -697,7 +728,8 @@
         "board_style",
         "quadratic_formula",
         "fractional_root"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.comp.q01",
@@ -739,7 +771,8 @@
       "tags": [
         "procedural",
         "completing_square"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.wp.q01",
@@ -788,7 +821,12 @@
         "rectangle",
         "area",
         "board_style"
-      ]
+      ],
+      "misconception_map": {
+        "$x = 5, x = -10$": "math.ch2.wp_both_roots_accepted",
+        "$-10$": "math.ch2.wp_both_roots_accepted",
+        "50 + 5": "math.ch2.wp_no_equation"
+      }
     },
     {
       "question_id": "math10.ch2.wp.q02",
@@ -836,7 +874,8 @@
         "word_problem",
         "consecutive_odd",
         "board_style"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.wp.q03",
@@ -885,7 +924,8 @@
         "word_problem",
         "reciprocal",
         "fraction"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qexpr.q03",
@@ -916,7 +956,8 @@
         "recognition",
         "quadratic_expression",
         "out_of_order"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qexpr.q04",
@@ -947,7 +988,8 @@
         "recognition",
         "quadratic_expression",
         "expansion_needed"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.sf.q04",
@@ -982,7 +1024,8 @@
       "tags": [
         "procedural",
         "standard_form"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.fact.q04",
@@ -1017,7 +1060,8 @@
       "tags": [
         "procedural",
         "factorization"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.fact.q05",
@@ -1062,7 +1106,8 @@
       "tags": [
         "procedural",
         "factorization"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.comp.q02",
@@ -1102,7 +1147,8 @@
       "tags": [
         "procedural",
         "completing_square"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.comp.q03",
@@ -1148,7 +1194,8 @@
         "board_style",
         "completing_square",
         "fraction"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.disc.q04",
@@ -1178,7 +1225,8 @@
       "tags": [
         "procedural",
         "discriminant"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.nor.q04",
@@ -1208,7 +1256,8 @@
       "tags": [
         "procedural",
         "nature_of_roots"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.nor.q05",
@@ -1244,7 +1293,8 @@
         "application",
         "nature_of_roots",
         "proof"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qf.q05",
@@ -1284,7 +1334,8 @@
       "tags": [
         "procedural",
         "quadratic_formula"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.qf.q06",
@@ -1324,7 +1375,8 @@
       "tags": [
         "board_style",
         "quadratic_formula"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.wp.q04",
@@ -1365,7 +1417,8 @@
         "word_problem",
         "square",
         "area"
-      ]
+      ],
+      "misconception_map": {}
     },
     {
       "question_id": "math10.ch2.wp.q05",
@@ -1416,7 +1469,8 @@
         "challenge",
         "word_problem",
         "triangle"
-      ]
+      ],
+      "misconception_map": {}
     }
   ]
 }

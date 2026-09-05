@@ -142,6 +142,7 @@ class CurriculumRepository(BaseRepository):
         answer_tolerance: float | None,
         expected_answer_unit: str | None,
         solution_steps: list,
+        misconception_map: dict,
         hints: list,
         tags: list,
     ) -> None:
@@ -152,8 +153,8 @@ class CurriculumRepository(BaseRepository):
                 question_id, concept_id, difficulty, question_type,
                 question_text_ur, question_text_en, expected_answer,
                 answer_tolerance, expected_answer_unit,
-                solution_steps, hints, tags
-            ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+                solution_steps, misconception_map, hints, tags
+            ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
             ON CONFLICT (question_id) DO UPDATE SET
                 concept_id = EXCLUDED.concept_id,
                 difficulty = EXCLUDED.difficulty,
@@ -164,6 +165,7 @@ class CurriculumRepository(BaseRepository):
                 answer_tolerance = EXCLUDED.answer_tolerance,
                 expected_answer_unit = EXCLUDED.expected_answer_unit,
                 solution_steps = EXCLUDED.solution_steps,
+                misconception_map = EXCLUDED.misconception_map,
                 hints = EXCLUDED.hints,
                 tags = EXCLUDED.tags
             """,
@@ -171,9 +173,25 @@ class CurriculumRepository(BaseRepository):
             question_text_ur, question_text_en, expected_answer,
             answer_tolerance, expected_answer_unit,
             json.dumps(solution_steps, ensure_ascii=False),
+            json.dumps(misconception_map, ensure_ascii=False),
             json.dumps(hints, ensure_ascii=False),
             json.dumps(tags, ensure_ascii=False),
         )
+
+    async def get_question(self, question_id: str) -> dict | None:
+        """Fetch a single question by ID."""
+        row = await self._fetch_one(
+            "SELECT * FROM questions WHERE question_id = $1",
+            question_id
+        )
+        if row:
+            d = dict(row)
+            d["solution_steps"] = json.loads(d["solution_steps"]) if isinstance(d["solution_steps"], str) else d["solution_steps"]
+            d["misconception_map"] = json.loads(d["misconception_map"]) if isinstance(d["misconception_map"], str) else d.get("misconception_map", {})
+            d["hints"] = json.loads(d["hints"]) if isinstance(d["hints"], str) else d["hints"]
+            d["tags"] = json.loads(d["tags"]) if isinstance(d["tags"], str) else d["tags"]
+            return d
+        return None
 
     async def get_questions_by_concept(self, concept_id: str) -> list[dict]:
         """Fetch all questions for a concept, ordered by difficulty."""
@@ -250,6 +268,19 @@ class CurriculumRepository(BaseRepository):
             json.dumps(diagnostic_question_ids, ensure_ascii=False),
             json.dumps(practice_question_ids, ensure_ascii=False),
         )
+
+    async def get_misconception(self, misconception_id: str) -> dict | None:
+        """Fetch a specific misconception."""
+        row = await self._fetch_one(
+            "SELECT * FROM misconceptions WHERE misconception_id = $1",
+            misconception_id
+        )
+        if row:
+            d = dict(row)
+            d["error_patterns"] = json.loads(d["error_patterns"]) if isinstance(d["error_patterns"], str) else d["error_patterns"]
+            d["diagnostic_question_ids"] = json.loads(d["diagnostic_question_ids"]) if isinstance(d["diagnostic_question_ids"], str) else d["diagnostic_question_ids"]
+            return d
+        return None
 
     async def get_misconception_count(self) -> int:
         """Count total misconceptions in the database."""

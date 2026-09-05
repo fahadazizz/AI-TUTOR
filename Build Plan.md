@@ -166,16 +166,12 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 ### V0.6 — Misconception library seed
 
 **Scope:** Populate the Misconception Library for this subject's chapter with real, documented misconceptions, each with a diagnostic trigger and a reviewed remediation, and wire the Tutor Controller to check incorrect answers against it before falling back to a live diagnosis.
-
-**Out of scope:** Building this library for any other subject yet.
-
-**Dependencies:** V0.3.
-
-**Success metrics:**
-- At least ten misconceptions are documented, each based on a wrong answer a real student (not a hypothetical one) actually gave.
-- When a real student's wrong answer matches a documented misconception, the system correctly retrieves the matching remediation instead of generating a fresh diagnosis.
-
-**Status:** Not Started
+### V0.6 (Phase A)
+- **Covers**: Misconception Library seed, wiring deterministic remediation for common errors.
+- **Excludes**: Live student testing (internal MVP scope), cross-subject misconception mapping.
+- **Depends On**: V0.5, `misconceptions.json` schema.
+- **Success Metrics**: When a real student's wrong answer matches a documented misconception, the system correctly retrieves the matching remediation instead of generating a fresh diagnosis.
+- **Status**: Done (2026-09-05)
 
 ### V0.7 — Dashboard surface
 

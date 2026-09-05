@@ -23,6 +23,14 @@ class CurriculumModel:
         """Get a single concept by ID."""
         return await self.repo.get_concept(concept_id)
 
+    async def get_question(self, question_id: str) -> dict | None:
+        """Get a single question by ID."""
+        return await self.repo.get_question(question_id)
+        
+    async def get_misconception(self, misconception_id: str) -> dict | None:
+        """Get a single misconception by ID."""
+        return await self.repo.get_misconception(misconception_id)
+
     async def resolve_concept(self, hint_text: str, subject_id: str = "mathematics") -> str | None:
         """Resolve a fuzzy text string (like 'discriminant') to a concept_id."""
         if not hint_text:

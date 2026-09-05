@@ -38,7 +38,7 @@ class MathChecker(AnswerEvaluator):
         replacements = {
             "½": "1/2", "⅓": "1/3", "¼": "1/4", "¾": "3/4",
             "²": "**2", "³": "**3", "^": "**",
-            "×": "*", "÷": "/", "=": "==",
+            "×": "*", "÷": "/", "=": "==", "$": "",
         }
         for old, new in replacements.items():
             text = text.replace(old, new)
@@ -59,18 +59,21 @@ class MathChecker(AnswerEvaluator):
             return None
             
         try:
-            # Handle multiple answers (e.g. "x=3, x=5")
+            # Handle multiple answers (e.g. "x=3, x=5" or "a=3, b=7")
             if "," in text:
                 parts = [p.strip() for p in text.split(",")]
                 exprs = []
                 for p in parts:
-                    # Strip spaces to make replacement reliable
-                    p = p.replace(" ", "")
-                    if "x==" in p:
-                        p = p.replace("x==", "")
-                    elif "x=" in p:
-                        p = p.replace("x=", "")
-                    exprs.append(parse_expr(p, transformations=self.transformations))
+                    if "==" in p:
+                        sub_parts = p.split("==")
+                        if len(sub_parts) == 2:
+                            lhs = parse_expr(sub_parts[0], transformations=self.transformations)
+                            rhs = parse_expr(sub_parts[1], transformations=self.transformations)
+                            exprs.append(sympy.Eq(lhs, rhs))
+                        else:
+                            exprs.append(parse_expr(p, transformations=self.transformations))
+                    else:
+                        exprs.append(parse_expr(p, transformations=self.transformations))
                 return sympy.Tuple(*exprs)
 
             # If it explicitly says "x=3", just extract the 3
@@ -112,7 +115,13 @@ class MathChecker(AnswerEvaluator):
                 found = False
                 for e2 in set2:
                     try:
-                        if sympy.simplify(sympy.expand(e1) - sympy.expand(e2)) == 0:
+                        if isinstance(e1, sympy.Eq) and isinstance(e2, sympy.Eq):
+                            diff1 = sympy.simplify(sympy.expand(e1.lhs) - sympy.expand(e1.rhs))
+                            diff2 = sympy.simplify(sympy.expand(e2.lhs) - sympy.expand(e2.rhs))
+                            if sympy.simplify(diff1 - diff2) == 0 or sympy.simplify(diff1 + diff2) == 0:
+                                found = True
+                                break
+                        elif sympy.simplify(sympy.expand(e1) - sympy.expand(e2)) == 0:
                             found = True
                             break
                     except:
@@ -139,7 +148,7 @@ class MathChecker(AnswerEvaluator):
             return False
 
     def check_answer(
-        self, student_input: str, expected: str, question_type: str = "procedural"
+        self, student_input: str, expected: str, question_type: str = "procedural", misconception_map: dict[str, str] = None
     ) -> AnswerResult:
         """Evaluate a student's answer against the expected answer."""
         
@@ -172,7 +181,27 @@ class MathChecker(AnswerEvaluator):
         if self._are_equivalent(student_expr, expected_expr):
             return AnswerResult(is_correct=True)
             
-        # 5. Diagnostic Checks
+        # 5. Misconception Map Check
+        if misconception_map:
+            for trigger, mis_id in misconception_map.items():
+                # Word problem plain text fallbacks
+                if trigger == "no roots" or trigger == "imaginary":
+                    if trigger in clean_student:
+                        return AnswerResult(is_correct=False, error_type="known_misconception", misconception_id=mis_id)
+                elif "kaise equation" in clean_student or "don't know" in clean_student:
+                    if mis_id == "math.ch2.wp_no_equation":
+                        return AnswerResult(is_correct=False, error_type="known_misconception", misconception_id=mis_id)
+                        
+                clean_trigger = self.sanitize_input(trigger)
+                trigger_expr = self._parse_expression(clean_trigger)
+                if trigger_expr and self._are_equivalent(student_expr, trigger_expr):
+                    return AnswerResult(
+                        is_correct=False,
+                        error_type="known_misconception",
+                        misconception_id=mis_id
+                    )
+
+        # 6. Diagnostic Checks
         
         # 5a. Sign Error Check (Student answered -X instead of X, or x-3 instead of x+3)
         try:

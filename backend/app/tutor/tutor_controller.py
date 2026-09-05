@@ -82,8 +82,12 @@ class TutorController:
                 
             student_ans = intent_data.student_answer or ""
             
+            # Fetch the question to get the misconception_map
+            question_data = await self.curriculum.get_question(question_id)
+            misconception_map = question_data.get("misconception_map", {}) if question_data else {}
+            
             # Check answer
-            result = self.math_checker.check_answer(student_ans, expected_ans)
+            result = self.math_checker.check_answer(student_ans, expected_ans, misconception_map=misconception_map)
             context["answer_result"] = result
             
             # Update Student Model
@@ -111,6 +115,18 @@ class TutorController:
                 return TutorAction.GIVE_FEEDBACK_CORRECT, context, updated_mastery, attempt
             else:
                 session_state["hint_level"] = session_state.get("hint_level", 0) + 1
+                
+                if result.error_type == "known_misconception" and result.misconception_id:
+                    misconception = await self.curriculum.get_misconception(result.misconception_id)
+                    if misconception:
+                        # Extract the correct language explanation
+                        lang = session_state.get("preferred_language", "ur")
+                        explanation = misconception.get(f"remediation_explanation_{lang}")
+                        if not explanation:
+                            explanation = misconception.get("remediation_explanation_ur", "")
+                        context["remediation_explanation"] = explanation
+                        return TutorAction.REMEDIATE_MISCONCEPTION, context, updated_mastery, attempt
+                
                 if result.error_type in ["sign_error", "incomplete_solution"]:
                     return TutorAction.DIAGNOSE_MISTAKE, context, updated_mastery, attempt
                 else:

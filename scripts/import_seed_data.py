@@ -128,6 +128,7 @@ async def import_questions(repo: CurriculumRepository) -> int:
                 answer_tolerance=q.get("answer_tolerance"),
                 expected_answer_unit=q.get("expected_answer_unit"),
                 solution_steps=solution_steps,
+                misconception_map=q.get("misconception_map", {}),
                 hints=q.get("hints", []),
                 tags=q.get("tags", []),
             )

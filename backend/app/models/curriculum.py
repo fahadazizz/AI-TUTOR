@@ -119,7 +119,8 @@ class Question(BaseModel):
     expected_answer: str
     answer_tolerance: Optional[float] = None
     expected_answer_unit: Optional[str] = None
-    solution_steps: list[SolutionStep] = Field(default_factory=list)
+    solution_steps: list[SolutionStep] = Field(default_factory=list, description="Step-by-step solution")
+    misconception_map: dict[str, str] = Field(default_factory=dict, description="Map of specific wrong answers to misconception IDs")
     hints: list[str] = Field(default_factory=list)
     tags: list[str] = Field(default_factory=list)
 

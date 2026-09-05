@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS questions (
     answer_tolerance REAL,
     expected_answer_unit TEXT,
     solution_steps JSONB NOT NULL DEFAULT '[]'::jsonb,
+    misconception_map JSONB NOT NULL DEFAULT '{}'::jsonb,
     hints JSONB NOT NULL DEFAULT '[]'::jsonb,
     tags JSONB NOT NULL DEFAULT '[]'::jsonb,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()

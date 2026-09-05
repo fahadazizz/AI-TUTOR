@@ -88,6 +88,7 @@ class TutorAction(str, Enum):
     DIAGNOSE_MISTAKE = "diagnose_mistake"
     GIVE_FEEDBACK_CORRECT = "give_feedback_correct"
     GIVE_FEEDBACK_PARTIAL = "give_feedback_partial"
+    REMEDIATE_MISCONCEPTION = "remediate_misconception"
     TEACH_PREREQUISITE = "teach_prerequisite"
     SCAFFOLD_PROBLEM = "scaffold_problem"
     START_ASSESSMENT = "start_assessment"
