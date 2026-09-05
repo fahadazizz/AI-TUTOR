@@ -23,6 +23,24 @@ class CurriculumModel:
         """Get a single concept by ID."""
         return await self.repo.get_concept(concept_id)
 
+    async def get_graph(self, subject_id: str) -> dict:
+        """Fetch the full concept graph with nodes and edges for a given subject."""
+        concepts = await self.repo.get_concepts_by_subject(subject_id)
+        prerequisites = await self.repo.get_all_prerequisites()
+        
+        # Filter edges only for the fetched concepts
+        concept_ids = {c["concept_id"] for c in concepts}
+        edges = [
+            {"source": p["prerequisite_id"], "target": p["concept_id"]}
+            for p in prerequisites
+            if p["concept_id"] in concept_ids and p["prerequisite_id"] in concept_ids
+        ]
+        
+        return {
+            "nodes": concepts,
+            "edges": edges
+        }
+
     async def get_question(self, question_id: str) -> dict | None:
         """Get a single question by ID."""
         return await self.repo.get_question(question_id)

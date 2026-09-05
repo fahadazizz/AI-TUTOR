@@ -33,6 +33,20 @@ async def get_assessment(deps: dict = Depends(get_curriculum_deps)):
         logger.error("get_assessment_failed", error=str(e))
         raise HTTPException(status_code=500, detail="Failed to fetch assessment.")
 
+@router.get("/graph/{subject_id}")
+async def get_curriculum_graph(subject_id: str, deps: dict = Depends(get_curriculum_deps)):
+    """Fetch the full concept graph for a given subject."""
+    repo: CurriculumRepository = deps["curriculum_repo"]
+    # We can instantiate CurriculumModel here locally since it's just a light wrapper
+    from app.core.curriculum_model import CurriculumModel
+    model = CurriculumModel(repo)
+    try:
+        graph = await model.get_graph(subject_id)
+        return graph
+    except Exception as e:
+        logger.error("get_curriculum_graph_failed", subject_id=subject_id, error=str(e))
+        raise HTTPException(status_code=500, detail="Failed to fetch curriculum graph.")
+
 from app.api.routers.assessment_models import AssessmentSubmitRequest
 from app.repositories.mastery_repo import MasteryRepository
 from datetime import datetime

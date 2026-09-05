@@ -185,7 +185,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 - Checking the dashboard by hand against the raw Student Model records for at least five concepts shows an exact match.
 - Your sister can look at the dashboard and correctly state, in her own words, which concepts she's strong and weak in, without you explaining it to her.
 
-**Status:** Not Started
+**Status:** Done (2026-09-05)
 
 ### V0.8 — Internal dogfood validation
 

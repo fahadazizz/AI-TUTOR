@@ -149,5 +149,12 @@ export const api = {
     const res = await fetch(`${API_BASE}/progress/${studentId}`);
     if (!res.ok) throw new Error("Failed to fetch progress");
     return res.json();
+  },
+
+  // 6. Fetch full concept graph
+  getCurriculumGraph: async (subjectId: string) => {
+    const res = await fetch(`${API_BASE}/curriculum/graph/${subjectId}`);
+    if (!res.ok) throw new Error("Failed to fetch curriculum graph");
+    return res.json();
   }
 };

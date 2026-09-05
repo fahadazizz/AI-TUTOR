@@ -128,6 +128,13 @@ class CurriculumRepository(BaseRepository):
         row = await self._fetch_one("SELECT COUNT(*) as cnt FROM concept_prerequisites")
         return row["cnt"] if row else 0
 
+    async def get_all_prerequisites(self) -> list[dict]:
+        """Get all concept prerequisites as a list of dictionaries."""
+        rows = await self._fetch_all(
+            "SELECT concept_id, prerequisite_id FROM concept_prerequisites"
+        )
+        return [{"concept_id": r["concept_id"], "prerequisite_id": r["prerequisite_id"]} for r in rows]
+
     # ── Questions ───────────────────────────────────
 
     async def upsert_question(
