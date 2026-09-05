@@ -32,6 +32,8 @@ class MathChecker(AnswerEvaluator):
 
         text = text.lower()
         
+        text = text.replace("==", "=")
+        
         # Replace unicode fractions and superscripts
         replacements = {
             "½": "1/2", "⅓": "1/3", "¼": "1/4", "¾": "3/4",
@@ -71,6 +73,14 @@ class MathChecker(AnswerEvaluator):
                     exprs.append(parse_expr(p, transformations=self.transformations))
                 return sympy.Tuple(*exprs)
 
+            # If it explicitly says "x=3", just extract the 3
+            text_no_space = text.replace(" ", "")
+            if text_no_space.startswith("x=="):
+                text = text_no_space.replace("x==", "")
+            elif text_no_space.startswith("-x=="):
+                # Handle edge case where student typed -x=3
+                pass
+
             # If it's an equation (contains ==), parse LHS and RHS separately
             if "==" in text:
                 parts = text.split("==")
@@ -79,11 +89,6 @@ class MathChecker(AnswerEvaluator):
                 lhs = parse_expr(parts[0], transformations=self.transformations)
                 rhs = parse_expr(parts[1], transformations=self.transformations)
                 return sympy.Eq(lhs, rhs)
-                
-            # If it explicitly says "x=3", just extract the 3
-            text_no_space = text.replace(" ", "")
-            if text_no_space.startswith("x=="):
-                text = text_no_space.replace("x==", "")
 
             return parse_expr(text, transformations=self.transformations)
         except Exception as e:
@@ -172,7 +177,13 @@ class MathChecker(AnswerEvaluator):
         # 5a. Sign Error Check (Student answered -X instead of X, or x-3 instead of x+3)
         try:
             # Check global negative
-            if self._are_equivalent(student_expr, -expected_expr):
+            neg_expected = None
+            if isinstance(expected_expr, sympy.Tuple):
+                neg_expected = sympy.Tuple(*[-e for e in expected_expr])
+            else:
+                neg_expected = -expected_expr
+
+            if self._are_equivalent(student_expr, neg_expected):
                 return AnswerResult(
                     is_correct=False,
                     error_type="sign_error",

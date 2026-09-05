@@ -60,3 +60,4 @@ Fully completed the backend and frontend system hardening to reach production-re
 - Generalized the curriculum `Concept` schema to include `board`, `grade`, `visual_need`, `language_pack`, and `textbook_sources` fields to support multi-board scalability.
 - Successfully verified database reads/writes and confirmed `ollama` LLM connectivity via `verify_v0_0.py`.
 - Phase A V0.2 Done: Implemented persistent core mastery loop via TutorController and ChatRouter to securely store state and attempts.
+- Phase A V0.3 Done: Fully validated deterministic symbolic math verifier using SymPy. Tested against 30 unique real-world edge cases. Checked that no LLM call is made.

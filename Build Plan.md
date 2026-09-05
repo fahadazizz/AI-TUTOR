@@ -45,7 +45,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 | A | V0.0 | Pre-build setup | Infra, tooling, provider accounts | Done |
 | A | V0.1 | Curriculum schema + Subject 1 | Curriculum Model | Done |
 | A | V0.2 | Core loop, text-only | Tutor Controller, Student Model, Session State | Done |
-| A | V0.3 | Symbolic verifier | Verifier Registry | Not Started |
+| A | V0.3 | Symbolic verifier | Verifier Registry | Done |
 | A | V0.4 | Equation rendering | Visual Engine | Not Started |
 | A | V0.5 | Graphs and diagram templates | Visual Engine | Not Started |
 | A | V0.6 | Misconception library seed | Misconception Library | Not Started |
@@ -133,7 +133,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 - Running the verifier against at least 30 real student answers (a mix of correct, close-but-wrong, and clearly wrong) matches your own manual grading of the same 30 answers on every case.
 - The verifier never calls an LLM to determine correctness — confirm this by checking that verification still works correctly with all LLM providers deliberately disabled.
 
-**Status:** Not Started
+**Status:** Done
 
 ### V0.4 — Equation rendering
 
