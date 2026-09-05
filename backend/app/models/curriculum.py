@@ -58,8 +58,12 @@ class Concept(BaseModel):
     name_en: str
     name_ur: str
     difficulty: int = Field(..., ge=1, le=5)
-    textbook_page: Optional[str] = None
+    board: str = Field(default="punjab")
+    grade: int = Field(default=10)
+    textbook_sources: list[str] = Field(default_factory=list)
     pedagogy_type: PedagogyType
+    visual_need: str = Field(default="none")
+    language_pack: list[str] = Field(default_factory=lambda: ["ur", "en"])
     learning_objectives: list[str] = Field(default_factory=list)
     formulas: list[str] = Field(default_factory=list)
     explanation_ur: str

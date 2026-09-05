@@ -25,21 +25,21 @@ def controller():
 @pytest.mark.asyncio
 async def test_decide_action_off_topic(controller):
     intent = IntentSchema(intent=StudentIntent.OFF_TOPIC)
-    action, ctx = await controller.decide_action(intent, {}, [])
+    action, ctx, _, _ = await controller.decide_action(intent, {}, [])
     assert action == TutorAction.REDIRECT_OFFTOPIC
 
 
 @pytest.mark.asyncio
 async def test_decide_action_solve_problem(controller):
     intent = IntentSchema(intent=StudentIntent.SOLVE_PROBLEM)
-    action, ctx = await controller.decide_action(intent, {}, [])
+    action, ctx, _, _ = await controller.decide_action(intent, {}, [])
     assert action == TutorAction.SCAFFOLD_PROBLEM
 
 
 @pytest.mark.asyncio
 async def test_decide_action_ask_concept(controller):
     intent = IntentSchema(intent=StudentIntent.ASK_CONCEPT, concept_hint="quadratic")
-    action, ctx = await controller.decide_action(intent, {}, [])
+    action, ctx, _, _ = await controller.decide_action(intent, {}, [])
     assert action == TutorAction.TEACH_CONCEPT
 
 
@@ -48,9 +48,15 @@ async def test_decide_action_answer_correct(controller):
     controller.math_checker.check_answer.return_value = AnswerResult(is_correct=True)
     
     intent = IntentSchema(intent=StudentIntent.ANSWER_QUESTION, student_answer="5")
-    session = {"current_question_expected_answer": "5"}
+    session = {
+        "current_question_expected_answer": "5",
+        "current_concept_id": "concept_1",
+        "current_question_id": "q1",
+        "session_id": "00000000-0000-0000-0000-000000000000",
+        "student_id": "00000000-0000-0000-0000-000000000000"
+    }
     
-    action, ctx = await controller.decide_action(intent, session, [])
+    action, ctx, _, _ = await controller.decide_action(intent, session, [])
     assert action == TutorAction.GIVE_FEEDBACK_CORRECT
 
 
@@ -59,9 +65,15 @@ async def test_decide_action_answer_wrong_hint(controller):
     controller.math_checker.check_answer.return_value = AnswerResult(is_correct=False, error_type=None)
     
     intent = IntentSchema(intent=StudentIntent.ANSWER_QUESTION, student_answer="4")
-    session = {"current_question_expected_answer": "5"}
+    session = {
+        "current_question_expected_answer": "5",
+        "current_concept_id": "concept_1",
+        "current_question_id": "q1",
+        "session_id": "00000000-0000-0000-0000-000000000000",
+        "student_id": "00000000-0000-0000-0000-000000000000"
+    }
     
-    action, ctx = await controller.decide_action(intent, session, [])
+    action, ctx, _, _ = await controller.decide_action(intent, session, [])
     assert action == TutorAction.GIVE_HINT
 
 
@@ -70,7 +82,13 @@ async def test_decide_action_answer_wrong_sign_error(controller):
     controller.math_checker.check_answer.return_value = AnswerResult(is_correct=False, error_type="sign_error")
     
     intent = IntentSchema(intent=StudentIntent.ANSWER_QUESTION, student_answer="-5")
-    session = {"current_question_expected_answer": "5"}
+    session = {
+        "current_question_expected_answer": "5",
+        "current_concept_id": "concept_1",
+        "current_question_id": "q1",
+        "session_id": "00000000-0000-0000-0000-000000000000",
+        "student_id": "00000000-0000-0000-0000-000000000000"
+    }
     
-    action, ctx = await controller.decide_action(intent, session, [])
+    action, ctx, _, _ = await controller.decide_action(intent, session, [])
     assert action == TutorAction.DIAGNOSE_MISTAKE

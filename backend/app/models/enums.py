@@ -75,6 +75,7 @@ class StudentIntent(str, Enum):
     REPEAT = "repeat"
     CHANGE_SUBJECT = "change_subject"
     REVIEW = "review"
+    EXPRESS_FRUSTRATION = "express_frustration"
     UNKNOWN = "unknown"
 
 
@@ -92,4 +93,5 @@ class TutorAction(str, Enum):
     START_ASSESSMENT = "start_assessment"
     HANDLE_GREETING = "handle_greeting"
     REDIRECT_OFFTOPIC = "redirect_offtopic"
+    HANDLE_FRUSTRATION = "handle_frustration"
     RESUME_SESSION = "resume_session"

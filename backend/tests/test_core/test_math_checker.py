@@ -4,7 +4,7 @@ AI Tutor — Tests for the Math Checking Engine.
 Verifies SymPy equivalence, sign errors, partial roots, and parse handling.
 """
 
-from app.core.math_checker import MathChecker
+from app.engines.plugins.math_checker import MathChecker
 
 
 class TestMathChecker:

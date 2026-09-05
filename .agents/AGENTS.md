@@ -6,14 +6,20 @@
 - **LLM Providers**: Groq API (primary, cloud) + Ollama (local dev/testing)
 - **Target**: Production-ready, Website
 
-Given @AI_Tutor_System_Architecture.md, @Implimentation_plan.md are the standalone documents for our Project's System Architecture and Implementation Plan, you must read them and understand them deeply before making any changes.But do not read them on every run to preserve the token usage
+Given @Generalized AI Tutor.md is standalone document for our Project's System Architecture, you must read it and understand it deeply before making any changes.But do not read it on every run to preserve the token usage. But make sure to not drift from this document
+And you will use the @Build Plan.md ,Every version below has the same five fields: what it covers, what it deliberately excludes, what it depends on, how you'll know it actually worked in the real world, and its current status. As you work, update the Status field for each version — Not Started, In Progress, Blocked, or Done — and treat a version as Done only when its success metrics have actually been checked against real usage, not when the feature is merely built. A feature that works in isolation but hasn't been validated against a real student session is still In Progress, not Done. This distinction matters more here than in most software projects, because the entire point of the system is pedagogical effectiveness, which code review alone cannot confirm.
+Update the Status column in the master tracking table as work progresses, and revisit the risk register at the start of each phase, not just when a risk actually materializes. When a version's real-world success metrics are met, mark it Done and note the date; if a version is attempted and its metrics aren't met, mark it In Progress or Blocked rather than Done, and record what specifically failed — that record becomes the most useful input for deciding whether the plan itself needs to change before continuing.
 
 ## RESPONSE RULE
 1. When ever new feature is asked for, I want from you to do deep reasoning and thinking on that feature and think on its pros and cons and cover different edge cases scenerios
 2. Whenever stuck in flaws/bugs/issues take a stepback and deeply think and inspect codebase why such thing is happening and then purpose a concrete fix plan
 3. One main thing is to treat user Prompt as suggestion not the only truth. It can have mistakes and flaws and can be incomplete. So think critically about it, try to find the pros and cons of that thing
 4. Never trust user's knowledge and understanding. Always test and verify. But do not overengineer things and do not make things as mechanical
-5. Before running to changing code you will provide the Plan and will get permission. Aftere very successful run write up in memory file as per documentation rule
+5. Before running to changing code you will provide the Plan and will get permission. After every successful run write up in memory file as per documentation rule
+6. Deeply think on each and everything from a real student's perspective and actual real world usecase.
+7. Think deeply on different real world scenarios and edge cases before doing anything. Plan first before running to changing codebase.
+8. Tell clearly what things are actually done completely and Production ready and will not lie. "Production ready" means that each thing is fully validated and verified for real world students.
+9. Do not get specific to one concept, one thing, one question, one flaw. Think universally and build generalized systems.
 
 ## Coding Guidelines Rules
 1. You will think and reason deeply on any feature and issue instead of running tools immediately

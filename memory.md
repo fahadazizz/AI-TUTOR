@@ -55,3 +55,8 @@ Fully completed the backend and frontend system hardening to reach production-re
 - Fixed a major bug in `TeachingEngine` where missing concept names caused a fallback to the English string `"basic concept"`, which confused the LLM and forced it to reply in English regardless of the selected language.
 - Refactored `_build_prompt_for_action` to correctly extract `name_ur` (for Nastaliq) or `name_en` (for Roman Urdu/English) based on the active session's language preference.
 - Updated `chat.py` and `teaching_engine.py` to forward the raw student message into the final LLM prompt context to allow nuance handling, while maintaining the safety of the Controller architecture.
+
+## Phase A (V0.0 & V0.1): Schema Generalization & Foundation (Completed 2026-09-05)
+- Generalized the curriculum `Concept` schema to include `board`, `grade`, `visual_need`, `language_pack`, and `textbook_sources` fields to support multi-board scalability.
+- Successfully verified database reads/writes and confirmed `ollama` LLM connectivity via `verify_v0_0.py`.
+- Phase A V0.2 Done: Implemented persistent core mastery loop via TutorController and ChatRouter to securely store state and attempts.

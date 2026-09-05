@@ -25,7 +25,11 @@ class CurriculumRepository(BaseRepository):
         name_en: str,
         name_ur: str,
         difficulty: int,
-        textbook_page: str | None,
+        board: str,
+        grade: int,
+        visual_need: str,
+        language_pack: list,
+        textbook_sources: list,
         pedagogy_type: str,
         learning_objectives: list,
         formulas: list,
@@ -38,10 +42,11 @@ class CurriculumRepository(BaseRepository):
             """
             INSERT INTO concepts (
                 concept_id, subject_id, chapter, chapter_name,
-                name_en, name_ur, difficulty, textbook_page,
-                pedagogy_type, learning_objectives, formulas,
-                explanation_ur, key_terms, worked_examples
-            ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
+                name_en, name_ur, difficulty, board, grade, visual_need,
+                language_pack, textbook_sources, pedagogy_type,
+                learning_objectives, formulas, explanation_ur,
+                key_terms, worked_examples
+            ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18)
             ON CONFLICT (concept_id) DO UPDATE SET
                 subject_id = EXCLUDED.subject_id,
                 chapter = EXCLUDED.chapter,
@@ -49,7 +54,11 @@ class CurriculumRepository(BaseRepository):
                 name_en = EXCLUDED.name_en,
                 name_ur = EXCLUDED.name_ur,
                 difficulty = EXCLUDED.difficulty,
-                textbook_page = EXCLUDED.textbook_page,
+                board = EXCLUDED.board,
+                grade = EXCLUDED.grade,
+                visual_need = EXCLUDED.visual_need,
+                language_pack = EXCLUDED.language_pack,
+                textbook_sources = EXCLUDED.textbook_sources,
                 pedagogy_type = EXCLUDED.pedagogy_type,
                 learning_objectives = EXCLUDED.learning_objectives,
                 formulas = EXCLUDED.formulas,
@@ -58,7 +67,9 @@ class CurriculumRepository(BaseRepository):
                 worked_examples = EXCLUDED.worked_examples
             """,
             concept_id, subject_id, chapter, chapter_name,
-            name_en, name_ur, difficulty, textbook_page,
+            name_en, name_ur, difficulty, board, grade, visual_need,
+            json.dumps(language_pack, ensure_ascii=False),
+            json.dumps(textbook_sources, ensure_ascii=False),
             pedagogy_type,
             json.dumps(learning_objectives, ensure_ascii=False),
             json.dumps(formulas, ensure_ascii=False),

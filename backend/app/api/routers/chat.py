@@ -16,7 +16,7 @@ from app.tutor.tutor_controller import TutorController
 from app.tutor.teaching_engine import TeachingEngine
 from app.tutor.guardrails import Guardrails
 
-from app.core.math_checker import MathChecker
+from app.engines.plugins.math_checker import MathChecker
 from app.core.student_model import StudentModel
 from app.core.curriculum_model import CurriculumModel
 from app.core.question_selector import QuestionSelector
@@ -70,6 +70,7 @@ def get_tutor_dependencies():
         "controller": controller,
         "teaching": teaching,
         "guardrails": guardrails,
+        "session_repo": session_repo,
         "session_manager": session_manager,
         "mastery_repo": mastery_repo,
         "student_repo": student_repo,
@@ -81,11 +82,13 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
     """Main tutoring loop."""
     
     session_manager: SessionManager = deps["session_manager"]
+    session_repo: SessionRepository = deps["session_repo"]
     language: LanguageLayer = deps["language"]
     controller: TutorController = deps["controller"]
     teaching: TeachingEngine = deps["teaching"]
     guardrails: Guardrails = deps["guardrails"]
     mastery_repo: MasteryRepository = deps["mastery_repo"]
+    student_repo: StudentRepository = deps["student_repo"]
 
     # 1. Load Session
     session = await session_manager.get_active_session(request.session_id)
@@ -94,13 +97,13 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
 
     logger.info("chat_request_received", session=request.session_id, message_len=len(request.message))
 
-    student_repo: StudentRepository = deps["student_repo"]
     student = await student_repo.get_student(session.student_id)
     pref_lang = student.get("preferred_language", "ur") if student else "ur"
 
     # Convert session model to dict context for the controller
-    # In a full app, we'd also load mastery here.
     session_dict = {
+        "session_id": str(session.id),
+        "student_id": str(session.student_id),
         "current_concept_id": session.current_concept_id,
         "current_question_id": session.current_question_id,
         "current_question_expected_answer": session.session_state.get("current_question_expected_answer"),
@@ -114,15 +117,31 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
     intent_data = await language.detect_intent(request.message)
 
     # 3. Controller Decide Action
-    # Fetch real mastery
     mastery_list = await mastery_repo.get_all_mastery(session.student_id)
-    action, updated_context = await controller.decide_action(intent_data, session_dict, mastery_list)
+    action, updated_context, updated_mastery, attempt = await controller.decide_action(intent_data, session_dict, mastery_list)
+
+    # 3.1 Persist Attempt and Mastery
+    if attempt:
+        await session_repo.record_attempt(attempt)
+    if updated_mastery:
+        await mastery_repo.upsert_mastery(
+            student_id=updated_mastery.student_id,
+            concept_id=updated_mastery.concept_id,
+            mastery_state=updated_mastery.mastery_state.value if hasattr(updated_mastery.mastery_state, "value") else updated_mastery.mastery_state,
+            consecutive_correct=updated_mastery.consecutive_correct,
+            consecutive_wrong=updated_mastery.consecutive_wrong,
+            total_attempts=updated_mastery.total_attempts,
+            total_correct=updated_mastery.total_correct,
+            last_attempt_at=updated_mastery.last_attempt_at,
+            mastered_at=updated_mastery.mastered_at,
+            misconception_ids=updated_mastery.misconception_ids
+        )
 
     # 4. Generate Response with Guardrails
     max_retries = 3
     final_response = None
     
-    for attempt in range(max_retries):
+    for attempt_idx in range(max_retries):
         response_text = await teaching.generate_response(action, updated_context)
         gr_result = guardrails.check_response(response_text, updated_context)
         
@@ -130,18 +149,23 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
             final_response = response_text
             break
         else:
-            logger.warning("guardrail_retry", attempt=attempt+1, reason=gr_result.reason)
+            logger.warning("guardrail_retry", attempt=attempt_idx+1, reason=gr_result.reason)
             
     if not final_response:
-        # Fallback if guardrails continually fail
         logger.error("guardrail_total_failure")
         final_response = "Mujhe maaf kijiye, mujhe samajh nahi aaya. Kya aap dobara pooch sakte hain?"
         action = TutorAction.RESUME_SESSION
 
     # 5. Save state
+    # Update session model from mutated context
+    mutated_session = updated_context.get("session", {})
+    session.current_concept_id = mutated_session.get("current_concept_id")
+    session.current_question_id = mutated_session.get("current_question_id")
+    session.hint_level = mutated_session.get("hint_level", 0)
+    session.scaffold_step = mutated_session.get("scaffold_step", 0)
+    session.session_state["current_question_expected_answer"] = mutated_session.get("current_question_expected_answer")
+    
     session.total_exchanges += 1
-    # Update fields from the context if they changed
-    # (Simplified for now, in a real app we'd map context changes back to session)
     await session_manager.update_context(session)
 
     return ChatResponse(response=final_response, action_taken=action.value)
@@ -151,11 +175,13 @@ async def chat_stream_endpoint(request: ChatRequest, deps: dict = Depends(get_tu
     """Streaming tutoring loop."""
     
     session_manager: SessionManager = deps["session_manager"]
+    session_repo: SessionRepository = deps["session_repo"]
     language: LanguageLayer = deps["language"]
     controller: TutorController = deps["controller"]
     teaching: TeachingEngine = deps["teaching"]
     guardrails: Guardrails = deps["guardrails"]
     mastery_repo: MasteryRepository = deps["mastery_repo"]
+    student_repo: StudentRepository = deps["student_repo"]
 
     # 1. Load Session
     session = await session_manager.get_active_session(request.session_id)
@@ -164,11 +190,12 @@ async def chat_stream_endpoint(request: ChatRequest, deps: dict = Depends(get_tu
 
     logger.info("chat_stream_request_received", session=request.session_id, message_len=len(request.message))
 
-    student_repo: StudentRepository = deps["student_repo"]
     student = await student_repo.get_student(session.student_id)
     pref_lang = student.get("preferred_language", "ur") if student else "ur"
 
     session_dict = {
+        "session_id": str(session.id),
+        "student_id": str(session.student_id),
         "current_concept_id": session.current_concept_id,
         "current_question_id": session.current_question_id,
         "current_question_expected_answer": session.session_state.get("current_question_expected_answer"),
@@ -183,7 +210,24 @@ async def chat_stream_endpoint(request: ChatRequest, deps: dict = Depends(get_tu
 
     # 3. Controller Decide Action
     mastery_list = await mastery_repo.get_all_mastery(session.student_id)
-    action, updated_context = await controller.decide_action(intent_data, session_dict, mastery_list)
+    action, updated_context, updated_mastery, attempt = await controller.decide_action(intent_data, session_dict, mastery_list)
+
+    # 3.1 Persist Attempt and Mastery
+    if attempt:
+        await session_repo.record_attempt(attempt)
+    if updated_mastery:
+        await mastery_repo.upsert_mastery(
+            student_id=updated_mastery.student_id,
+            concept_id=updated_mastery.concept_id,
+            mastery_state=updated_mastery.mastery_state.value if hasattr(updated_mastery.mastery_state, "value") else updated_mastery.mastery_state,
+            consecutive_correct=updated_mastery.consecutive_correct,
+            consecutive_wrong=updated_mastery.consecutive_wrong,
+            total_attempts=updated_mastery.total_attempts,
+            total_correct=updated_mastery.total_correct,
+            last_attempt_at=updated_mastery.last_attempt_at,
+            mastered_at=updated_mastery.mastered_at,
+            misconception_ids=updated_mastery.misconception_ids
+        )
 
     async def generate_sse():
         # Yield metadata first (action taken)
@@ -209,6 +253,13 @@ async def chat_stream_endpoint(request: ChatRequest, deps: dict = Depends(get_tu
             yield f"data: {chunk}\n\n"
             
         # 5. Save state after streaming
+        mutated_session = updated_context.get("session", {})
+        session.current_concept_id = mutated_session.get("current_concept_id")
+        session.current_question_id = mutated_session.get("current_question_id")
+        session.hint_level = mutated_session.get("hint_level", 0)
+        session.scaffold_step = mutated_session.get("scaffold_step", 0)
+        session.session_state["current_question_expected_answer"] = mutated_session.get("current_question_expected_answer")
+        
         session.total_exchanges += 1
         await session_manager.update_context(session)
         
