@@ -76,6 +76,7 @@ class StudentIntent(str, Enum):
     CHANGE_SUBJECT = "change_subject"
     REVIEW = "review"
     EXPRESS_FRUSTRATION = "express_frustration"
+    CLARIFY_STEP = "clarify_step"
     UNKNOWN = "unknown"
 
 
@@ -95,4 +96,7 @@ class TutorAction(str, Enum):
     HANDLE_GREETING = "handle_greeting"
     REDIRECT_OFFTOPIC = "redirect_offtopic"
     HANDLE_FRUSTRATION = "handle_frustration"
+    CLARIFY_STEP = "clarify_step"
+    PROVIDE_WORKED_EXAMPLE = "provide_worked_example"
+    CLARIFY_SYNTAX = "clarify_syntax"
     RESUME_SESSION = "resume_session"

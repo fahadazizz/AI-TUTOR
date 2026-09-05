@@ -40,6 +40,9 @@ Available intents:
 - change_subject: Asking to learn something else entirely.
 - review: Asking to review old material.
 
+- clarify_step: Asking a clarifying question about the *current step* or asking for a hint, rather than giving a final answer. (e.g., "should I divide by 2 first?", "why did the sign change?", "how do I do this?")
+- express_frustration: Expressing anger, frustration, or being completely lost. (e.g., "yeh kya ajeeb sawal hai", "dimagh kharab ho gaya", "this is stupid")
+
 If they provide an answer, extract the raw mathematical part into 'student_answer' (e.g., if they say "i think x = 4", student_answer="x=4").
 If they ask about a concept, extract the concept name into 'concept_hint' in English (e.g., if they say "factors bananay sikha do", concept_hint="factorization").
 

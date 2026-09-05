@@ -75,13 +75,14 @@ export const api = {
   chatStream: async (
     sessionId: string, 
     message: string, 
+    history: any[],
     onToken: (token: string) => void,
     onMeta?: (meta: any) => void
   ): Promise<void> => {
     const res = await fetch(`${API_BASE}/chat/stream`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionId, message }),
+      body: JSON.stringify({ session_id: sessionId, message, history }),
     });
 
     if (!res.ok || !res.body) {

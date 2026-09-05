@@ -116,6 +116,9 @@ class TutorController:
             else:
                 session_state["hint_level"] = session_state.get("hint_level", 0) + 1
                 
+                if result.error_type == "parse_error":
+                    return TutorAction.CLARIFY_SYNTAX, context, updated_mastery, attempt
+                    
                 if result.error_type == "known_misconception" and result.misconception_id:
                     misconception = await self.curriculum.get_misconception(result.misconception_id)
                     if misconception:
@@ -164,10 +167,25 @@ class TutorController:
 
             return TutorAction.TEACH_CONCEPT, context, None, None
 
-        # 3. Solve Problem (Scaffolding rule)
+        # 3. Solve Problem (Scaffolding vs Worked Example rule)
         elif intent == StudentIntent.SOLVE_PROBLEM:
-            # We never solve it directly
-            return TutorAction.SCAFFOLD_PROBLEM, context, None, None
+            current_hint_level = session_state.get("hint_level", 0)
+            if current_hint_level >= 2:
+                # Student is genuinely stuck and asking for help. Provide a worked example.
+                # Reset hint level so they can start fresh on the next problem.
+                session_state["hint_level"] = 0
+                return TutorAction.PROVIDE_WORKED_EXAMPLE, context, None, None
+            else:
+                # Scaffold first
+                return TutorAction.SCAFFOLD_PROBLEM, context, None, None
+                
+        # 3.5. Clarify Step
+        elif intent == StudentIntent.CLARIFY_STEP:
+            return TutorAction.CLARIFY_STEP, context, None, None
+            
+        # 3.6. Express Frustration
+        elif intent == StudentIntent.EXPRESS_FRUSTRATION:
+            return TutorAction.HANDLE_FRUSTRATION, context, None, None
 
         # 4. Off Topic
         elif intent == StudentIntent.OFF_TOPIC:

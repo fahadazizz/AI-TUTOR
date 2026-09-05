@@ -85,10 +85,11 @@ class TeachingEngine:
         pref = context.get("session", {}).get("preferred_language", "ur")
         prompt = self._build_prompt_for_action(action, context, pref)
         
-        messages = [
-            {"role": "system", "content": self.prompt_manager.get_system_prompt(pref)},
-            {"role": "user", "content": prompt}
-        ]
+        history = context.get("session", {}).get("history", [])
+        
+        messages = [{"role": "system", "content": self.prompt_manager.get_system_prompt(pref)}]
+        messages.extend(history)
+        messages.append({"role": "user", "content": prompt})
         
         logger.info("teaching_engine_generating", action=action)
         response = await self.llm.generate_chat(messages)
@@ -99,10 +100,11 @@ class TeachingEngine:
         pref = context.get("session", {}).get("preferred_language", "ur")
         prompt = self._build_prompt_for_action(action, context, pref)
         
-        messages = [
-            {"role": "system", "content": self.prompt_manager.get_system_prompt(pref)},
-            {"role": "user", "content": prompt}
-        ]
+        history = context.get("session", {}).get("history", [])
+        
+        messages = [{"role": "system", "content": self.prompt_manager.get_system_prompt(pref)}]
+        messages.extend(history)
+        messages.append({"role": "user", "content": prompt})
         
         logger.info("teaching_engine_generating_stream", action=action)
         async for token in self.llm.generate_chat_stream(messages):

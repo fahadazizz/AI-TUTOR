@@ -36,6 +36,7 @@ router = APIRouter(prefix="/api/chat", tags=["chat"])
 class ChatRequest(BaseModel):
     session_id: str
     message: str
+    history: list[dict] = []
 
 class ChatResponse(BaseModel):
     response: str
@@ -110,7 +111,8 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
         "hint_level": session.hint_level,
         "scaffold_step": session.scaffold_step,
         "preferred_language": pref_lang,
-        "student_raw_message": request.message
+        "student_raw_message": request.message,
+        "history": request.history[-6:] if request.history else []
     }
 
     # 2. Detect Intent
@@ -202,7 +204,8 @@ async def chat_stream_endpoint(request: ChatRequest, deps: dict = Depends(get_tu
         "hint_level": session.hint_level,
         "scaffold_step": session.scaffold_step,
         "preferred_language": pref_lang,
-        "student_raw_message": request.message
+        "student_raw_message": request.message,
+        "history": request.history[-6:] if request.history else []
     }
 
     # 2. Detect Intent

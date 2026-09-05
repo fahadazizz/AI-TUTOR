@@ -68,6 +68,10 @@ export default function ChatPage() {
     try {
       // Create empty placeholder message for tutor
       const tutorMsgId = crypto.randomUUID();
+      
+      // Pass the previous messages (up to last 6) as history to backend
+      const historyPayload = messages.slice(-6).map(m => ({ role: m.role === 'student' ? 'user' : 'assistant', content: m.content }));
+      
       setMessages(prev => [
         ...prev, 
         { id: tutorMsgId, role: "tutor", content: "" }
@@ -76,6 +80,7 @@ export default function ChatPage() {
       await api.chatStream(
         sessionId, 
         studentMsg,
+        historyPayload,
         (token) => {
           setMessages(prev => 
             prev.map(msg => 
