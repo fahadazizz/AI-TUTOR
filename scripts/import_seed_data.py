@@ -172,7 +172,7 @@ async def main() -> None:
 
     try:
         await create_pool()
-        await run_migrations()
+        # await run_migrations()
     except Exception as e:
         logger.error("db_connection_failed", error=str(e))
         print(f"\n❌ Database connection failed: {e}")

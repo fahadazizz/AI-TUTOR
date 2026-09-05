@@ -4,39 +4,56 @@
     "format": "Each entry maps concept_id → list of prerequisite concept_ids (must be mastered before teaching this concept)",
     "last_updated": "2026-09-02"
   },
-
   "edges": [
     {
       "concept_id": "prereq.algebra.variables",
-      "prerequisites": ["prereq.arithmetic.order_of_operations"]
+      "prerequisites": [
+        "prereq.arithmetic.order_of_operations"
+      ]
     },
     {
       "concept_id": "prereq.algebra.linear_equations",
-      "prerequisites": ["prereq.algebra.variables", "prereq.numbers.negative_numbers"]
+      "prerequisites": [
+        "prereq.algebra.variables",
+        "prereq.numbers.negative_numbers"
+      ]
     },
     {
       "concept_id": "prereq.algebra.factorization_basics",
-      "prerequisites": ["prereq.algebra.variables"]
+      "prerequisites": [
+        "prereq.algebra.variables"
+      ]
     },
     {
       "concept_id": "prereq.algebra.algebraic_identities",
-      "prerequisites": ["prereq.algebra.factorization_basics"]
+      "prerequisites": [
+        "prereq.algebra.factorization_basics"
+      ]
     },
     {
       "concept_id": "prereq.algebra.square_root",
-      "prerequisites": ["prereq.numbers.negative_numbers"]
+      "prerequisites": [
+        "prereq.numbers.negative_numbers"
+      ]
     },
     {
       "concept_id": "math10.ch2.quadratic_expression",
-      "prerequisites": ["prereq.algebra.variables"]
+      "prerequisites": [
+        "prereq.algebra.variables"
+      ]
     },
     {
       "concept_id": "math10.ch2.quadratic_equation",
-      "prerequisites": ["math10.ch2.quadratic_expression", "prereq.algebra.linear_equations"]
+      "prerequisites": [
+        "math10.ch2.quadratic_expression",
+        "prereq.algebra.linear_equations"
+      ]
     },
     {
       "concept_id": "math10.ch2.standard_form",
-      "prerequisites": ["math10.ch2.quadratic_equation"]
+      "prerequisites": [
+        "math10.ch2.quadratic_equation"
+      ]
     },
     {
       "concept_id": "math10.ch2.solving_by_factorization",

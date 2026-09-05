@@ -5,14 +5,13 @@
     "total_misconceptions": 12,
     "last_updated": "2026-09-02"
   },
-
   "misconceptions": [
     {
       "misconception_id": "math.ch2.sign_error_b",
       "concept_id": "math10.ch2.standard_form",
       "subject": "mathematics",
-      "description_en": "Student drops the negative sign when identifying b. For 3x² - 7x + 2 = 0, student writes b = 7 instead of b = -7.",
-      "description_ur": "طالب علم b کی قدر میں منفی علامت بھول جاتا ہے۔ مثلاً 3x² - 7x + 2 = 0 میں b = 7 لکھتا ہے جبکہ b = -7 ہونا چاہیے۔",
+      "description_en": "Student drops the negative sign when identifying b. For 3x^2 - 7x + 2 = 0, student writes b = 7 instead of b = -7.",
+      "description_ur": "طالب علم b کی قدر میں منفی علامت بھول جاتا ہے۔ مثلاً 3x^2 - 7x + 2 = 0 میں b = 7 لکھتا ہے جبکہ b = -7 ہونا چاہیے۔",
       "severity": "critical",
       "error_patterns": [
         "b is positive when it should be negative",
@@ -21,17 +20,23 @@
       ],
       "prerequisite_gap": "prereq.numbers.negative_numbers",
       "remediation_strategy": "direct_instruction",
-      "remediation_explanation_ur": "b کی قدر میں علامت (sign) ہمیشہ شامل ہوتی ہے۔ ax² + bx + c = 0 میں اگر x سے پہلے منفی (-) ہے تو b منفی ہے۔ مثلاً 3x² - 7x + 2 = 0 کو ایسے سوچو: 3x² + (-7)x + 2 = 0۔ اب دیکھو b = -7 ہے۔ ہمیشہ پوری حد بشمول علامت لکھو۔",
-      "diagnostic_question_ids": ["math10.ch2.sf.q01", "math10.ch2.sf.q03"],
-      "practice_question_ids": ["math10.ch2.sf.q01", "math10.ch2.sf.q02", "math10.ch2.sf.q03"]
+      "remediation_explanation_ur": "b کی قدر میں علامت (sign) ہمیشہ شامل ہوتی ہے۔ ax^2 + bx + c = 0 میں اگر x سے پہلے منفی (-) ہے تو b منفی ہے۔ مثلاً 3x^2 - 7x + 2 = 0 کو ایسے سوچو: 3x^2 + (-7)x + 2 = 0۔ اب دیکھو b = -7 ہے۔ ہمیشہ پوری حد بشمول علامت لکھو۔",
+      "diagnostic_question_ids": [
+        "math10.ch2.sf.q01",
+        "math10.ch2.sf.q03"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.sf.q01",
+        "math10.ch2.sf.q02",
+        "math10.ch2.sf.q03"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.abc_confusion",
       "concept_id": "math10.ch2.standard_form",
       "subject": "mathematics",
-      "description_en": "Student confuses which coefficient is a, b, or c. For example, in 5x² + 3x + 7 = 0, student says a = 5x².",
-      "description_ur": "طالب علم a, b, c کو الجھا دیتا ہے۔ مثلاً a = 5x² لکھتا ہے (صحیح: a = 5)۔ یا 2 + 3x + x² = 0 میں a = 2 لکھتا ہے (صحیح: a = 1)۔",
+      "description_en": "Student confuses which coefficient is a, b, or c. For example, in 5x^2 + 3x + 7 = 0, student says a = 5x^2.",
+      "description_ur": "طالب علم a, b, c کو الجھا دیتا ہے۔ مثلاً a = 5x^2 لکھتا ہے (صحیح: a = 5)۔ یا 2 + 3x + x^2 = 0 میں a = 2 لکھتا ہے (صحیح: a = 1)۔",
       "severity": "high",
       "error_patterns": [
         "a includes x² term (writes a = 5x²)",
@@ -40,17 +45,22 @@
       ],
       "prerequisite_gap": "math10.ch2.standard_form",
       "remediation_strategy": "worked_example",
-      "remediation_explanation_ur": "a, b, c صرف اعداد (numbers) ہیں، x کے ساتھ نہیں۔ a وہ عدد ہے جو x² کے ساتھ ہو، b وہ عدد ہے جو x کے ساتھ ہو، اور c وہ عدد ہے جو اکیلا ہو۔ پہلے مساوات کو ax² + bx + c = 0 کی شکل میں لکھو، پھر ضریب (coefficient) نکالو۔",
-      "diagnostic_question_ids": ["math10.ch2.sf.q01"],
-      "practice_question_ids": ["math10.ch2.sf.q01", "math10.ch2.sf.q02", "math10.ch2.sf.q03"]
+      "remediation_explanation_ur": "a, b, c صرف اعداد (numbers) ہیں، x کے ساتھ نہیں۔ a وہ عدد ہے جو x^2 کے ساتھ ہو، b وہ عدد ہے جو x کے ساتھ ہو، اور c وہ عدد ہے جو اکیلا ہو۔ پہلے مساوات کو ax^2 + bx + c = 0 کی شکل میں لکھو، پھر ضریب (coefficient) نکالو۔",
+      "diagnostic_question_ids": [
+        "math10.ch2.sf.q01"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.sf.q01",
+        "math10.ch2.sf.q02",
+        "math10.ch2.sf.q03"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.not_standard_form",
       "concept_id": "math10.ch2.standard_form",
       "subject": "mathematics",
       "description_en": "Student applies the quadratic formula or identifies a, b, c without first converting to standard form (= 0).",
-      "description_ur": "طالب علم مساوات کو standard form (= 0) میں لائے بغیر فارمولا لگا دیتا ہے۔ مثلاً 5x = 3x² - 2 میں a=5, b=3, c=-2 لکھ دیتا ہے۔",
+      "description_ur": "طالب علم مساوات کو standard form (= 0) میں لائے بغیر فارمولا لگا دیتا ہے۔ مثلاً 5x = 3x^2 - 2 میں a=5, b=3, c=-2 لکھ دیتا ہے۔",
       "severity": "high",
       "error_patterns": [
         "student identifies a,b,c from non-standard form",
@@ -59,11 +69,14 @@
       ],
       "prerequisite_gap": "prereq.algebra.linear_equations",
       "remediation_strategy": "scaffolding",
-      "remediation_explanation_ur": "ہمیشہ پہلے تمام حدیں ایک طرف لاؤ تاکہ دوسری طرف صفر (0) ہو: ax² + bx + c = 0۔ یاد رکھو: جب کوئی حد دوسری طرف جاتی ہے تو اس کی علامت بدل جاتی ہے۔ پہلے standard form بناؤ، پھر a, b, c نکالو۔",
-      "diagnostic_question_ids": ["math10.ch2.sf.q03"],
-      "practice_question_ids": ["math10.ch2.sf.q03"]
+      "remediation_explanation_ur": "ہمیشہ پہلے تمام حدیں ایک طرف لاؤ تاکہ دوسری طرف صفر (0) ہو: ax^2 + bx + c = 0۔ یاد رکھو: جب کوئی حد دوسری طرف جاتی ہے تو اس کی علامت بدل جاتی ہے۔ پہلے standard form بناؤ، پھر a, b, c نکالو۔",
+      "diagnostic_question_ids": [
+        "math10.ch2.sf.q03"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.sf.q03"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.single_root",
       "concept_id": "math10.ch2.quadratic_formula",
@@ -79,16 +92,22 @@
       "prerequisite_gap": "prereq.algebra.square_root",
       "remediation_strategy": "direct_instruction",
       "remediation_explanation_ur": "مربعی فارمولے میں ± (plus or minus) کا مطلب ہے کہ دو جوابات ہیں: ایک + والا اور ایک - والا۔ مربعی مساوات کی عام طور پر دو جڑیں ہوتی ہیں۔ ہمیشہ دونوں نکالو:\nx₁ = (-b + √D) / 2a\nx₂ = (-b - √D) / 2a",
-      "diagnostic_question_ids": ["math10.ch2.qf.q01", "math10.ch2.qf.q02"],
-      "practice_question_ids": ["math10.ch2.qf.q01", "math10.ch2.qf.q02", "math10.ch2.qf.q04"]
+      "diagnostic_question_ids": [
+        "math10.ch2.qf.q01",
+        "math10.ch2.qf.q02"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.qf.q01",
+        "math10.ch2.qf.q02",
+        "math10.ch2.qf.q04"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.discriminant_sign_b_squared",
       "concept_id": "math10.ch2.discriminant",
       "subject": "mathematics",
-      "description_en": "Student calculates b² incorrectly when b is negative. For b = -5, student computes b² = -25 instead of b² = 25.",
-      "description_ur": "جب b منفی ہو تو طالب علم b² غلط نکالتا ہے۔ مثلاً b = -5 ہو تو b² = -25 لکھتا ہے جبکہ b² = (-5)² = 25 ہونا چاہیے۔",
+      "description_en": "Student calculates b^2 incorrectly when b is negative. For b = -5, student computes b^2 = -25 instead of b^2 = 25.",
+      "description_ur": "جب b منفی ہو تو طالب علم b^2 غلط نکالتا ہے۔ مثلاً b = -5 ہو تو b^2 = -25 لکھتا ہے جبکہ b^2 = (-5)^2 = 25 ہونا چاہیے۔",
       "severity": "critical",
       "error_patterns": [
         "b² is negative when b is negative",
@@ -97,16 +116,21 @@
       ],
       "prerequisite_gap": "prereq.numbers.negative_numbers",
       "remediation_strategy": "visual_example",
-      "remediation_explanation_ur": "یہ بہت اہم فرق ہے:\n(-5)² = (-5) × (-5) = +25 (منفی × منفی = مثبت)\n-5² = -(5²) = -(25) = -25\n\nب² ہمیشہ مثبت ہوتا ہے کیونکہ ہم b کو خود سے ضرب کر رہے ہیں۔ brackets لگاؤ: (-5)² = 25۔ ہمیشہ parentheses استعمال کرو تاکہ غلطی نہ ہو۔",
-      "diagnostic_question_ids": ["math10.ch2.disc.q01"],
-      "practice_question_ids": ["math10.ch2.disc.q01", "math10.ch2.disc.q02", "math10.ch2.disc.q03"]
+      "remediation_explanation_ur": "یہ بہت اہم فرق ہے:\n(-5)^2 = (-5) \\times (-5) = +25 (منفی \\times منفی = مثبت)\n-5^2 = -(5^2) = -(25) = -25\n\nب^2 ہمیشہ مثبت ہوتا ہے کیونکہ ہم b کو خود سے ضرب کر رہے ہیں۔ brackets لگاؤ: (-5)^2 = 25۔ ہمیشہ parentheses استعمال کرو تاکہ غلطی نہ ہو۔",
+      "diagnostic_question_ids": [
+        "math10.ch2.disc.q01"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.disc.q01",
+        "math10.ch2.disc.q02",
+        "math10.ch2.disc.q03"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.discriminant_4ac_sign",
       "concept_id": "math10.ch2.discriminant",
       "subject": "mathematics",
-      "description_en": "Student makes a sign error in -4ac when c is negative. For D = b² - 4ac with c = -5, student computes -4(1)(-5) = -20 instead of +20.",
+      "description_en": "Student makes a sign error in -4ac when c is negative. For D = b^2 - 4ac with c = -5, student computes -4(1)(-5) = -20 instead of +20.",
       "description_ur": "4ac میں علامت غلط لگاتا ہے۔ جب c منفی ہو: -4ac = -4(1)(-5) = +20 ہونا چاہیے لیکن طالب علم -20 لکھ دیتا ہے۔",
       "severity": "high",
       "error_patterns": [
@@ -116,11 +140,15 @@
       ],
       "prerequisite_gap": "prereq.numbers.negative_numbers",
       "remediation_strategy": "step_by_step",
-      "remediation_explanation_ur": "D = b² - 4ac میں احتیاط سے حساب کرو:\nقدم 1: پہلے 4 × a × c نکالو\nقدم 2: پھر اس کے آگے منفی (-) لگاؤ\n\nمثال: a=1, c=-5\n4ac = 4 × 1 × (-5) = -20\n-4ac = -(-20) = +20\n\nیاد رکھو: منفی کا منفی = مثبت!",
-      "diagnostic_question_ids": ["math10.ch2.disc.q03"],
-      "practice_question_ids": ["math10.ch2.disc.q01", "math10.ch2.disc.q03"]
+      "remediation_explanation_ur": "D = b^2 - 4ac میں احتیاط سے حساب کرو:\nقدم 1: پہلے 4 \\times a \\times c نکالو\nقدم 2: پھر اس کے آگے منفی (-) لگاؤ\n\nمثال: a=1, c=-5\n4ac = 4 \\times 1 \\times (-5) = -20\n-4ac = -(-20) = +20\n\nیاد رکھو: منفی کا منفی = مثبت!",
+      "diagnostic_question_ids": [
+        "math10.ch2.disc.q03"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.disc.q01",
+        "math10.ch2.disc.q03"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.nature_wrong_interpretation",
       "concept_id": "math10.ch2.nature_of_roots",
@@ -136,16 +164,22 @@
       "prerequisite_gap": "math10.ch2.discriminant",
       "remediation_strategy": "table_summary",
       "remediation_explanation_ur": "جڑوں کی نوعیت یاد کرنے کا آسان طریقہ:\n\nD > 0 → دو مختلف حقیقی جڑیں (two different real roots)\nD = 0 → دو برابر حقیقی جڑیں (same root, repeated twice)\nD < 0 → حقیقی جڑیں نہیں ہیں (imaginary roots)\n\nD = 0 کا مطلب 'جڑیں نہیں' نہیں ہے! اس کا مطلب ہے 'ایک ہی جڑ دو بار'۔",
-      "diagnostic_question_ids": ["math10.ch2.nor.q01", "math10.ch2.nor.q02"],
-      "practice_question_ids": ["math10.ch2.nor.q01", "math10.ch2.nor.q02", "math10.ch2.nor.q03"]
+      "diagnostic_question_ids": [
+        "math10.ch2.nor.q01",
+        "math10.ch2.nor.q02"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.nor.q01",
+        "math10.ch2.nor.q02",
+        "math10.ch2.nor.q03"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.factorization_wrong_pair",
       "concept_id": "math10.ch2.solving_by_factorization",
       "subject": "mathematics",
-      "description_en": "Student finds factor pairs that multiply correctly but don't add to b. For x² + 7x + 12, student uses 2 and 6 (product=12) instead of 3 and 4 (product=12, sum=7).",
-      "description_ur": "طالب علم ایسے عدد چنتا ہے جن کا حاصل ضرب تو درست ہو لیکن حاصل جمع غلط ہو۔ مثلاً x² + 7x + 12 کے لیے 2 اور 6 لیتا ہے (ضرب=12 ✓، جمع=8 ✗) جبکہ 3 اور 4 ہونے چاہیے (ضرب=12 ✓، جمع=7 ✓)۔",
+      "description_en": "Student finds factor pairs that multiply correctly but don't add to b. For x^2 + 7x + 12, student uses 2 and 6 (product=12) instead of 3 and 4 (product=12, sum=7).",
+      "description_ur": "طالب علم ایسے عدد چنتا ہے جن کا حاصل ضرب تو درست ہو لیکن حاصل جمع غلط ہو۔ مثلاً x^2 + 7x + 12 کے لیے 2 اور 6 لیتا ہے (ضرب=12 ✓، جمع=8 ✗) جبکہ 3 اور 4 ہونے چاہیے (ضرب=12 ✓، جمع=7 ✓)۔",
       "severity": "medium",
       "error_patterns": [
         "product correct but sum wrong",
@@ -154,11 +188,15 @@
       ],
       "prerequisite_gap": "prereq.algebra.factorization_basics",
       "remediation_strategy": "systematic_listing",
-      "remediation_explanation_ur": "تحلیل میں دونوں شرطیں پوری ہونی ضروری ہیں:\n1. ضرب = c (مستقل حد)\n2. جمع = b (x کا ضریب)\n\nطریقہ: c کے تمام عوامل (factor pairs) لکھو اور چیک کرو:\n12 = 1×12 (جمع=13 ✗)\n12 = 2×6 (جمع=8 ✗)\n12 = 3×4 (جمع=7 ✓)\n\nدونوں شرطیں پوری ہونے والا جوڑا (pair) استعمال کرو!",
-      "diagnostic_question_ids": ["math10.ch2.fact.q01"],
-      "practice_question_ids": ["math10.ch2.fact.q01", "math10.ch2.fact.q02"]
+      "remediation_explanation_ur": "تحلیل میں دونوں شرطیں پوری ہونی ضروری ہیں:\n1. ضرب = c (مستقل حد)\n2. جمع = b (x کا ضریب)\n\nطریقہ: c کے تمام عوامل (factor pairs) لکھو اور چیک کرو:\n12 = 1\\times12 (جمع=13 ✗)\n12 = 2\\times6 (جمع=8 ✗)\n12 = 3\\times4 (جمع=7 ✓)\n\nدونوں شرطیں پوری ہونے والا جوڑا (pair) استعمال کرو!",
+      "diagnostic_question_ids": [
+        "math10.ch2.fact.q01"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.fact.q01",
+        "math10.ch2.fact.q02"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.factorization_sign_error",
       "concept_id": "math10.ch2.solving_by_factorization",
@@ -174,16 +212,20 @@
       "prerequisite_gap": "prereq.algebra.linear_equations",
       "remediation_strategy": "step_by_step",
       "remediation_explanation_ur": "جب عامل = 0 رکھیں:\n(x - 3) = 0\nx = 3 (3 کو دوسری طرف لے جاؤ، علامت بدلے گی: -3 → +3)\n\n(x + 3) = 0\nx = -3 (+3 دوسری طرف جائے گا -3 بن کر)\n\nقاعدہ: عامل میں جو نشان ہے، جڑ میں الٹا نشان ہوگا۔",
-      "diagnostic_question_ids": ["math10.ch2.fact.q02"],
-      "practice_question_ids": ["math10.ch2.fact.q01", "math10.ch2.fact.q02"]
+      "diagnostic_question_ids": [
+        "math10.ch2.fact.q02"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.fact.q01",
+        "math10.ch2.fact.q02"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.binomial_square",
       "concept_id": "prereq.algebra.algebraic_identities",
       "subject": "mathematics",
-      "description_en": "Student expands (a+b)² as a² + b², forgetting the middle term 2ab.",
-      "description_ur": "طالب علم (a+b)² = a² + b² لکھتا ہے جبکہ (a+b)² = a² + 2ab + b²۔ درمیانی حد (2ab) بھول جاتا ہے۔",
+      "description_en": "Student expands (a+b)^2 as a^2 + b^2, forgetting the middle term 2ab.",
+      "description_ur": "طالب علم (a+b)^2 = a^2 + b^2 لکھتا ہے جبکہ (a+b)^2 = a^2 + 2ab + b^2۔ درمیانی حد (2ab) بھول جاتا ہے۔",
       "severity": "critical",
       "error_patterns": [
         "(a+b)² = a² + b²",
@@ -192,11 +234,10 @@
       ],
       "prerequisite_gap": "prereq.algebra.algebraic_identities",
       "remediation_strategy": "visual_example",
-      "remediation_explanation_ur": "(a+b)² = (a+b)(a+b) ہے۔ اسے ضرب کر کے دیکھو:\na × a = a²\na × b = ab\nb × a = ab\nb × b = b²\nجمع: a² + ab + ab + b² = a² + 2ab + b²\n\nدرمیانی حد 2ab ہمیشہ آتی ہے! یہ بھولنا بہت بڑی غلطی ہے — board میں بھی نمبر کٹتے ہیں۔",
+      "remediation_explanation_ur": "(a+b)^2 = (a+b)(a+b) ہے۔ اسے ضرب کر کے دیکھو:\na \\times a = a^2\na \\times b = ab\nb \\times a = ab\nb \\times b = b^2\nجمع: a^2 + ab + ab + b^2 = a^2 + 2ab + b^2\n\nدرمیانی حد 2ab ہمیشہ آتی ہے! یہ بھولنا بہت بڑی غلطی ہے — board میں بھی نمبر کٹتے ہیں۔",
       "diagnostic_question_ids": [],
       "practice_question_ids": []
     },
-
     {
       "misconception_id": "math.ch2.wp_no_equation",
       "concept_id": "math10.ch2.word_problems",
@@ -212,10 +253,14 @@
       "prerequisite_gap": "prereq.algebra.linear_equations",
       "remediation_strategy": "scaffolding",
       "remediation_explanation_ur": "لفظی مسائل کے لیے 4 قدم:\n\nقدم 1: نامعلوم چیز کو x مان لو\nقدم 2: دوسری چیزیں x کے ذریعے لکھو\nقدم 3: مسئلے میں دی گئی شرط (condition) کو = والی مساوات بناؤ\nقدم 4: مساوات حل کرو\n\nمثال: 'لمبائی چوڑائی سے 5 زیادہ ہے'\nچوڑائی = x, لمبائی = x + 5\n'رقبہ 36 ہے': x(x+5) = 36",
-      "diagnostic_question_ids": ["math10.ch2.wp.q01"],
-      "practice_question_ids": ["math10.ch2.wp.q01", "math10.ch2.wp.q02"]
+      "diagnostic_question_ids": [
+        "math10.ch2.wp.q01"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.wp.q01",
+        "math10.ch2.wp.q02"
+      ]
     },
-
     {
       "misconception_id": "math.ch2.wp_both_roots_accepted",
       "concept_id": "math10.ch2.word_problems",
@@ -231,8 +276,13 @@
       "prerequisite_gap": null,
       "remediation_strategy": "context_check",
       "remediation_explanation_ur": "لفظی مسائل میں ہمیشہ جواب کو مسئلے کے حوالے سے چیک کرو:\n\n• لمبائی، چوڑائی، رقبہ → منفی نہیں ہو سکتا\n• عمر → منفی نہیں ہو سکتی\n• تعداد (اگر 'مثبت عدد' کہا ہو) → منفی رد کرو\n• رفتار → عام طور پر مثبت ہوتی ہے\n\nہمیشہ لکھو: 'x = -7 قابل قبول نہیں کیونکہ لمبائی منفی نہیں ہو سکتی۔ پس x = 4'",
-      "diagnostic_question_ids": ["math10.ch2.wp.q01"],
-      "practice_question_ids": ["math10.ch2.wp.q01", "math10.ch2.wp.q02"]
+      "diagnostic_question_ids": [
+        "math10.ch2.wp.q01"
+      ],
+      "practice_question_ids": [
+        "math10.ch2.wp.q01",
+        "math10.ch2.wp.q02"
+      ]
     }
   ]
 }

@@ -46,7 +46,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 | A | V0.1 | Curriculum schema + Subject 1 | Curriculum Model | Done |
 | A | V0.2 | Core loop, text-only | Tutor Controller, Student Model, Session State | Done |
 | A | V0.3 | Symbolic verifier | Verifier Registry | Done |
-| A | V0.4 | Equation rendering | Visual Engine | Not Started |
+| A | V0.4 | Equation rendering | Visual Engine | Done |
 | A | V0.5 | Graphs and diagram templates | Visual Engine | Not Started |
 | A | V0.6 | Misconception library seed | Misconception Library | Not Started |
 | A | V0.7 | Dashboard surface | Student Application | Not Started |
@@ -147,7 +147,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 - Twenty different explanations pulled from real V0.1 content render their formulas correctly with no manual fixing needed.
 - Your sister confirms, using her own judgment, that the rendered equations are at least as clear as what she'd see in her actual textbook.
 
-**Status:** Not Started
+**Status:** Done
 
 ### V0.5 — Graphs and diagram templates
 

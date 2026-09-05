@@ -41,19 +41,19 @@
       ],
       "worked_examples": [
         {
-          "problem": "3 + 4 × 2 = ?",
+          "problem": "$3 + 4 \\times 2 = ?$",
           "steps": [
             {
               "step": 1,
               "description_ur": "پہلے ضرب (multiplication) کرو",
-              "math": "4 × 2 = 8",
-              "result": "3 + 8"
+              "math": "$4 \\times 2 = 8$",
+              "result": "$3 + 8$"
             },
             {
               "step": 2,
               "description_ur": "پھر جمع (addition) کرو",
-              "math": "3 + 8 = 11",
-              "result": "11"
+              "math": "$3 + 8 = 11$",
+              "result": "$11$"
             }
           ]
         }
@@ -84,7 +84,7 @@
         "Identify terms, coefficients, and constants"
       ],
       "formulas": [],
-      "explanation_ur": "متغیر (variable) ایک حرف ہے جیسے x یا y جو کسی نامعلوم عدد کی نمائندگی کرتا ہے۔ الجبری مقدار (algebraic expression) میں متغیرات، اعداد اور عملیات (+, -, ×, ÷) ہوتے ہیں۔",
+      "explanation_ur": "متغیر (variable) ایک حرف ہے جیسے x یا y جو کسی نامعلوم عدد کی نمائندگی کرتا ہے۔ الجبری مقدار (algebraic expression) میں متغیرات، اعداد اور عملیات (+, -, \\times, \\div) ہوتے ہیں۔",
       "key_terms": [
         {
           "en": "variable",
@@ -109,25 +109,25 @@
       ],
       "worked_examples": [
         {
-          "problem": "3x + 5 میں coefficient، variable اور constant بتاؤ",
+          "problem": "$3x + 5 میں coefficient، variable اور constant بتاؤ$",
           "steps": [
             {
               "step": 1,
               "description_ur": "Variable وہ حرف ہے جو نامعلوم ہے",
-              "math": "x",
-              "result": "variable = x"
+              "math": "$x$",
+              "result": "$variable = x$"
             },
             {
               "step": 2,
               "description_ur": "Coefficient وہ عدد ہے جو variable کے ساتھ ضرب ہو",
-              "math": "3",
-              "result": "coefficient = 3"
+              "math": "$3$",
+              "result": "$coefficient = 3$"
             },
             {
               "step": 3,
               "description_ur": "Constant وہ عدد ہے جو اکیلا ہو",
-              "math": "5",
-              "result": "constant = 5"
+              "math": "$5$",
+              "result": "$constant = 5$"
             }
           ]
         }
@@ -158,7 +158,7 @@
         "Check solution by substitution"
       ],
       "formulas": [
-        "ax + b = c → x = (c - b) / a"
+        "$ax + b = c → x = (c - b) / a$"
       ],
       "explanation_ur": "خطی مساوات (linear equation) میں متغیر x کی طاقت 1 ہوتی ہے۔ حل کرنے کے لیے x کو ایک طرف اکیلا کرو۔ جب کوئی حد (term) مساوی نشان (=) کے دوسری طرف جاتی ہے تو اس کی علامت بدل جاتی ہے۔",
       "key_terms": [
@@ -177,25 +177,25 @@
       ],
       "worked_examples": [
         {
-          "problem": "2x + 4 = 12 کو حل کرو",
+          "problem": "$2x + 4 = 12 کو حل کرو$",
           "steps": [
             {
               "step": 1,
               "description_ur": "4 کو دوسری طرف لے جاؤ (علامت بدلے گی)",
-              "math": "2x = 12 - 4",
-              "result": "2x = 8"
+              "math": "$2x = 12 - 4$",
+              "result": "$2x = 8$"
             },
             {
               "step": 2,
               "description_ur": "دونوں طرف 2 سے تقسیم کرو",
-              "math": "x = 8/2",
-              "result": "x = 4"
+              "math": "$x = 8/2$",
+              "result": "$x = 4$"
             },
             {
               "step": 3,
               "description_ur": "جواب چیک کرو: 2(4) + 4 = 12 ✓",
-              "math": "8 + 4 = 12",
-              "result": "تصدیق ہو گئی"
+              "math": "$8 + 4 = 12$",
+              "result": "$تصدیق ہو گئی$"
             }
           ]
         }
@@ -226,11 +226,11 @@
         "Understand the relationship between expansion and factorization"
       ],
       "formulas": [
-        "a² - b² = (a+b)(a-b)",
-        "(a+b)² = a² + 2ab + b²",
-        "(a-b)² = a² - 2ab + b²"
+        "$a^2 - b^2 = (a+b)(a-b)$",
+        "$(a+b)^2 = a^2 + 2ab + b^2$",
+        "$(a-b)^2 = a^2 - 2ab + b^2$"
       ],
-      "explanation_ur": "تحلیل (factorization) کا مطلب ہے کسی مقدار کو عوامل (factors) کی ضرب کی شکل میں لکھنا۔ مثلاً x² + 5x = x(x+5)۔ یہاں x مشترک عامل (common factor) ہے۔",
+      "explanation_ur": "تحلیل (factorization) کا مطلب ہے کسی مقدار کو عوامل (factors) کی ضرب کی شکل میں لکھنا۔ مثلاً x^2 + 5x = x(x+5)۔ یہاں x مشترک عامل (common factor) ہے۔",
       "key_terms": [
         {
           "en": "factorization",
@@ -247,19 +247,19 @@
       ],
       "worked_examples": [
         {
-          "problem": "x² + 5x کو تحلیل کرو",
+          "problem": "$x^2 + 5x کو تحلیل کرو$",
           "steps": [
             {
               "step": 1,
               "description_ur": "مشترک عامل تلاش کرو",
-              "math": "x² + 5x",
-              "result": "دونوں حدوں میں x مشترک ہے"
+              "math": "$x^2 + 5x$",
+              "result": "$دونوں حدوں میں x مشترک ہے$"
             },
             {
               "step": 2,
               "description_ur": "x باہر نکالو",
-              "math": "x(x + 5)",
-              "result": "x(x + 5)"
+              "math": "$x(x + 5)$",
+              "result": "$x(x + 5)$"
             }
           ]
         }
@@ -291,9 +291,9 @@
         "Distinguish between identity and equation"
       ],
       "formulas": [
-        "(a+b)² = a² + 2ab + b²",
-        "(a-b)² = a² - 2ab + b²",
-        "a² - b² = (a+b)(a-b)"
+        "$(a+b)^2 = a^2 + 2ab + b^2$",
+        "$(a-b)^2 = a^2 - 2ab + b^2$",
+        "$a^2 - b^2 = (a+b)(a-b)$"
       ],
       "explanation_ur": "الجبری اتحاد (algebraic identity) ایسی مساوات ہے جو a اور b کی ہر قدر کے لیے درست ہو۔ اتحاد ہمیشہ سچ ہوتا ہے، مساوات صرف مخصوص قدروں کے لیے سچ ہوتی ہے۔",
       "key_terms": [
@@ -312,25 +312,25 @@
       ],
       "worked_examples": [
         {
-          "problem": "(x + 3)² کو expand کرو",
+          "problem": "$(x + 3)^2 کو expand کرو$",
           "steps": [
             {
               "step": 1,
-              "description_ur": "(a+b)² = a² + 2ab + b² استعمال کرو جہاں a=x, b=3",
-              "math": "(x+3)²",
-              "result": "a=x, b=3"
+              "description_ur": "(a+b)^2 = a^2 + 2ab + b^2 استعمال کرو جہاں a=x, b=3",
+              "math": "$(x+3)^2$",
+              "result": "$a=x, b=3$"
             },
             {
               "step": 2,
               "description_ur": "فارمولے میں قدریں رکھو",
-              "math": "x² + 2(x)(3) + 3²",
-              "result": "x² + 6x + 9"
+              "math": "$x^2 + 2(x)(3) + 3^2$",
+              "result": "$x^2 + 6x + 9$"
             },
             {
               "step": 3,
               "description_ur": "حتمی جواب",
-              "math": "x² + 6x + 9",
-              "result": "x² + 6x + 9"
+              "math": "$x^2 + 6x + 9$",
+              "result": "$x^2 + 6x + 9$"
             }
           ]
         }
@@ -361,12 +361,12 @@
         "Handle negative numbers in substitution"
       ],
       "formulas": [
-        "(-a) × (-b) = ab",
-        "(-a) × b = -ab",
-        "(-a)² = a²",
-        "-a² = -(a²)"
+        "$(-a) \\times (-b) = ab$",
+        "$(-a) \\times b = -ab$",
+        "$(-a)^2 = a^2$",
+        "$-a^2 = -(a^2)$"
       ],
-      "explanation_ur": "منفی عدد میں منفی علامت (-) ہوتی ہے۔ دو منفی کی ضرب مثبت ہوتی ہے: (-3)×(-2) = +6۔ ایک مثبت اور ایک منفی کی ضرب منفی ہوتی ہے: (3)×(-2) = -6۔ بہت اہم: (-a)² = a² لیکن -a² = -(a²)، یہ دونوں مختلف ہیں!",
+      "explanation_ur": "منفی عدد میں منفی علامت (-) ہوتی ہے۔ دو منفی کی ضرب مثبت ہوتی ہے: (-3)\\times(-2) = +6۔ ایک مثبت اور ایک منفی کی ضرب منفی ہوتی ہے: (3)\\times(-2) = -6۔ بہت اہم: (-a)^2 = a^2 لیکن -a^2 = -(a^2)، یہ دونوں مختلف ہیں!",
       "key_terms": [
         {
           "en": "negative number",
@@ -383,25 +383,25 @@
       ],
       "worked_examples": [
         {
-          "problem": "(-5)² اور -5² میں فرق بتاؤ",
+          "problem": "$(-5)^2 اور -5^2 میں فرق بتاؤ$",
           "steps": [
             {
               "step": 1,
-              "description_ur": "(-5)² کا مطلب ہے (-5) × (-5)",
-              "math": "(-5)² = (-5)×(-5) = 25",
-              "result": "25"
+              "description_ur": "(-5)^2 کا مطلب ہے (-5) \\times (-5)",
+              "math": "$(-5)^2 = (-5)\\times(-5) = 25$",
+              "result": "$25$"
             },
             {
               "step": 2,
-              "description_ur": "-5² کا مطلب ہے -(5²) یعنی پہلے مربع کرو پھر منفی لگاؤ",
-              "math": "-5² = -(5×5) = -25",
-              "result": "-25"
+              "description_ur": "-5^2 کا مطلب ہے -(5^2) یعنی پہلے مربع کرو پھر منفی لگاؤ",
+              "math": "$-5^2 = -(5\\times5) = -25$",
+              "result": "$-25$"
             },
             {
               "step": 3,
-              "description_ur": "فرق: (-5)² = 25 لیکن -5² = -25",
-              "math": "(-5)² ≠ -5²",
-              "result": "brackets سے فرق پڑتا ہے!"
+              "description_ur": "فرق: (-5)^2 = 25 لیکن -5^2 = -25",
+              "math": "$(-5)^2 ≠ -5^2$",
+              "result": "$brackets سے فرق پڑتا ہے!$"
             }
           ]
         }
@@ -432,10 +432,10 @@
         "Simplify expressions involving square roots"
       ],
       "formulas": [
-        "√(a²) = |a|",
-        "If x² = k, then x = ±√k"
+        "$√(a^2) = |a|$",
+        "$If x^2 = k, then x = ±√k$"
       ],
-      "explanation_ur": "جذر (square root) وہ عدد ہے جسے خود سے ضرب کریں تو اصل عدد آئے۔ مثلاً √25 = 5 کیونکہ 5×5 = 25۔ لیکن یاد رکھو: (-5)×(-5) = 25 بھی ہے! اس لیے اگر x² = 25 ہے تو x = +5 یا x = -5 دونوں ہو سکتے ہیں۔",
+      "explanation_ur": "جذر (square root) وہ عدد ہے جسے خود سے ضرب کریں تو اصل عدد آئے۔ مثلاً √25 = 5 کیونکہ 5\\times5 = 25۔ لیکن یاد رکھو: (-5)\\times(-5) = 25 بھی ہے! اس لیے اگر x^2 = 25 ہے تو x = +5 یا x = -5 دونوں ہو سکتے ہیں۔",
       "key_terms": [
         {
           "en": "square root",
@@ -452,25 +452,25 @@
       ],
       "worked_examples": [
         {
-          "problem": "اگر x² = 16 ہو تو x = ?",
+          "problem": "$اگر x^2 = 16 ہو تو x = ?$",
           "steps": [
             {
               "step": 1,
               "description_ur": "دونوں طرف جذر لو",
-              "math": "x = ±√16",
-              "result": "x = ±4"
+              "math": "$x = ±√16$",
+              "result": "$x = ±4$"
             },
             {
               "step": 2,
               "description_ur": "دو جواب ہیں",
-              "math": "x = +4 یا x = -4",
-              "result": "x = 4, x = -4"
+              "math": "$x = +4 یا x = -4$",
+              "result": "$x = 4, x = -4$"
             },
             {
               "step": 3,
-              "description_ur": "چیک: (4)² = 16 ✓ اور (-4)² = 16 ✓",
-              "math": "تصدیق",
-              "result": "دونوں درست ہیں"
+              "description_ur": "چیک: (4)^2 = 16 ✓ اور (-4)^2 = 16 ✓",
+              "math": "$تصدیق$",
+              "result": "$دونوں درست ہیں$"
             }
           ]
         }
@@ -501,9 +501,9 @@
         "Understand that the highest power of the variable is 2"
       ],
       "formulas": [
-        "ax² + bx + c (where a ≠ 0)"
+        "$ax^2 + bx + c (where a ≠ 0)$"
       ],
-      "explanation_ur": "مربعی مقدار (quadratic expression) وہ الجبری مقدار ہے جس میں متغیر (variable) کی سب سے زیادہ طاقت (power) 2 ہو۔ مثلاً: 3x² + 2x + 1 ایک مربعی مقدار ہے کیونکہ x کی سب سے زیادہ طاقت 2 ہے۔ لیکن 5x + 3 مربعی نہیں ہے (خطی ہے) اور x³ + 2x بھی مربعی نہیں ہے (مکعبی ہے)۔",
+      "explanation_ur": "مربعی مقدار (quadratic expression) وہ الجبری مقدار ہے جس میں متغیر (variable) کی سب سے زیادہ طاقت (power) 2 ہو۔ مثلاً: 3x^2 + 2x + 1 ایک مربعی مقدار ہے کیونکہ x کی سب سے زیادہ طاقت 2 ہے۔ لیکن 5x + 3 مربعی نہیں ہے (خطی ہے) اور x^3 + 2x بھی مربعی نہیں ہے (مکعبی ہے)۔",
       "key_terms": [
         {
           "en": "quadratic expression",
@@ -520,7 +520,7 @@
       ],
       "worked_examples": [
         {
-          "problem": "بتاؤ کون سی مقدار مربعی ہے: (a) 3x² + 2x - 1 (b) 5x + 7 (c) x³ - x (d) 4x²",
+          "problem": "$بتاؤ کون سی مقدار مربعی ہے: (a) 3x^2 + 2x - 1 (b) 5x + 7 (c) x^3 - x (d) 4x^2$",
           "steps": [
             {
               "step": 1,
@@ -530,27 +530,27 @@
             },
             {
               "step": 2,
-              "description_ur": "(a) 3x² + 2x - 1: سب سے زیادہ طاقت = 2 ← مربعی ✓",
-              "math": "degree = 2",
-              "result": "مربعی ہے"
+              "description_ur": "(a) 3x^2 + 2x - 1: سب سے زیادہ طاقت = 2 ← مربعی ✓",
+              "math": "$degree = 2$",
+              "result": "$مربعی ہے$"
             },
             {
               "step": 3,
               "description_ur": "(b) 5x + 7: سب سے زیادہ طاقت = 1 ← خطی ✗",
-              "math": "degree = 1",
-              "result": "مربعی نہیں"
+              "math": "$degree = 1$",
+              "result": "$مربعی نہیں$"
             },
             {
               "step": 4,
-              "description_ur": "(c) x³ - x: سب سے زیادہ طاقت = 3 ← مکعبی ✗",
-              "math": "degree = 3",
-              "result": "مربعی نہیں"
+              "description_ur": "(c) x^3 - x: سب سے زیادہ طاقت = 3 ← مکعبی ✗",
+              "math": "$degree = 3$",
+              "result": "$مربعی نہیں$"
             },
             {
               "step": 5,
-              "description_ur": "(d) 4x²: سب سے زیادہ طاقت = 2 ← مربعی ✓ (b=0, c=0)",
-              "math": "degree = 2",
-              "result": "مربعی ہے"
+              "description_ur": "(d) 4x^2: سب سے زیادہ طاقت = 2 ← مربعی ✓ (b=0, c=0)",
+              "math": "$degree = 2$",
+              "result": "$مربعی ہے$"
             }
           ]
         }
@@ -581,7 +581,7 @@
         "Understand what 'solving' a quadratic equation means"
       ],
       "formulas": [
-        "ax² + bx + c = 0 (where a ≠ 0)"
+        "$ax^2 + bx + c = 0 (where a ≠ 0)$"
       ],
       "explanation_ur": "مربعی مساوات (quadratic equation) وہ مساوات ہے جس میں متغیر کی سب سے زیادہ طاقت 2 ہو اور مساوی نشان (=) لگا ہو۔ مساوات کا مطلب ہے کہ بائیں طرف دائیں طرف کے برابر ہے۔ مربعی مساوات کو 'حل کرنا' کا مطلب ہے وہ قدر (value) تلاش کرنا جو x کی جگہ رکھیں تو مساوات سچ ہو جائے۔",
       "key_terms": [
@@ -604,25 +604,25 @@
       ],
       "worked_examples": [
         {
-          "problem": "کیا x² + 3x = 5 ایک مربعی مساوات ہے؟",
+          "problem": "$کیا x^2 + 3x = 5 ایک مربعی مساوات ہے؟$",
           "steps": [
             {
               "step": 1,
               "description_ur": "کیا x کی سب سے زیادہ طاقت 2 ہے؟",
-              "math": "x² ← power = 2",
-              "result": "ہاں"
+              "math": "$x^2 ← power = 2$",
+              "result": "$ہاں$"
             },
             {
               "step": 2,
               "description_ur": "کیا مساوی نشان (=) ہے؟",
-              "math": "x² + 3x = 5",
-              "result": "ہاں"
+              "math": "$x^2 + 3x = 5$",
+              "result": "$ہاں$"
             },
             {
               "step": 3,
-              "description_ur": "پس یہ مربعی مساوات ہے۔ Standard form: x² + 3x - 5 = 0",
-              "math": "x² + 3x - 5 = 0",
-              "result": "مربعی مساوات ✓"
+              "description_ur": "پس یہ مربعی مساوات ہے۔ Standard form: x^2 + 3x - 5 = 0",
+              "math": "$x^2 + 3x - 5 = 0$",
+              "result": "$مربعی مساوات ✓$"
             }
           ]
         }
@@ -654,9 +654,9 @@
         "Understand that a ≠ 0"
       ],
       "formulas": [
-        "ax² + bx + c = 0 (a ≠ 0)"
+        "$ax^2 + bx + c = 0 (a ≠ 0)$"
       ],
-      "explanation_ur": "ہر مربعی مساوات کو ax² + bx + c = 0 کی شکل میں لکھا جا سکتا ہے جہاں a, b, c اعداد ہیں اور a ≠ 0 (اگر a = 0 ہو تو x² ختم ہو جائے گا اور مساوات خطی ہو جائے گی)۔ a کو leading coefficient، b کو coefficient of x، اور c کو constant term کہتے ہیں۔",
+      "explanation_ur": "ہر مربعی مساوات کو ax^2 + bx + c = 0 کی شکل میں لکھا جا سکتا ہے جہاں a, b, c اعداد ہیں اور a ≠ 0 (اگر a = 0 ہو تو x^2 ختم ہو جائے گا اور مساوات خطی ہو جائے گی)۔ a کو leading coefficient، b کو coefficient of x، اور c کو constant term کہتے ہیں۔",
       "key_terms": [
         {
           "en": "standard form",
@@ -673,48 +673,48 @@
       ],
       "worked_examples": [
         {
-          "problem": "3x² - 7x + 2 = 0 میں a، b اور c بتاؤ",
+          "problem": "$3x^2 - 7x + 2 = 0 میں a، b اور c بتاؤ$",
           "steps": [
             {
               "step": 1,
-              "description_ur": "ax² + bx + c = 0 سے موازنہ کرو",
-              "math": "3x² - 7x + 2 = 0",
+              "description_ur": "ax^2 + bx + c = 0 سے موازنہ کرو",
+              "math": "$3x^2 - 7x + 2 = 0$",
               "result": ""
             },
             {
               "step": 2,
-              "description_ur": "x² کا ضریب = a",
-              "math": "a = 3",
-              "result": "a = 3"
+              "description_ur": "x^2 کا ضریب = a",
+              "math": "$a = 3$",
+              "result": "$a = 3$"
             },
             {
               "step": 3,
               "description_ur": "x کا ضریب = b (علامت کے ساتھ!)",
-              "math": "b = -7",
-              "result": "b = -7"
+              "math": "$b = -7$",
+              "result": "$b = -7$"
             },
             {
               "step": 4,
               "description_ur": "مستقل حد = c",
-              "math": "c = 2",
-              "result": "c = 2"
+              "math": "$c = 2$",
+              "result": "$c = 2$"
             }
           ]
         },
         {
-          "problem": "5x = 3x² - 2 کو standard form میں لکھو اور a، b، c بتاؤ",
+          "problem": "$5x = 3x^2 - 2 کو standard form میں لکھو اور a، b، c بتاؤ$",
           "steps": [
             {
               "step": 1,
               "description_ur": "سب حدیں ایک طرف لاؤ (= 0 بناؤ)",
-              "math": "3x² - 5x - 2 = 0",
+              "math": "$3x^2 - 5x - 2 = 0$",
               "result": ""
             },
             {
               "step": 2,
               "description_ur": "اب a, b, c نکالو",
-              "math": "a=3, b=-5, c=-2",
-              "result": "a=3, b=-5, c=-2"
+              "math": "$a=3, b=-5, c=-2$",
+              "result": "$a=3, b=-5, c=-2$"
             }
           ]
         }
@@ -746,8 +746,8 @@
         "Check solutions by substitution"
       ],
       "formulas": [
-        "ax² + bx + c = 0 → (px + q)(rx + s) = 0",
-        "If AB = 0, then A = 0 or B = 0"
+        "$ax^2 + bx + c = 0 → (px + q)(rx + s) = 0$",
+        "$If AB = 0, then A = 0 or B = 0$"
       ],
       "explanation_ur": "تحلیل (factorization) کے ذریعے حل کرنے کا طریقہ: (1) مساوات کو standard form میں لکھو (2) مربعی مقدار کو دو خطی عوامل میں تحلیل کرو (3) ہر عامل = 0 رکھو (4) ہر خطی مساوات حل کرو۔ یہ اس اصول پر مبنی ہے: اگر دو عددوں کی ضرب صفر ہے تو ان میں سے کم از کم ایک صفر ہونا ضروری ہے۔",
       "key_terms": [
@@ -770,37 +770,37 @@
       ],
       "worked_examples": [
         {
-          "problem": "x² + 5x + 6 = 0 کو تحلیل سے حل کرو",
+          "problem": "$x^2 + 5x + 6 = 0 کو تحلیل سے حل کرو$",
           "steps": [
             {
               "step": 1,
               "description_ur": "دو ایسے عدد تلاش کرو جن کا حاصل ضرب 6 ہو اور حاصل جمع 5 ہو",
-              "math": "2 × 3 = 6, 2 + 3 = 5",
-              "result": "عدد: 2 اور 3"
+              "math": "$2 \\times 3 = 6, 2 + 3 = 5$",
+              "result": "$عدد: 2 اور 3$"
             },
             {
               "step": 2,
               "description_ur": "تحلیل کرو",
-              "math": "(x + 2)(x + 3) = 0",
+              "math": "$(x + 2)(x + 3) = 0$",
               "result": ""
             },
             {
               "step": 3,
               "description_ur": "ہر عامل = 0 رکھو",
-              "math": "x + 2 = 0 یا x + 3 = 0",
+              "math": "$x + 2 = 0 یا x + 3 = 0$",
               "result": ""
             },
             {
               "step": 4,
               "description_ur": "حل کرو",
-              "math": "x = -2 یا x = -3",
-              "result": "x = -2, x = -3"
+              "math": "$x = -2 یا x = -3$",
+              "result": "$x = -2, x = -3$"
             },
             {
               "step": 5,
-              "description_ur": "تصدیق: (-2)² + 5(-2) + 6 = 4 - 10 + 6 = 0 ✓",
-              "math": "تصدیق",
-              "result": "درست ✓"
+              "description_ur": "تصدیق: (-2)^2 + 5(-2) + 6 = 4 - 10 + 6 = 0 ✓",
+              "math": "$تصدیق$",
+              "result": "$درست ✓$"
             }
           ]
         }
@@ -832,9 +832,9 @@
         "Handle cases where a ≠ 1"
       ],
       "formulas": [
-        "x² + bx + c = 0 → (x + b/2)² = (b/2)² - c"
+        "$x^2 + bx + c = 0 → (x + b/2)^2 = (b/2)^2 - c$"
       ],
-      "explanation_ur": "مربع مکمل کرنے کا طریقہ: ہم مساوات کو (x + کچھ)² = عدد کی شکل میں بدلتے ہیں، پھر جذر لے کر حل کرتے ہیں۔ طریقہ: (1) c کو دوسری طرف لے جاؤ (2) x کے ضریب (b) کو 2 سے تقسیم کرو (3) اس کا مربع دونوں طرف جمع کرو (4) بائیں طرف کامل مربع بنے گا (5) جذر لو اور حل کرو۔",
+      "explanation_ur": "مربع مکمل کرنے کا طریقہ: ہم مساوات کو (x + کچھ)^2 = عدد کی شکل میں بدلتے ہیں، پھر جذر لے کر حل کرتے ہیں۔ طریقہ: (1) c کو دوسری طرف لے جاؤ (2) x کے ضریب (b) کو 2 سے تقسیم کرو (3) اس کا مربع دونوں طرف جمع کرو (4) بائیں طرف کامل مربع بنے گا (5) جذر لو اور حل کرو۔",
       "key_terms": [
         {
           "en": "completing the square",
@@ -847,43 +847,43 @@
       ],
       "worked_examples": [
         {
-          "problem": "x² + 6x + 2 = 0 کو مربع مکمل کرکے حل کرو",
+          "problem": "$x^2 + 6x + 2 = 0 کو مربع مکمل کرکے حل کرو$",
           "steps": [
             {
               "step": 1,
               "description_ur": "مستقل حد دوسری طرف لے جاؤ",
-              "math": "x² + 6x = -2",
+              "math": "$x^2 + 6x = -2$",
               "result": ""
             },
             {
               "step": 2,
               "description_ur": "x کے ضریب (6) کو 2 سے تقسیم کرو اور مربع کرو",
-              "math": "(6/2)² = 9",
-              "result": "9"
+              "math": "$(6/2)^2 = 9$",
+              "result": "$9$"
             },
             {
               "step": 3,
               "description_ur": "دونوں طرف 9 جمع کرو",
-              "math": "x² + 6x + 9 = -2 + 9",
-              "result": "x² + 6x + 9 = 7"
+              "math": "$x^2 + 6x + 9 = -2 + 9$",
+              "result": "$x^2 + 6x + 9 = 7$"
             },
             {
               "step": 4,
               "description_ur": "بائیں طرف کامل مربع لکھو",
-              "math": "(x + 3)² = 7",
+              "math": "$(x + 3)^2 = 7$",
               "result": ""
             },
             {
               "step": 5,
               "description_ur": "جذر لو",
-              "math": "x + 3 = ±√7",
+              "math": "$x + 3 = ±√7$",
               "result": ""
             },
             {
               "step": 6,
               "description_ur": "x نکالو",
-              "math": "x = -3 ± √7",
-              "result": "x = -3+√7 یا x = -3-√7"
+              "math": "$x = -3 ± √7$",
+              "result": "$x = -3+√7 یا x = -3-√7$"
             }
           ]
         }
@@ -914,9 +914,9 @@
         "Understand that the discriminant tells us about the nature of roots"
       ],
       "formulas": [
-        "D = b² - 4ac"
+        "$D = b^2 - 4ac$"
       ],
-      "explanation_ur": "ممیز (discriminant) وہ مقدار ہے جو ہمیں بغیر مساوات حل کیے بتاتی ہے کہ جڑیں (roots) کس قسم کی ہوں گی۔ فارمولا: D = b² - 4ac۔ D کی قدر سے ہم جان سکتے ہیں کہ جڑیں حقیقی ہیں یا مفروضی، برابر ہیں یا مختلف۔",
+      "explanation_ur": "ممیز (discriminant) وہ مقدار ہے جو ہمیں بغیر مساوات حل کیے بتاتی ہے کہ جڑیں (roots) کس قسم کی ہوں گی۔ فارمولا: D = b^2 - 4ac۔ D کی قدر سے ہم جان سکتے ہیں کہ جڑیں حقیقی ہیں یا مفروضی، برابر ہیں یا مختلف۔",
       "key_terms": [
         {
           "en": "discriminant",
@@ -929,31 +929,31 @@
       ],
       "worked_examples": [
         {
-          "problem": "x² - 5x + 6 = 0 کا discriminant نکالو",
+          "problem": "$x^2 - 5x + 6 = 0 کا discriminant نکالو$",
           "steps": [
             {
               "step": 1,
               "description_ur": "a, b, c پہچانو",
-              "math": "a=1, b=-5, c=6",
+              "math": "$a=1, b=-5, c=6$",
               "result": ""
             },
             {
               "step": 2,
-              "description_ur": "فارمولے میں رکھو: D = b² - 4ac",
-              "math": "D = (-5)² - 4(1)(6)",
+              "description_ur": "فارمولے میں رکھو: D = b^2 - 4ac",
+              "math": "$D = (-5)^2 - 4(1)(6)$",
               "result": ""
             },
             {
               "step": 3,
-              "description_ur": "حساب کرو (یاد رکھو (-5)² = 25)",
-              "math": "D = 25 - 24",
-              "result": "D = 1"
+              "description_ur": "حساب کرو (یاد رکھو (-5)^2 = 25)",
+              "math": "$D = 25 - 24$",
+              "result": "$D = 1$"
             },
             {
               "step": 4,
               "description_ur": "D = 1 > 0 ہے، پس دو مختلف حقیقی جڑیں ہیں",
-              "math": "D > 0",
-              "result": "دو حقیقی مختلف جڑیں"
+              "math": "$D > 0$",
+              "result": "$دو حقیقی مختلف جڑیں$"
             }
           ]
         }
@@ -986,9 +986,9 @@
         "Apply this to solve textbook problems"
       ],
       "formulas": [
-        "D > 0 → Two distinct real roots",
-        "D = 0 → Two equal real roots (repeated root)",
-        "D < 0 → No real roots (imaginary roots)"
+        "$D > 0 → Two distinct real roots$",
+        "$D = 0 → Two equal real roots (repeated root)$",
+        "$D < 0 → No real roots (imaginary roots)$"
       ],
       "explanation_ur": "ممیز (D) کی قدر سے جڑوں کی نوعیت معلوم ہوتی ہے:\n• اگر D > 0 ہو: دو مختلف حقیقی جڑیں ہوں گی\n• اگر D = 0 ہو: دو برابر حقیقی جڑیں ہوں گی (ایک جڑ دو بار)\n• اگر D < 0 ہو: کوئی حقیقی جڑ نہیں ہوگی (مفروضی/خیالی جڑیں ہوں گی)",
       "key_terms": [
@@ -1015,25 +1015,25 @@
       ],
       "worked_examples": [
         {
-          "problem": "x² + 4x + 4 = 0 کی جڑوں کی نوعیت معلوم کرو",
+          "problem": "$x^2 + 4x + 4 = 0 کی جڑوں کی نوعیت معلوم کرو$",
           "steps": [
             {
               "step": 1,
               "description_ur": "a, b, c نکالو",
-              "math": "a=1, b=4, c=4",
+              "math": "$a=1, b=4, c=4$",
               "result": ""
             },
             {
               "step": 2,
-              "description_ur": "D = b² - 4ac",
-              "math": "D = (4)² - 4(1)(4) = 16 - 16",
-              "result": "D = 0"
+              "description_ur": "D = b^2 - 4ac",
+              "math": "$D = (4)^2 - 4(1)(4) = 16 - 16$",
+              "result": "$D = 0$"
             },
             {
               "step": 3,
               "description_ur": "D = 0 ہے پس دو برابر حقیقی جڑیں ہیں",
-              "math": "x = -b/2a = -4/2 = -2",
-              "result": "جڑیں: x = -2, x = -2"
+              "math": "$x = -b/2a = -4/2 = -2$",
+              "result": "$جڑیں: x = -2, x = -2$"
             }
           ]
         }
@@ -1066,9 +1066,9 @@
         "Understand the connection between the formula and completing the square"
       ],
       "formulas": [
-        "x = (-b ± √(b² - 4ac)) / (2a)"
+        "$x = (-b ± √(b^2 - 4ac)) / (2a)$"
       ],
-      "explanation_ur": "مربعی فارمولا (Quadratic Formula) ہر مربعی مساوات کو حل کر سکتا ہے — چاہے تحلیل ممکن ہو یا نہ ہو۔ فارمولا: x = (-b ± √(b² - 4ac)) / 2a۔ اس فارمولے میں a, b, c کی قدریں رکھو اور حل کرو۔ ± کا مطلب ہے دو جوابات: ایک + سے اور ایک - سے۔",
+      "explanation_ur": "مربعی فارمولا (Quadratic Formula) ہر مربعی مساوات کو حل کر سکتا ہے — چاہے تحلیل ممکن ہو یا نہ ہو۔ فارمولا: x = (-b ± √(b^2 - 4ac)) / 2a۔ اس فارمولے میں a, b, c کی قدریں رکھو اور حل کرو۔ ± کا مطلب ہے دو جوابات: ایک + سے اور ایک - سے۔",
       "key_terms": [
         {
           "en": "quadratic formula",
@@ -1081,37 +1081,37 @@
       ],
       "worked_examples": [
         {
-          "problem": "2x² - 7x + 3 = 0 کو مربعی فارمولے سے حل کرو",
+          "problem": "$2x^2 - 7x + 3 = 0 کو مربعی فارمولے سے حل کرو$",
           "steps": [
             {
               "step": 1,
               "description_ur": "a, b, c پہچانو",
-              "math": "a=2, b=-7, c=3",
+              "math": "$a=2, b=-7, c=3$",
               "result": ""
             },
             {
               "step": 2,
               "description_ur": "فارمولے میں رکھو",
-              "math": "x = (-(-7) ± √((-7)² - 4(2)(3))) / (2×2)",
+              "math": "$x = (-(-7) ± √((-7)^2 - 4(2)(3))) / (2\\times2)$",
               "result": ""
             },
             {
               "step": 3,
               "description_ur": "Simplify کرو",
-              "math": "x = (7 ± √(49 - 24)) / 4",
+              "math": "$x = (7 ± √(49 - 24)) / 4$",
               "result": ""
             },
             {
               "step": 4,
               "description_ur": "Discriminant حساب کرو",
-              "math": "x = (7 ± √25) / 4",
-              "result": "√25 = 5"
+              "math": "$x = (7 ± √25) / 4$",
+              "result": "$√25 = 5$"
             },
             {
               "step": 5,
               "description_ur": "دونوں جڑیں نکالو",
-              "math": "x = (7+5)/4 = 3 یا x = (7-5)/4 = 1/2",
-              "result": "x = 3 یا x = 1/2"
+              "math": "$x = (7+5)/4 = 3 یا x = (7-5)/4 = 1/2$",
+              "result": "$x = 3 یا x = 1/2$"
             }
           ]
         }
@@ -1165,43 +1165,43 @@
       ],
       "worked_examples": [
         {
-          "problem": "دو متواتر مثبت عدد ایسے ہیں کہ ان کے مربعوں کا حاصل جمع 85 ہے۔ عدد معلوم کرو۔",
+          "problem": "$دو متواتر مثبت عدد ایسے ہیں کہ ان کے مربعوں کا حاصل جمع 85 ہے۔ عدد معلوم کرو۔$",
           "steps": [
             {
               "step": 1,
               "description_ur": "پہلا عدد x مانو، دوسرا x+1 ہوگا",
-              "math": "x, x+1",
+              "math": "$x, x+1$",
               "result": ""
             },
             {
               "step": 2,
               "description_ur": "شرط: مربعوں کا حاصل جمع = 85",
-              "math": "x² + (x+1)² = 85",
+              "math": "$x^2 + (x+1)^2 = 85$",
               "result": ""
             },
             {
               "step": 3,
               "description_ur": "Expand کرو",
-              "math": "x² + x² + 2x + 1 = 85",
-              "result": "2x² + 2x + 1 = 85"
+              "math": "$x^2 + x^2 + 2x + 1 = 85$",
+              "result": "$2x^2 + 2x + 1 = 85$"
             },
             {
               "step": 4,
               "description_ur": "Standard form بناؤ",
-              "math": "2x² + 2x - 84 = 0 → x² + x - 42 = 0",
+              "math": "$2x^2 + 2x - 84 = 0 → x^2 + x - 42 = 0$",
               "result": ""
             },
             {
               "step": 5,
               "description_ur": "تحلیل کرو",
-              "math": "(x+7)(x-6) = 0",
-              "result": "x = -7 یا x = 6"
+              "math": "$(x+7)(x-6) = 0$",
+              "result": "$x = -7 یا x = 6$"
             },
             {
               "step": 6,
               "description_ur": "مثبت عدد چاہیے پس x = 6 (x = -7 رد)",
-              "math": "x = 6",
-              "result": "عدد: 6 اور 7"
+              "math": "$x = 6$",
+              "result": "$عدد: 6 اور 7$"
             }
           ]
         }

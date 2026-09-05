@@ -5,57 +5,86 @@
     "total_questions": 15,
     "last_updated": "2026-09-02"
   },
-
   "questions": [
     {
       "question_id": "math10.assess.q01",
       "concept_id": "prereq.arithmetic.order_of_operations",
       "difficulty": 1,
       "question_type": "procedural",
-      "question_text_ur": "12 + 8 ÷ 4 کا جواب کیا ہوگا؟",
-      "question_text_en": "What is the answer to 12 + 8 ÷ 4?",
-      "expected_answer": "14",
+      "question_text_ur": "12 + 8 \\div 4 کا جواب کیا ہوگا؟",
+      "question_text_en": "What is the answer to 12 + 8 \\div 4?",
+      "expected_answer": "$14$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "پہلے تقسیم (division) کرو", "math": "8 ÷ 4 = 2"},
-        {"step": 2, "description_ur": "پھر جمع (addition) کرو", "math": "12 + 2 = 14"}
+        {
+          "step": 1,
+          "description_ur": "پہلے تقسیم (division) کرو",
+          "math": "$8 \\div 4 = 2$"
+        },
+        {
+          "step": 2,
+          "description_ur": "پھر جمع (addition) کرو",
+          "math": "$12 + 2 = 14$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "bodmas"]
+      "tags": [
+        "assessment",
+        "bodmas"
+      ]
     },
     {
       "question_id": "math10.assess.q02",
       "concept_id": "prereq.numbers.negative_numbers",
       "difficulty": 1,
       "question_type": "procedural",
-      "question_text_ur": "(-4) × (-3) کا جواب کیا ہے؟",
-      "question_text_en": "What is (-4) × (-3)?",
-      "expected_answer": "12",
+      "question_text_ur": "(-4) \\times (-3) کا جواب کیا ہے؟",
+      "question_text_en": "What is (-4) \\times (-3)?",
+      "expected_answer": "$12$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "دو منفی اعداد کی ضرب مثبت ہوتی ہے", "math": "(-4) × (-3) = 12"}
+        {
+          "step": 1,
+          "description_ur": "دو منفی اعداد کی ضرب مثبت ہوتی ہے",
+          "math": "$(-4) \\times (-3) = 12$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "negative_numbers"]
+      "tags": [
+        "assessment",
+        "negative_numbers"
+      ]
     },
     {
       "question_id": "math10.assess.q03",
       "concept_id": "prereq.numbers.negative_numbers",
       "difficulty": 2,
       "question_type": "procedural",
-      "question_text_ur": "-6² کا جواب بتاؤ۔",
-      "question_text_en": "Calculate -6².",
-      "expected_answer": "-36",
+      "question_text_ur": "-6^2 کا جواب بتاؤ۔",
+      "question_text_en": "Calculate -6^2.",
+      "expected_answer": "$-36$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "یہاں brackets نہیں ہیں، اس لیے پہلے 6 کا مربع لو", "math": "6² = 36"},
-        {"step": 2, "description_ur": "پھر منفی علامت لگاؤ", "math": "-36"}
+        {
+          "step": 1,
+          "description_ur": "یہاں brackets نہیں ہیں، اس لیے پہلے 6 کا مربع لو",
+          "math": "$6^2 = 36$"
+        },
+        {
+          "step": 2,
+          "description_ur": "پھر منفی علامت لگاؤ",
+          "math": "$-36$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "negative_numbers", "exponents"]
+      "tags": [
+        "assessment",
+        "negative_numbers",
+        "exponents"
+      ]
     },
     {
       "question_id": "math10.assess.q04",
@@ -64,14 +93,22 @@
       "question_type": "identification",
       "question_text_ur": "مقدار 7x - 4 میں x کا ضریب (coefficient) کیا ہے؟",
       "question_text_en": "What is the coefficient of x in the expression 7x - 4?",
-      "expected_answer": "7",
+      "expected_answer": "$7$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "ضریب وہ عدد ہے جو متغیر کے ساتھ ضرب ہو رہا ہو", "math": "7"}
+        {
+          "step": 1,
+          "description_ur": "ضریب وہ عدد ہے جو متغیر کے ساتھ ضرب ہو رہا ہو",
+          "math": "$7$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "variables", "coefficient"]
+      "tags": [
+        "assessment",
+        "variables",
+        "coefficient"
+      ]
     },
     {
       "question_id": "math10.assess.q05",
@@ -80,120 +117,209 @@
       "question_type": "procedural",
       "question_text_ur": "مساوات 3x - 5 = 10 کو حل کر کے x کی قدر نکالو۔",
       "question_text_en": "Solve 3x - 5 = 10 for x.",
-      "expected_answer": "5",
+      "expected_answer": "$5$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "-5 کو دوسری طرف لے جاؤ", "math": "3x = 10 + 5"},
-        {"step": 2, "description_ur": "جمع کرو", "math": "3x = 15"},
-        {"step": 3, "description_ur": "3 سے تقسیم کرو", "math": "x = 15/3 = 5"}
+        {
+          "step": 1,
+          "description_ur": "-5 کو دوسری طرف لے جاؤ",
+          "math": "$3x = 10 + 5$"
+        },
+        {
+          "step": 2,
+          "description_ur": "جمع کرو",
+          "math": "$3x = 15$"
+        },
+        {
+          "step": 3,
+          "description_ur": "3 سے تقسیم کرو",
+          "math": "$x = 15/3 = 5$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "linear_equations"]
+      "tags": [
+        "assessment",
+        "linear_equations"
+      ]
     },
     {
       "question_id": "math10.assess.q06",
       "concept_id": "prereq.algebra.algebraic_identities",
       "difficulty": 2,
       "question_type": "procedural",
-      "question_text_ur": "(x - 4)² کو پھیلاؤ (expand کرو)۔",
-      "question_text_en": "Expand (x - 4)².",
-      "expected_answer": "x^2 - 8x + 16",
+      "question_text_ur": "(x - 4)^2 کو پھیلاؤ (expand کرو)۔",
+      "question_text_en": "Expand (x - 4)^2.",
+      "expected_answer": "$x^2 - 8x + 16$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "(a-b)² = a² - 2ab + b² کا فارمولا لگاؤ", "math": "(x)² - 2(x)(4) + (4)²"},
-        {"step": 2, "description_ur": "حل کرو", "math": "x² - 8x + 16"}
+        {
+          "step": 1,
+          "description_ur": "(a-b)^2 = a^2 - 2ab + b^2 کا فارمولا لگاؤ",
+          "math": "$(x)^2 - 2(x)(4) + (4)^2$"
+        },
+        {
+          "step": 2,
+          "description_ur": "حل کرو",
+          "math": "$x^2 - 8x + 16$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "identities"]
+      "tags": [
+        "assessment",
+        "identities"
+      ]
     },
     {
       "question_id": "math10.assess.q07",
       "concept_id": "prereq.algebra.factorization_basics",
       "difficulty": 2,
       "question_type": "procedural",
-      "question_text_ur": "y² - 25 کو تحلیل (factorize) کرو۔",
-      "question_text_en": "Factorize y² - 25.",
-      "expected_answer": "(y - 5)(y + 5)",
+      "question_text_ur": "y^2 - 25 کو تحلیل (factorize) کرو۔",
+      "question_text_en": "Factorize y^2 - 25.",
+      "expected_answer": "$(y - 5)(y + 5)$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "a² - b² = (a-b)(a+b) کا فارمولا لگاؤ", "math": "y² - 5²"},
-        {"step": 2, "description_ur": "تحلیل مکمل کرو", "math": "(y-5)(y+5)"}
+        {
+          "step": 1,
+          "description_ur": "a^2 - b^2 = (a-b)(a+b) کا فارمولا لگاؤ",
+          "math": "$y^2 - 5^2$"
+        },
+        {
+          "step": 2,
+          "description_ur": "تحلیل مکمل کرو",
+          "math": "$(y-5)(y+5)$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "factorization"]
+      "tags": [
+        "assessment",
+        "factorization"
+      ]
     },
     {
       "question_id": "math10.assess.q08",
       "concept_id": "math10.ch2.quadratic_expression",
       "difficulty": 1,
       "question_type": "recognition",
-      "question_text_ur": "کیا 2x³ - x² + 5 ایک مربعی مقدار (quadratic expression) ہے؟ (ہاں یا نہیں)",
-      "question_text_en": "Is 2x³ - x² + 5 a quadratic expression? (Yes or No)",
-      "expected_answer": "no",
+      "question_text_ur": "کیا 2x^3 - x^2 + 5 ایک مربعی مقدار (quadratic expression) ہے؟ (ہاں یا نہیں)",
+      "question_text_en": "Is 2x^3 - x^2 + 5 a quadratic expression? (Yes or No)",
+      "expected_answer": "$no$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "مربعی مقدار میں x کی سب سے زیادہ طاقت 2 ہونی چاہیے", "math": "یہاں 3 ہے"},
-        {"step": 2, "description_ur": "پس یہ مربعی نہیں (مکعبی ہے)", "math": "نہیں"}
+        {
+          "step": 1,
+          "description_ur": "مربعی مقدار میں x کی سب سے زیادہ طاقت 2 ہونی چاہیے",
+          "math": "$یہاں 3 ہے$"
+        },
+        {
+          "step": 2,
+          "description_ur": "پس یہ مربعی نہیں (مکعبی ہے)",
+          "math": "$نہیں$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "quadratic_expression"]
+      "tags": [
+        "assessment",
+        "quadratic_expression"
+      ]
     },
     {
       "question_id": "math10.assess.q09",
       "concept_id": "math10.ch2.standard_form",
       "difficulty": 2,
       "question_type": "identification",
-      "question_text_ur": "مساوات 4x² - x = 9 میں b کی قدر کیا ہے؟",
-      "question_text_en": "What is the value of b in the equation 4x² - x = 9?",
-      "expected_answer": "-1",
+      "question_text_ur": "مساوات 4x^2 - x = 9 میں b کی قدر کیا ہے؟",
+      "question_text_en": "What is the value of b in the equation 4x^2 - x = 9?",
+      "expected_answer": "$-1$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "پہلے مساوات کو ax² + bx + c = 0 کی شکل میں لکھو", "math": "4x² - x - 9 = 0"},
-        {"step": 2, "description_ur": "b متغیر x کا ضریب ہے", "math": "b = -1"}
+        {
+          "step": 1,
+          "description_ur": "پہلے مساوات کو ax^2 + bx + c = 0 کی شکل میں لکھو",
+          "math": "$4x^2 - x - 9 = 0$"
+        },
+        {
+          "step": 2,
+          "description_ur": "b متغیر x کا ضریب ہے",
+          "math": "$b = -1$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "standard_form"]
+      "tags": [
+        "assessment",
+        "standard_form"
+      ]
     },
     {
       "question_id": "math10.assess.q10",
       "concept_id": "math10.ch2.solving_by_factorization",
       "difficulty": 3,
       "question_type": "procedural",
-      "question_text_ur": "x² - 8x + 15 = 0 کی جڑیں (roots) تحلیل (factorization) سے معلوم کرو۔",
-      "question_text_en": "Find the roots of x² - 8x + 15 = 0 by factorization.",
-      "expected_answer": "x = 3, x = 5",
+      "question_text_ur": "x^2 - 8x + 15 = 0 کی جڑیں (roots) تحلیل (factorization) سے معلوم کرو۔",
+      "question_text_en": "Find the roots of x^2 - 8x + 15 = 0 by factorization.",
+      "expected_answer": "$x = 3, x = 5$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "ایسے عدد تلاش کرو جن کی ضرب 15 اور جمع -8 ہو", "math": "(-3) × (-5) = 15, (-3) + (-5) = -8"},
-        {"step": 2, "description_ur": "تحلیل کرو", "math": "(x-3)(x-5) = 0"},
-        {"step": 3, "description_ur": "حل کرو", "math": "x = 3, x = 5"}
+        {
+          "step": 1,
+          "description_ur": "ایسے عدد تلاش کرو جن کی ضرب 15 اور جمع -8 ہو",
+          "math": "$(-3) \\times (-5) = 15, (-3) + (-5) = -8$"
+        },
+        {
+          "step": 2,
+          "description_ur": "تحلیل کرو",
+          "math": "$(x-3)(x-5) = 0$"
+        },
+        {
+          "step": 3,
+          "description_ur": "حل کرو",
+          "math": "$x = 3, x = 5$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "solving_by_factorization"]
+      "tags": [
+        "assessment",
+        "solving_by_factorization"
+      ]
     },
     {
       "question_id": "math10.assess.q11",
       "concept_id": "math10.ch2.discriminant",
       "difficulty": 2,
       "question_type": "procedural",
-      "question_text_ur": "مساوات x² + 2x - 3 = 0 کا ممیز (discriminant) نکالو۔",
-      "question_text_en": "Calculate the discriminant of the equation x² + 2x - 3 = 0.",
-      "expected_answer": "16",
+      "question_text_ur": "مساوات x^2 + 2x - 3 = 0 کا ممیز (discriminant) نکالو۔",
+      "question_text_en": "Calculate the discriminant of the equation x^2 + 2x - 3 = 0.",
+      "expected_answer": "$16$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "a, b, c نکالو", "math": "a=1, b=2, c=-3"},
-        {"step": 2, "description_ur": "فارمولا استعمال کرو: D = b² - 4ac", "math": "D = (2)² - 4(1)(-3)"},
-        {"step": 3, "description_ur": "حل کرو", "math": "D = 4 - (-12) = 4 + 12 = 16"}
+        {
+          "step": 1,
+          "description_ur": "a, b, c نکالو",
+          "math": "$a=1, b=2, c=-3$"
+        },
+        {
+          "step": 2,
+          "description_ur": "فارمولا استعمال کرو: D = b^2 - 4ac",
+          "math": "$D = (2)^2 - 4(1)(-3)$"
+        },
+        {
+          "step": 3,
+          "description_ur": "حل کرو",
+          "math": "$D = 4 - (-12) = 4 + 12 = 16$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "discriminant"]
+      "tags": [
+        "assessment",
+        "discriminant"
+      ]
     },
     {
       "question_id": "math10.assess.q12",
@@ -202,14 +328,21 @@
       "question_type": "procedural",
       "question_text_ur": "اگر کسی مربعی مساوات کا ممیز (discriminant) صفر (0) ہو، تو اس کی جڑوں کی نوعیت کیا ہوگی؟",
       "question_text_en": "If the discriminant of a quadratic equation is zero, what is the nature of its roots?",
-      "expected_answer": "two equal real roots",
+      "expected_answer": "$two equal real roots$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "D = 0 کا مطلب ہے کہ جڑیں حقیقی اور برابر ہیں", "math": "دو برابر حقیقی جڑیں"}
+        {
+          "step": 1,
+          "description_ur": "D = 0 کا مطلب ہے کہ جڑیں حقیقی اور برابر ہیں",
+          "math": "$دو برابر حقیقی جڑیں$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "nature_of_roots"]
+      "tags": [
+        "assessment",
+        "nature_of_roots"
+      ]
     },
     {
       "question_id": "math10.assess.q13",
@@ -218,33 +351,59 @@
       "question_type": "procedural",
       "question_text_ur": "مربعی فارمولا (Quadratic Formula) لکھو۔",
       "question_text_en": "Write down the Quadratic Formula.",
-      "expected_answer": "x = (-b ± sqrt(b^2 - 4ac)) / (2a)",
+      "expected_answer": "$x = (-b ± sqrt(b^2 - 4ac)) / (2a)$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "معیاری فارمولا", "math": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}"}
+        {
+          "step": 1,
+          "description_ur": "معیاری فارمولا",
+          "math": "$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "quadratic_formula"]
+      "tags": [
+        "assessment",
+        "quadratic_formula"
+      ]
     },
     {
       "question_id": "math10.assess.q14",
       "concept_id": "math10.ch2.quadratic_formula",
       "difficulty": 4,
       "question_type": "procedural",
-      "question_text_ur": "x² - 4x - 5 = 0 کو مربعی فارمولے سے حل کرو۔",
-      "question_text_en": "Solve x² - 4x - 5 = 0 using the quadratic formula.",
-      "expected_answer": "x = 5, x = -1",
+      "question_text_ur": "x^2 - 4x - 5 = 0 کو مربعی فارمولے سے حل کرو۔",
+      "question_text_en": "Solve x^2 - 4x - 5 = 0 using the quadratic formula.",
+      "expected_answer": "$x = 5, x = -1$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "a=1, b=-4, c=-5", "math": ""},
-        {"step": 2, "description_ur": "فارمولے میں رکھو", "math": "x = (4 ± √(16 - 4(1)(-5))) / 2"},
-        {"step": 3, "description_ur": "حل کرو", "math": "x = (4 ± √36) / 2 = (4 ± 6) / 2"},
-        {"step": 4, "description_ur": "جواب نکالو", "math": "x = 10/2 = 5 یا x = -2/2 = -1"}
+        {
+          "step": 1,
+          "description_ur": "a=1, b=-4, c=-5",
+          "math": ""
+        },
+        {
+          "step": 2,
+          "description_ur": "فارمولے میں رکھو",
+          "math": "$x = (4 ± √(16 - 4(1)(-5))) / 2$"
+        },
+        {
+          "step": 3,
+          "description_ur": "حل کرو",
+          "math": "$x = (4 ± √36) / 2 = (4 ± 6) / 2$"
+        },
+        {
+          "step": 4,
+          "description_ur": "جواب نکالو",
+          "math": "$x = 10/2 = 5 یا x = -2/2 = -1$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "quadratic_formula"]
+      "tags": [
+        "assessment",
+        "quadratic_formula"
+      ]
     },
     {
       "question_id": "math10.assess.q15",
@@ -253,18 +412,41 @@
       "question_type": "word_problem",
       "question_text_ur": "اگر کسی مثبت عدد کے مربع میں اسی عدد کا دگنا (2x) جمع کیا جائے تو جواب 35 آتا ہے۔ عدد معلوم کرو۔",
       "question_text_en": "If twice a positive number is added to its square, the result is 35. Find the number.",
-      "expected_answer": "5",
+      "expected_answer": "$5$",
       "answer_tolerance": null,
       "expected_answer_unit": null,
       "solution_steps": [
-        {"step": 1, "description_ur": "عدد کو x مان لو", "math": "x"},
-        {"step": 2, "description_ur": "شرط کے مطابق مساوات بناؤ", "math": "x² + 2x = 35"},
-        {"step": 3, "description_ur": "معیاری شکل میں لاؤ", "math": "x² + 2x - 35 = 0"},
-        {"step": 4, "description_ur": "تحلیل کرو", "math": "(x+7)(x-5) = 0"},
-        {"step": 5, "description_ur": "مثبت عدد لینا ہے، اس لیے x = 5", "math": "x = 5"}
+        {
+          "step": 1,
+          "description_ur": "عدد کو x مان لو",
+          "math": "$x$"
+        },
+        {
+          "step": 2,
+          "description_ur": "شرط کے مطابق مساوات بناؤ",
+          "math": "$x^2 + 2x = 35$"
+        },
+        {
+          "step": 3,
+          "description_ur": "معیاری شکل میں لاؤ",
+          "math": "$x^2 + 2x - 35 = 0$"
+        },
+        {
+          "step": 4,
+          "description_ur": "تحلیل کرو",
+          "math": "$(x+7)(x-5) = 0$"
+        },
+        {
+          "step": 5,
+          "description_ur": "مثبت عدد لینا ہے، اس لیے x = 5",
+          "math": "$x = 5$"
+        }
       ],
       "hints": [],
-      "tags": ["assessment", "word_problem"]
+      "tags": [
+        "assessment",
+        "word_problem"
+      ]
     }
   ]
 }

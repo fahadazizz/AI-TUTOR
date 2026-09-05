@@ -61,3 +61,4 @@ Fully completed the backend and frontend system hardening to reach production-re
 - Successfully verified database reads/writes and confirmed `ollama` LLM connectivity via `verify_v0_0.py`.
 - Phase A V0.2 Done: Implemented persistent core mastery loop via TutorController and ChatRouter to securely store state and attempts.
 - Phase A V0.3 Done: Fully validated deterministic symbolic math verifier using SymPy. Tested against 30 unique real-world edge cases. Checked that no LLM call is made.
+- Phase A V0.4 Done: Solved equation rendering. Migrated all JSON seed data to use standard LaTeX ($) for math fields. Updated English, Urdu, and Roman Urdu system prompts to strictly mandate LaTeX formatting and forbid bare unicode math or unescaped parens. Verified correct LLM parsing and KaTeX frontend rendering.
