@@ -149,20 +149,15 @@ class TutorController:
                     missing_prereqs = await self.curriculum.get_missing_prerequisites(target_concept_id, mastered_ids)
                     
                     if missing_prereqs:
-                        # Found a missing prerequisite! Pivot to teaching the deepest missing one.
+                        # Found a missing prerequisite! 
+                        # For V0.8 testing, we bypass strict enforcement. We warn in context but proceed to target.
                         first_missing = missing_prereqs[0]
                         missing_concept_data = await self.curriculum.get_concept(first_missing)
                         
                         context["missing_prerequisite"] = missing_concept_data
                         context["target_concept_id"] = target_concept_id
                         
-                        # We change the session to point to this new prerequisite
-                        session_state["current_concept_id"] = first_missing
-                        session_state["current_question_id"] = None
-                        session_state["current_question_expected_answer"] = None
-                        return TutorAction.TEACH_PREREQUISITE, context, None, None
-                        
-                    # All prerequisites met, proceed to teach
+                    # Proceed to teach the target concept regardless of prerequisites
                     session_state["current_concept_id"] = target_concept_id
                     session_state["current_question_id"] = None
                     session_state["current_question_expected_answer"] = None

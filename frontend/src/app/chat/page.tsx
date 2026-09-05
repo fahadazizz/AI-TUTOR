@@ -36,43 +36,7 @@ export default function ChatPage() {
     }
   }, [router]);
 
-  // Trigger initial background message if chat is empty
-  useEffect(() => {
-    if (sessionId && messages.length === 0) {
-      const initChat = async () => {
-        setIsTyping(true);
-        const tutorMsgId = crypto.randomUUID();
-        setMessages([{ id: tutorMsgId, role: "tutor", content: "" }]);
-        
-        try {
-          // Send a hidden "hello" to trigger the backend's greeting/continuation logic
-          await api.chatStream(
-            sessionId, 
-            "Hello, let's start!",
-            (token) => {
-              setMessages(prev => 
-                prev.map(msg => 
-                  msg.id === tutorMsgId 
-                    ? { ...msg, content: msg.content + token }
-                    : msg
-                )
-              );
-            },
-            (meta) => {
-              console.log("Action taken on init:", meta.action_taken);
-            }
-          );
-        } catch (error) {
-          console.error(error);
-          setMessages([{ id: tutorMsgId, role: "tutor", content: "Error connecting to server." }]);
-        } finally {
-          setIsTyping(false);
-        }
-      };
-      
-      initChat();
-    }
-  }, [sessionId, messages.length]);
+
 
   useEffect(() => {
     // Auto-scroll to bottom

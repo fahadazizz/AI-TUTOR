@@ -54,25 +54,29 @@ class TeachingEngine:
         
         # 3. Add question text if asking a question
             
-        # Add question text if asking a question
+        # 3. Add question text if asking a question
         if action in [TutorAction.ASK_QUESTION, TutorAction.START_ASSESSMENT] and "question_data" in context:
-            kwargs["question_text"] = context["question_data"].get("question_text", "")
+            if pref_lang == "ur":
+                kwargs["question_text"] = context["question_data"].get("question_text_ur", "")
+            else:
+                # For 'en' and 'roman_ur', use the English text. The LLM will translate to Roman Urdu.
+                kwargs["question_text"] = context["question_data"].get("question_text_en", "")
             
         base_prompt = self.prompt_manager.get_action_prompt(pref_lang, action.value, **kwargs)
         
         # 4. Inject visual instructions if needed
         visual_need = "none"
-        if "current_concept" in context:
+        if "current_concept" in context and context["current_concept"]:
             visual_need = context["current_concept"].get("visual_need", "none")
-        elif "missing_prerequisite" in context:
+        elif "missing_prerequisite" in context and context["missing_prerequisite"]:
             visual_need = context["missing_prerequisite"].get("visual_need", "none")
             
         if visual_need == "graph":
             visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_graph")
-            base_prompt += visual_instruction
+            base_prompt += "\n" + visual_instruction
         elif visual_need == "diagram":
             visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_diagram")
-            base_prompt += visual_instruction
+            base_prompt += "\n" + visual_instruction
             
         return base_prompt
 

@@ -40,7 +40,7 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({ role, content }) => {
           remarkPlugins={[remarkGfm, remarkMath]} 
           rehypePlugins={[rehypeKatex]}
         >
-          {text}
+          {text.replace(/\\\((.*?)\\\)/g, '$$$1$$').replace(/\\\[(.*?)\\\]/g, '$$$$$1$$$$')}
         </ReactMarkdown>
       </div>
     );
