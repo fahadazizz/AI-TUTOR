@@ -9,5 +9,7 @@
   "ask_question": "Ask the student this question clearly: '{question_text}'",
   "teach_prerequisite": "The student needs to learn a prerequisite concept for the current topic. Explain '{concept}' to them in simple words. The student's original message was: '{student_message}'",
   "start_assessment": "Welcome the student to the assessment. Ask them this first question: '{question_text}'",
-  "resume_session": "Smoothly resume the session. Encourage the student to continue working on math. The student's original message was: '{student_message}'"
+  "resume_session": "Smoothly resume the session. Encourage the student to continue working on math. The student's original message was: '{student_message}'",
+  "visual_instruction_graph": "\n\n[VISUAL REQUIREMENT]\nThis concept requires a graph. You MUST embed a graph shortcode in your response to illustrate the math. Use the following syntax exactly, filling in the correct parameters: `[Graph type=\"parabola\" a=\"1\" b=\"0\" c=\"-4\"]` or `[Graph type=\"numberline\" interval=\"[2,5]\"]`.",
+  "visual_instruction_diagram": "\n\n[VISUAL REQUIREMENT]\nThis concept requires a diagram. You MUST embed a diagram shortcode in your response to illustrate the math. Use one of the following exact syntaxes, picking the one most relevant, and fill in the parameters:\n`[Diagram type=\"CompletingSquare\" b=\"6\"]`\n`[Diagram type=\"QuadraticFormula\" a=\"1\" b=\"5\" c=\"6\"]`\n`[Diagram type=\"RootsNature\" discriminant=\"25\"]`\n`[Diagram type=\"AreaModel\" a=\"1\" b=\"5\" c=\"6\" split1=\"2\" split2=\"3\"]`"
 }

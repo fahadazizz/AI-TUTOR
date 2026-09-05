@@ -63,7 +63,7 @@
       "textbook_sources": [
         "prior_knowledge"
       ],
-      "visual_need": "none",
+      "visual_need": "diagram",
       "language_pack": [
         "en",
         "ur"
@@ -411,7 +411,7 @@
       "textbook_sources": [
         "prior_knowledge"
       ],
-      "visual_need": "none",
+      "visual_need": "graph",
       "language_pack": [
         "en",
         "ur"
@@ -724,7 +724,7 @@
       "textbook_sources": [
         "ch2_s1"
       ],
-      "visual_need": "equation",
+      "visual_need": "graph",
       "language_pack": [
         "en",
         "ur"
@@ -810,7 +810,7 @@
       "textbook_sources": [
         "ch2_s2"
       ],
-      "visual_need": "none",
+      "visual_need": "diagram",
       "language_pack": [
         "en",
         "ur"
@@ -893,7 +893,7 @@
       "textbook_sources": [
         "ch2_s3"
       ],
-      "visual_need": "equation",
+      "visual_need": "diagram",
       "language_pack": [
         "en",
         "ur"
@@ -963,7 +963,7 @@
       "textbook_sources": [
         "ch2_s4"
       ],
-      "visual_need": "equation",
+      "visual_need": "diagram",
       "language_pack": [
         "en",
         "ur"
@@ -1043,7 +1043,7 @@
       "textbook_sources": [
         "ch2_s4"
       ],
-      "visual_need": "none",
+      "visual_need": "graph",
       "language_pack": [
         "en",
         "ur"
@@ -1121,7 +1121,7 @@
       "textbook_sources": [
         "ch2_s3"
       ],
-      "visual_need": "equation",
+      "visual_need": "diagram",
       "language_pack": [
         "en",
         "ur"

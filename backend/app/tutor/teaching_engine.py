@@ -58,7 +58,23 @@ class TeachingEngine:
         if action in [TutorAction.ASK_QUESTION, TutorAction.START_ASSESSMENT] and "question_data" in context:
             kwargs["question_text"] = context["question_data"].get("question_text", "")
             
-        return self.prompt_manager.get_action_prompt(pref_lang, action.value, **kwargs)
+        base_prompt = self.prompt_manager.get_action_prompt(pref_lang, action.value, **kwargs)
+        
+        # 4. Inject visual instructions if needed
+        visual_need = "none"
+        if "current_concept" in context:
+            visual_need = context["current_concept"].get("visual_need", "none")
+        elif "missing_prerequisite" in context:
+            visual_need = context["missing_prerequisite"].get("visual_need", "none")
+            
+        if visual_need == "graph":
+            visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_graph")
+            base_prompt += visual_instruction
+        elif visual_need == "diagram":
+            visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_diagram")
+            base_prompt += visual_instruction
+            
+        return base_prompt
 
     async def generate_response(self, action: TutorAction, context: dict) -> str:
         """Generate the final response string."""

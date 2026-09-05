@@ -47,7 +47,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 | A | V0.2 | Core loop, text-only | Tutor Controller, Student Model, Session State | Done |
 | A | V0.3 | Symbolic verifier | Verifier Registry | Done |
 | A | V0.4 | Equation rendering | Visual Engine | Done |
-| A | V0.5 | Graphs and diagram templates | Visual Engine | Not Started |
+| A | V0.5 | Graphs and diagram templates | Visual Engine | Done |
 | A | V0.6 | Misconception library seed | Misconception Library | Not Started |
 | A | V0.7 | Dashboard surface | Student Application | Not Started |
 | A | V0.8 | Internal dogfood validation | Full Phase A stack | Not Started |
@@ -161,7 +161,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 - At least three distinct graph types relevant to this subject generate correctly from real problem numbers, with no manual correction needed.
 - At least five diagram templates exist and have each been reused for more than one distinct question, confirming the "build once, reuse forever" pattern actually works in practice.
 
-**Status:** Not Started
+**Status:** Done
 
 ### V0.6 — Misconception library seed
 
