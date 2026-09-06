@@ -7,13 +7,13 @@ upgraded to use a fast, constrained LLM call for semantic equivalence.
 
 import re
 from app.core.models import AnswerResult
-from app.engines.evaluation_engine import AnswerEvaluator
+from app.engines.verifier_registry import BaseVerifier
 from app.logging import get_logger
 
 logger = get_logger(__name__)
 
 
-class TextChecker(AnswerEvaluator):
+class TextChecker(BaseVerifier):
     """Basic text equivalence verification."""
 
     def __init__(self) -> None:

@@ -11,7 +11,8 @@ import uuid
 from app.models.enums import StudentIntent, TutorAction, MasteryState
 from app.models.session import AttemptCreate
 from app.models.mastery import ConceptMastery
-from app.engines.plugins.math_checker import MathChecker
+from app.engines.pedagogy_router import PedagogyRouter
+from app.engines.verifier_registry import VerifierRegistry
 from app.core.student_model import StudentModel
 from app.core.curriculum_model import CurriculumModel
 from app.core.question_selector import QuestionSelector
@@ -26,12 +27,14 @@ class TutorController:
     
     def __init__(
         self,
-        math_checker: MathChecker,
+        pedagogy_router: PedagogyRouter,
+        verifier_registry: VerifierRegistry,
         student_model: StudentModel,
         curriculum_model: CurriculumModel,
         question_selector: QuestionSelector
     ):
-        self.math_checker = math_checker
+        self.pedagogy_router = pedagogy_router
+        self.verifier_registry = verifier_registry
         self.student_model = student_model
         self.curriculum = curriculum_model
         self.question_selector = question_selector
@@ -70,72 +73,32 @@ class TutorController:
             s_id = uuid.UUID(student_id_str) if student_id_str else uuid.uuid4()
             return ConceptMastery(student_id=s_id, concept_id=concept_id, mastery_state=MasteryState.UNKNOWN)
         
-        # 1. Answer Question Flow
-        if intent == StudentIntent.ANSWER_QUESTION:
+        # 1. Subject-specific pedagogical intents (Answer, Solve, Continue)
+        if intent in [StudentIntent.ANSWER_QUESTION, StudentIntent.SOLVE_PROBLEM, StudentIntent.CONTINUE, StudentIntent.UNKNOWN]:
             concept_id = session_state.get("current_concept_id")
-            question_id = session_state.get("current_question_id")
-            expected_ans = session_state.get("current_question_expected_answer")
-            
-            if not expected_ans or not concept_id or not question_id:
-                # They gave an answer but we didn't ask a question
-                return TutorAction.REDIRECT_OFFTOPIC, context, None, None
+            if not concept_id:
+                # If they try to answer/continue but there's no active concept
+                if intent == StudentIntent.ANSWER_QUESTION:
+                    return TutorAction.REDIRECT_OFFTOPIC, context, None, None
+                return TutorAction.RESUME_SESSION, context, None, None
                 
-            student_ans = intent_data.student_answer or ""
+            concept_data = await self.curriculum.get_concept(concept_id)
+            pedagogy_type = concept_data.get("pedagogy_type", "quantitative") if concept_data else "quantitative"
             
-            # Fetch the question to get the misconception_map
-            question_data = await self.curriculum.get_question(question_id)
-            misconception_map = question_data.get("misconception_map", {}) if question_data else {}
+            plugin = self.pedagogy_router.get_plugin(pedagogy_type)
             
-            # Check answer
-            result = self.math_checker.check_answer(student_ans, expected_ans, misconception_map=misconception_map)
-            context["answer_result"] = result
-            
-            # Update Student Model
-            current_mastery = get_mastery(concept_id)
-            updated_mastery = self.student_model.evaluate_transition(current_mastery, result)
-            
-            # Create Attempt Record
-            attempt = AttemptCreate(
-                session_id=uuid.UUID(session_state["session_id"]),
-                student_id=uuid.UUID(session_state["student_id"]),
-                question_id=question_id,
-                concept_id=concept_id,
-                student_answer=student_ans,
-                is_correct=result.is_correct,
-                is_partial=result.is_partial,
-                error_type=result.error_type,
-                misconception_id=result.misconception_id,
-                hint_level_used=session_state.get("hint_level", 0)
+            return await plugin.decide_action(
+                intent_data=intent_data,
+                session_state=session_state,
+                student_mastery_list=student_mastery_list,
+                context=context,
+                curriculum=self.curriculum,
+                student_model=self.student_model,
+                question_selector=self.question_selector,
+                verifier_registry=self.verifier_registry
             )
-            
-            if result.is_correct:
-                session_state["current_question_id"] = None
-                session_state["current_question_expected_answer"] = None
-                session_state["hint_level"] = 0
-                return TutorAction.GIVE_FEEDBACK_CORRECT, context, updated_mastery, attempt
-            else:
-                session_state["hint_level"] = session_state.get("hint_level", 0) + 1
-                
-                if result.error_type == "parse_error":
-                    return TutorAction.CLARIFY_SYNTAX, context, updated_mastery, attempt
-                    
-                if result.error_type == "known_misconception" and result.misconception_id:
-                    misconception = await self.curriculum.get_misconception(result.misconception_id)
-                    if misconception:
-                        # Extract the correct language explanation
-                        lang = session_state.get("preferred_language", "ur")
-                        explanation = misconception.get(f"remediation_explanation_{lang}")
-                        if not explanation:
-                            explanation = misconception.get("remediation_explanation_ur", "")
-                        context["remediation_explanation"] = explanation
-                        return TutorAction.REMEDIATE_MISCONCEPTION, context, updated_mastery, attempt
-                
-                if result.error_type in ["sign_error", "incomplete_solution"]:
-                    return TutorAction.DIAGNOSE_MISTAKE, context, updated_mastery, attempt
-                else:
-                    return TutorAction.GIVE_HINT, context, updated_mastery, attempt
 
-        # 2. Ask Concept Flow
+        # 2. Ask Concept Flow (Generic Curriculum rule)
         elif intent == StudentIntent.ASK_CONCEPT:
             concept_hint = intent_data.concept_hint
             if concept_hint:
@@ -186,18 +149,6 @@ class TutorController:
                     context["current_concept"] = await self.curriculum.get_concept(target_concept_id)
                     return TutorAction.TEACH_CONCEPT, context, None, None
 
-        # 3. Solve Problem (Scaffolding vs Worked Example rule)
-        elif intent == StudentIntent.SOLVE_PROBLEM:
-            current_hint_level = session_state.get("hint_level", 0)
-            if current_hint_level >= 2:
-                # Student is genuinely stuck and asking for help. Provide a worked example.
-                # Reset hint level so they can start fresh on the next problem.
-                session_state["hint_level"] = 0
-                return TutorAction.PROVIDE_WORKED_EXAMPLE, context, None, None
-            else:
-                # Scaffold first
-                return TutorAction.SCAFFOLD_PROBLEM, context, None, None
-                
         # 3.5. Clarify Step
         elif intent == StudentIntent.CLARIFY_STEP:
             return TutorAction.CLARIFY_STEP, context, None, None
@@ -218,22 +169,5 @@ class TutorController:
                 context["current_concept"] = concept_data
             return TutorAction.HANDLE_GREETING, context, None, None
             
-        # 6. Continue / Unknown (Trigger next question)
-        elif intent in [StudentIntent.CONTINUE, StudentIntent.UNKNOWN]:
-            concept_id = session_state.get("current_concept_id")
-            if concept_id:
-                # Find mastery for this concept
-                mastery = get_mastery(concept_id)
-                
-                # We don't have a history of seen questions in the basic MVP context yet
-                question = await self.question_selector.select_next_question(concept_id, mastery, set())
-                
-                if question:
-                    session_state["current_question_id"] = question["question_id"]
-                    session_state["current_question_expected_answer"] = question["expected_answer"]
-                    session_state["hint_level"] = 0
-                    context["question_data"] = question
-                    return TutorAction.ASK_QUESTION, context, None, None
-
         # 7. Fallback
         return TutorAction.RESUME_SESSION, context, None, None

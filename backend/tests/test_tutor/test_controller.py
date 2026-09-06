@@ -12,14 +12,25 @@ from app.core.models import AnswerResult
 @pytest.fixture
 def controller():
     # Mock all the core components
-    math_mock = MagicMock()
+    plugin_mock = AsyncMock()
+    plugin_mock.decide_action = AsyncMock(return_value=(TutorAction.GIVE_FEEDBACK_CORRECT, {}, None, None))
+    
+    router_mock = MagicMock()
+    router_mock.get_plugin = MagicMock(return_value=plugin_mock)
+    
+    verifier_mock = MagicMock()
+    
     student_mock = MagicMock()
     curriculum_mock = MagicMock()
+    curriculum_mock.get_concept = AsyncMock(return_value={"pedagogy_type": "quantitative"})
     curriculum_mock.resolve_concept = AsyncMock(return_value="quad_101")
     curriculum_mock.get_missing_prerequisites = AsyncMock(return_value=[])
     selector_mock = MagicMock()
     
-    return TutorController(math_mock, student_mock, curriculum_mock, selector_mock)
+    # We will attach the plugin mock to the router so tests can manipulate it
+    router_mock.plugin_mock = plugin_mock
+    
+    return TutorController(router_mock, verifier_mock, student_mock, curriculum_mock, selector_mock)
 
 
 @pytest.mark.asyncio
@@ -31,8 +42,11 @@ async def test_decide_action_off_topic(controller):
 
 @pytest.mark.asyncio
 async def test_decide_action_solve_problem(controller):
+    controller.pedagogy_router.plugin_mock.decide_action.return_value = (TutorAction.SCAFFOLD_PROBLEM, {}, None, None)
+    
     intent = IntentSchema(intent=StudentIntent.SOLVE_PROBLEM)
-    action, ctx, _, _ = await controller.decide_action(intent, {}, [])
+    session = {"current_concept_id": "concept_1"}
+    action, ctx, _, _ = await controller.decide_action(intent, session, [])
     assert action == TutorAction.SCAFFOLD_PROBLEM
 
 
@@ -45,7 +59,7 @@ async def test_decide_action_ask_concept(controller):
 
 @pytest.mark.asyncio
 async def test_decide_action_answer_correct(controller):
-    controller.math_checker.check_answer.return_value = AnswerResult(is_correct=True)
+    controller.pedagogy_router.plugin_mock.decide_action.return_value = (TutorAction.GIVE_FEEDBACK_CORRECT, {}, None, None)
     
     intent = IntentSchema(intent=StudentIntent.ANSWER_QUESTION, student_answer="5")
     session = {
@@ -62,7 +76,7 @@ async def test_decide_action_answer_correct(controller):
 
 @pytest.mark.asyncio
 async def test_decide_action_answer_wrong_hint(controller):
-    controller.math_checker.check_answer.return_value = AnswerResult(is_correct=False, error_type=None)
+    controller.pedagogy_router.plugin_mock.decide_action.return_value = (TutorAction.GIVE_HINT, {}, None, None)
     
     intent = IntentSchema(intent=StudentIntent.ANSWER_QUESTION, student_answer="4")
     session = {
@@ -79,7 +93,7 @@ async def test_decide_action_answer_wrong_hint(controller):
 
 @pytest.mark.asyncio
 async def test_decide_action_answer_wrong_sign_error(controller):
-    controller.math_checker.check_answer.return_value = AnswerResult(is_correct=False, error_type="sign_error")
+    controller.pedagogy_router.plugin_mock.decide_action.return_value = (TutorAction.DIAGNOSE_MISTAKE, {}, None, None)
     
     intent = IntentSchema(intent=StudentIntent.ANSWER_QUESTION, student_answer="-5")
     session = {

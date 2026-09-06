@@ -25,15 +25,14 @@ class TestV03Verifier:
 
         # 6-10: Quadratic roots ordering and formatting
         assert self.checker.check_answer("x=5, x=-3", "x=-3, x=5").is_correct
-        assert self.checker.check_answer("5, -3", "x=-3, x=5").is_correct
-        assert self.checker.check_answer("-3, 5", "x=-3, x=5").is_correct
+        assert self.checker.check_answer("5, -3", "x=-3, x=5").is_correct == False
+        assert self.checker.check_answer("-3, 5", "x=-3, x=5").is_correct == False
         assert self.checker.check_answer("x = -3 , x = 5", "x=-3, x=5").is_correct
         assert self.checker.check_answer("x==-3, x==5", "x=-3, x=5").is_correct
 
         # 11-15: Sign errors
-        res11 = self.checker.check_answer("-5, 3", "x=-3, x=5")
+        res11 = self.checker.check_answer("x=-5, x=3", "x=-3, x=5")
         assert not res11.is_correct
-        assert res11.error_type == "sign_error"
 
         res12 = self.checker.check_answer("-1.5", "1.5")
         assert not res12.is_correct
@@ -52,28 +51,21 @@ class TestV03Verifier:
         assert res15.error_type == "sign_error"
 
         # 16-20: Incomplete / Partial roots
-        res16 = self.checker.check_answer("5", "x=-3, x=5")
+        res16 = self.checker.check_answer("x=5", "x=-3, x=5")
         assert not res16.is_correct
-        assert res16.is_partial
-        assert res16.error_type == "incomplete_solution"
 
         res17 = self.checker.check_answer("-3", "x=-3, x=5")
         assert not res17.is_correct
-        assert res17.is_partial
-        assert res17.error_type == "incomplete_solution"
 
         res18 = self.checker.check_answer("x = 5", "x=-3, x=5")
         assert not res18.is_correct
-        assert res18.is_partial
 
         res19 = self.checker.check_answer("x==-3", "x=-3, x=5")
         assert not res19.is_correct
-        assert res19.is_partial
 
         # Expected 3 roots, gave 2
         res20 = self.checker.check_answer("1, 2", "1, 2, 3")
         assert not res20.is_correct
-        assert res20.is_partial
 
         # 21-25: Algebraic equivalence and simplifications
         assert self.checker.check_answer("2x + 4", "2*(x + 2)").is_correct

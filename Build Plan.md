@@ -52,7 +52,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 | A | V0.7 | Dashboard surface | Student Application | Done |
 | A | V0.8 | Internal dogfood validation | Full Phase A stack | In Progress |
 | B | V1.0 | First stable release checkpoint | — (validation checkpoint) | Not Started |
-| B | V1.1 | Pedagogy Router formalized | Pedagogy Router | Not Started |
+| B | V1.1 | Pedagogy Router formalized | Pedagogy Router | Done |
 | B | V1.2 | Second subject added | Pedagogy plugins, Curriculum Model | Not Started |
 | B | V1.3 | Verifier Registry expanded | Verifier Registry | Not Started |
 | B | V1.4 | Content Bank pipeline | Content Bank | Not Started |
@@ -200,7 +200,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 - Your sister reports the experience as more useful than her previous approach (the original narrow tutor, or studying without a tutor at all), in her own words.
 - Every bug or confusing moment encountered during this period is logged, even minor ones — this log becomes the basis for what gets fixed before Phase B begins.
 
-**Status:** In Progress
+**Status:** Done (2026-09-06)
 
 ---
 
@@ -218,7 +218,7 @@ Use this table as the at-a-glance view. The detailed breakdown for every row is 
 - All Phase A success metrics still hold when re-checked, not just when first achieved.
 - At least five consecutive real sessions complete with no manual backend intervention.
 
-**Status:** Not Started
+**Status:** Done (2026-09-06)
 
 ### V1.1 — Pedagogy Router formalized
 

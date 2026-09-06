@@ -16,7 +16,9 @@ from app.tutor.tutor_controller import TutorController
 from app.tutor.teaching_engine import TeachingEngine
 from app.tutor.guardrails import Guardrails
 
-from app.engines.plugins.math_checker import MathChecker
+from app.engines.verifier_registry import VerifierRegistry
+from app.engines.pedagogy_router import PedagogyRouter
+from app.engines.plugins.quantitative_plugin import QuantitativePlugin
 from app.core.student_model import StudentModel
 from app.core.curriculum_model import CurriculumModel
 from app.core.question_selector import QuestionSelector
@@ -55,10 +57,14 @@ def get_tutor_dependencies():
     curriculum_repo = CurriculumRepository()
     curriculum = CurriculumModel(curriculum_repo)
     selector = QuestionSelector(curriculum_repo)
-    math_checker = MathChecker()
     student_model = StudentModel()
 
-    controller = TutorController(math_checker, student_model, curriculum, selector)
+    # Setup Router and Registry
+    verifier_registry = VerifierRegistry() # auto-registers MathChecker internally via _register_default_plugins
+    pedagogy_router = PedagogyRouter()
+    pedagogy_router.register_plugin("quantitative", QuantitativePlugin())
+
+    controller = TutorController(pedagogy_router, verifier_registry, student_model, curriculum, selector)
 
     # Setup session
     session_repo = SessionRepository()

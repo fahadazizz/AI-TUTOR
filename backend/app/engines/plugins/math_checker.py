@@ -12,13 +12,13 @@ import sympy
 from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application
 
 from app.core.models import AnswerResult
-from app.engines.evaluation_engine import AnswerEvaluator
+from app.engines.verifier_registry import BaseVerifier
 from app.logging import get_logger
 
 logger = get_logger(__name__)
 
 
-class MathChecker(AnswerEvaluator):
+class MathChecker(BaseVerifier):
     """Deterministic mathematical answer verification using SymPy."""
 
     def __init__(self) -> None:
