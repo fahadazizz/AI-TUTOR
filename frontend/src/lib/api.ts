@@ -128,6 +128,13 @@ export const api = {
     }
   },
 
+  // 3c. Fetch chat history for a session
+  getChatHistory: async (sessionId: string) => {
+    const res = await fetch(`${API_BASE}/chat/${sessionId}/history`, { cache: 'no-store' });
+    if (!res.ok) throw new Error("Failed to fetch chat history");
+    return res.json();
+  },
+
   // 4. Fetch the initial diagnostic assessment
   getAssessment: async () => {
     const res = await fetch(`${API_BASE}/curriculum/assessment`);

@@ -168,6 +168,14 @@ async def chat_endpoint(request: ChatRequest, deps: dict = Depends(get_tutor_dep
     session.session_state["current_question_expected_answer"] = mutated_session.get("current_question_expected_answer")
     
     session.total_exchanges += 1
+    
+    # Save chat history
+    current_history = session.session_state.get("history", [])
+    current_history.append({"role": "user", "content": request.message})
+    current_history.append({"role": "assistant", "content": final_response})
+    # Keep last 20 messages to prevent DB bloat
+    session.session_state["history"] = current_history[-20:]
+    
     await session_manager.update_context(session)
 
     return ChatResponse(response=final_response, action_taken=action.value)
@@ -263,9 +271,27 @@ async def chat_stream_endpoint(request: ChatRequest, deps: dict = Depends(get_tu
         session.scaffold_step = mutated_session.get("scaffold_step", 0)
         session.session_state["current_question_expected_answer"] = mutated_session.get("current_question_expected_answer")
         
+        # Save chat history
+        current_history = session.session_state.get("history", [])
+        current_history.append({"role": "user", "content": request.message})
+        current_history.append({"role": "assistant", "content": accumulated_text})
+        # Keep last 20 messages to prevent DB bloat
+        session.session_state["history"] = current_history[-20:]
+        
         session.total_exchanges += 1
         await session_manager.update_context(session)
         
         yield "data: [DONE]\n\n"
 
     return StreamingResponse(generate_sse(), media_type="text/event-stream")
+
+@router.get("/{session_id}/history")
+async def get_chat_history(session_id: str, deps: dict = Depends(get_tutor_dependencies)):
+    """Fetch chat history for a session to restore frontend state."""
+    session_manager: SessionManager = deps["session_manager"]
+    session = await session_manager.get_active_session(session_id)
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+        
+    history = session.session_state.get("history", [])
+    return {"history": history}

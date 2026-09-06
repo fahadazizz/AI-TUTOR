@@ -152,20 +152,39 @@ class TutorController:
                     missing_prereqs = await self.curriculum.get_missing_prerequisites(target_concept_id, mastered_ids)
                     
                     if missing_prereqs:
-                        # Found a missing prerequisite! 
-                        # For V0.8 testing, we bypass strict enforcement. We warn in context but proceed to target.
-                        first_missing = missing_prereqs[0]
-                        missing_concept_data = await self.curriculum.get_concept(first_missing)
-                        
-                        context["missing_prerequisite"] = missing_concept_data
-                        context["target_concept_id"] = target_concept_id
-                        
-                    # Proceed to teach the target concept regardless of prerequisites
+                        # Soft Prerequisite Push/Pull Logic
+                        warned_for = session_state.get("warned_prereq_for")
+                        if warned_for == target_concept_id:
+                            # User insisted! Let them learn the target concept.
+                            session_state["warned_prereq_for"] = None
+                            session_state["current_concept_id"] = target_concept_id
+                            session_state["current_question_id"] = None
+                            session_state["current_question_expected_answer"] = None
+                            context["current_concept"] = await self.curriculum.get_concept(target_concept_id)
+                            return TutorAction.TEACH_CONCEPT, context, None, None
+                        else:
+                            # First time asking. Push them to the prerequisite.
+                            first_missing = missing_prereqs[0]
+                            missing_concept_data = await self.curriculum.get_concept(first_missing)
+                            
+                            context["missing_prerequisite"] = missing_concept_data
+                            context["target_concept_id"] = target_concept_id
+                            session_state["warned_prereq_for"] = target_concept_id
+                            
+                            # Switch their current concept to the missing prerequisite
+                            session_state["current_concept_id"] = first_missing
+                            session_state["current_question_id"] = None
+                            session_state["current_question_expected_answer"] = None
+                            context["current_concept"] = missing_concept_data
+                            return TutorAction.TEACH_PREREQUISITE, context, None, None
+                            
+                    # Proceed to teach the target concept (no prereqs missing)
+                    session_state["warned_prereq_for"] = None
                     session_state["current_concept_id"] = target_concept_id
                     session_state["current_question_id"] = None
                     session_state["current_question_expected_answer"] = None
-
-            return TutorAction.TEACH_CONCEPT, context, None, None
+                    context["current_concept"] = await self.curriculum.get_concept(target_concept_id)
+                    return TutorAction.TEACH_CONCEPT, context, None, None
 
         # 3. Solve Problem (Scaffolding vs Worked Example rule)
         elif intent == StudentIntent.SOLVE_PROBLEM:

@@ -33,6 +33,20 @@ export default function ChatPage() {
       
       const sId = localStorage.getItem("ai_tutor_student_id");
       if (sId) setStudentId(sId);
+
+      // Fetch chat history from database
+      api.getChatHistory(id)
+        .then(res => {
+          if (res.history && res.history.length > 0) {
+            const formattedHistory = res.history.map((h: any) => ({
+              id: crypto.randomUUID(),
+              role: h.role === "user" ? "student" : "tutor",
+              content: h.content
+            }));
+            setMessages(formattedHistory);
+          }
+        })
+        .catch(err => console.error("Failed to load chat history:", err));
     }
   }, [router]);
 

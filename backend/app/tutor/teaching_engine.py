@@ -66,16 +66,19 @@ class TeachingEngine:
         
         # 4. Inject visual instructions if needed
         visual_need = "none"
+        visual_syntax = ""
         if "current_concept" in context and context["current_concept"]:
             visual_need = context["current_concept"].get("visual_need", "none")
+            visual_syntax = context["current_concept"].get("visual_syntax", "")
         elif "missing_prerequisite" in context and context["missing_prerequisite"]:
             visual_need = context["missing_prerequisite"].get("visual_need", "none")
+            visual_syntax = context["missing_prerequisite"].get("visual_syntax", "")
             
         if visual_need == "graph":
-            visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_graph")
+            visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_graph", visual_syntax=visual_syntax)
             base_prompt += "\n" + visual_instruction
         elif visual_need == "diagram":
-            visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_diagram")
+            visual_instruction = self.prompt_manager.get_action_prompt(pref_lang, "visual_instruction_diagram", visual_syntax=visual_syntax)
             base_prompt += "\n" + visual_instruction
             
         return base_prompt

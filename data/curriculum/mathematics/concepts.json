@@ -67,7 +67,8 @@
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Diagram type=\"DependencyTree\"]"
     },
     {
       "concept_id": "prereq.algebra.variables",
@@ -415,7 +416,8 @@
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Graph type=\"numberline\" interval=\"[-5,5]\"]"
     },
     {
       "concept_id": "prereq.algebra.square_root",
@@ -728,7 +730,8 @@
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Graph type=\"parabola\" a=\"1\" b=\"0\" c=\"-4\"]"
     },
     {
       "concept_id": "math10.ch2.solving_by_factorization",
@@ -814,7 +817,8 @@
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Diagram type=\"AreaModel\" a=\"{a}\" b=\"{b}\" c=\"{c}\" split1=\"{split1}\" split2=\"{split2}\"]"
     },
     {
       "concept_id": "math10.ch2.completing_the_square",
@@ -897,7 +901,8 @@
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Diagram type=\"CompletingSquare\" b=\"{b}\"]"
     },
     {
       "concept_id": "math10.ch2.discriminant",
@@ -967,7 +972,8 @@
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Diagram type=\"RootsNature\" discriminant=\"{D}\"]"
     },
     {
       "concept_id": "math10.ch2.nature_of_roots",
@@ -977,6 +983,7 @@
       "name_en": "Nature of Roots",
       "name_ur": "جڑوں کی نوعیت",
       "difficulty": 3,
+      "visual_need": "diagram",
       "pedagogy_type": "conceptual",
       "learning_objectives": [
         "Determine nature of roots using discriminant",
@@ -1043,11 +1050,11 @@
       "textbook_sources": [
         "ch2_s4"
       ],
-      "visual_need": "graph",
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Diagram type=\"RootsNature\" discriminant=\"{D}\"]"
     },
     {
       "concept_id": "math10.ch2.quadratic_formula",
@@ -1125,7 +1132,8 @@
       "language_pack": [
         "en",
         "ur"
-      ]
+      ],
+      "visual_syntax": "[Diagram type=\"QuadraticFormula\" a=\"{a}\" b=\"{b}\" c=\"{c}\"]"
     },
     {
       "concept_id": "math10.ch2.word_problems",

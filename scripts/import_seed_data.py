@@ -71,6 +71,7 @@ async def import_concepts(repo: CurriculumRepository) -> int:
             board=concept.get("board", "punjab"),
             grade=concept.get("grade", 10),
             visual_need=concept.get("visual_need", "none"),
+            visual_syntax=concept.get("visual_syntax", ""),
             language_pack=concept.get("language_pack", ["en", "ur"]),
             textbook_sources=concept.get("textbook_sources", []),
             pedagogy_type=concept["pedagogy_type"],
